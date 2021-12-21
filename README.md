@@ -1,8 +1,28 @@
 # neovim-setup
-Personal Neovim set up
+Personal set up for Neovim on macOS.
 
-# Set up
-Personal Neovim set up
+## Requirements
+### Hombrew
+Follows the instruction of the [Hombrew site](https://brew.sh/)
+### NodeJS
+Run,
+~~~bash
+brew install node
+~~~
+**Note:** Is recommended to use a Node version manager, like [fnm](https://github.com/Schniz/fnm)
+Then install the neovim node support package,
+~~~bash
+npm install -g neovim
+~~~
+###Python
+TBD
+### Neovim(obviously)
+Run
+~~~bash
+brew install neovim
+~~~
+
+## Set up
 1. Clone the repo
 ~~~bash
 git clone https://github.com/diegognt/neovim-setup.git neovim-setup
@@ -13,5 +33,5 @@ cd neovim-setup
 ~~~
 3. Run:
 ~~~bash
-ln -fs . ~/.config/nvim
+ln -s "$(pwd)" ~/.config/nvim
 ~~~
