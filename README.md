@@ -35,3 +35,6 @@ cd neovim-setup
 ~~~bash
 ln -s "$(pwd)" ~/.config/nvim
 ~~~
+
+## Considerations
+1. When using Iterm, go to `Profiles` > `Keys` and remap the `Right Option Key` to "Esc+". 
