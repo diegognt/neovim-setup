@@ -68,6 +68,14 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig' -- Enables LSP
   use 'williamboman/nvim-lsp-installer' -- A language server installer
 
+  -- TreeSitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+  use 'folke/twilight.nvim'
+  use 'p00f/nvim-ts-rainbow'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
