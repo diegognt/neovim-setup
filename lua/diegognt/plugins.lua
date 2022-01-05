@@ -3,7 +3,7 @@
 local fn = vim.fn
 
 -- Automatically install packer
--- 'fn.stdpath' is the following path '.local/share/nvim/' 
+-- 'fn.stdpath' is the following path '.local/share/nvim/'
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
@@ -52,15 +52,21 @@ return packer.startup(function(use)
   use 'folke/tokyonight.nvim'
 
   --Completion plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- The buffer completions plugin extension
-  use "hrsh7th/cmp-path" -- The path completions plugin extension
-  use "hrsh7th/cmp-cmdline" -- The cmdline completions plugin extension
-  use "saadparwaiz1/cmp_luasnip" -- The LuaSnip completions plugin extension
+  use 'hrsh7th/nvim-cmp' -- The completion plugin
+  use 'hrsh7th/cmp-buffer' -- The buffer completions plugin extension
+  use 'hrsh7th/cmp-path' -- The path completions plugin extension
+  use 'hrsh7th/cmp-cmdline' -- The cmdline completions plugin extension
+  use 'saadparwaiz1/cmp_luasnip' -- The LuaSnip completions plugin extension
+  use "hrsh7th/cmp-nvim-lsp" -- The LSP completion plugin extension
+  use "hrsh7th/cmp-nvim-lua" -- The Lua language completion plugin extension
 
   -- Snippets
-  use "L3MON4D3/LuaSnip" -- A snippet engine
-  use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
+  use 'L3MON4D3/LuaSnip' -- A snippet engine
+  use 'rafamadriz/friendly-snippets' -- A bunch of snippets to use
+
+  -- Language Server Protocol - LSP
+  use 'neovim/nvim-lspconfig' -- Enables LSP
+  use 'williamboman/nvim-lsp-installer' -- A language server installer
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
