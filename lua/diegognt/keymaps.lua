@@ -29,7 +29,7 @@ keymap('n', '<C-j>', '<C-w>j', opts)
 keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
 
--- Open the default file explorer to the left
+-- Open the file explorer(NvimTree) to the left
 keymap('n', '<leader>e', ':Lex 25<cr>', opts)
 
 -- Resize with arrows

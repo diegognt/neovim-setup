@@ -51,6 +51,10 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs' -- Autopairs plugin with treesitter and cmp
   use 'numToStr/Comment.nvim' -- Comments make it easy
 
+  -- File Explorer
+  use 'kyazdani42/nvim-web-devicons' -- Nice icons
+  use 'kyazdani42/nvim-tree.lua' -- Nvim file explorer
+
   -- Colorschemes
   use 'folke/tokyonight.nvim'
 
