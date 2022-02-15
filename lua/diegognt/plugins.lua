@@ -50,6 +50,8 @@ return packer.startup(function(use)
   use 'folke/twilight.nvim' -- Focus on code stuff
   use 'windwp/nvim-autopairs' -- Autopairs plugin with treesitter and cmp
   use 'numToStr/Comment.nvim' -- Comments make it easy
+  use 'akinsho/bufferline.nvim' -- Bufferline plugin
+  use 'moll/vim-bbye' -- Plugin to avoid close nvim when close a buffer
 
   -- File Explorer
   use 'kyazdani42/nvim-web-devicons' -- Nice icons
