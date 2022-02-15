@@ -1,6 +1,6 @@
 -- Keymaps
 -- Recomendations:
---  - Look for what to the keymap used to do before overwite it
+--  - Look for what the keymap used to do before overwite it
 
 local opts = { noremap = true, silent = true }
 
@@ -30,7 +30,7 @@ keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
 
 -- Open the file explorer(NvimTree) to the left
-keymap('n', '<leader>e', ':Lex 25<cr>', opts)
+keymap('n', '<leader>e', ':NvimTreeToggle<cr>', opts)
 
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize +2<CR>', opts)
