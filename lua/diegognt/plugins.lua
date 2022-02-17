@@ -52,6 +52,7 @@ return packer.startup(function(use)
   use 'numToStr/Comment.nvim' -- Comments make it easy
   use 'akinsho/bufferline.nvim' -- Bufferline plugin
   use 'moll/vim-bbye' -- Plugin to avoid close nvim when close a buffer
+  use 'akinsho/toggleterm.nvim' --Nice Terminal for nvim
 
   -- File Explorer
   use 'kyazdani42/nvim-web-devicons' -- Nice icons
