@@ -14,8 +14,19 @@ Then install the neovim node support package,
 ~~~bash
 npm install -g neovim
 ~~~
-###Python
+### Python
 TBD
+### Rust
+Run,
+~~~bash
+brew install rust
+~~~
+### Stylua
+This a Lua formatter, to install ir run,
+~~~bash
+cargo install stylua
+~~~
+>Note: Make suro to follow the post-instruction instruction.
 ### Neovim(obviously)
 Run
 ~~~bash
