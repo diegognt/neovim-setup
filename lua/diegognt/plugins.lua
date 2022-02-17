@@ -90,6 +90,9 @@ return packer.startup(function(use)
   -- Git stuff
   use 'lewis6991/gitsigns.nvim'
 
+  -- Status line.
+  use 'nvim-lualine/lualine.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
