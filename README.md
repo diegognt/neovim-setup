@@ -22,11 +22,16 @@ Run,
 brew install rust
 ~~~
 ### Stylua
-This a Lua formatter, to install ir run,
+This a Lua formatter, to install it run,
 ~~~bash
 cargo install stylua
 ~~~
 >Note: Make suro to follow the post-instruction instruction.
+### Lazygit
+This a Git UI for terminals, to install it run,
+~~~bash
+brew install Lazygit
+~~~
 ### Neovim(obviously)
 Run
 ~~~bash
