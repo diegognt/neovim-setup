@@ -32,6 +32,9 @@ keymap('n', '<C-l>', '<C-w>l', opts)
 -- Open the file explorer(NvimTree) to the left
 keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 
+-- Formatting
+keymap('n', '<leader>f', ':Format<CR>', opts)
+
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize +2<CR>', opts)
 keymap('n', '<C-Down>', ':resize-2<CR>', opts)
