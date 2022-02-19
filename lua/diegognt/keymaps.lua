@@ -3,8 +3,8 @@
 --  - Look for what the keymap used to do before overwite it
 
 local opts = { noremap = true, silent = true }
-
 local term_opts = { silent = true }
+local nvim_tree_status_ok = pcall(require, 'nvim-tree')
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -29,8 +29,12 @@ keymap('n', '<C-j>', '<C-w>j', opts)
 keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
 
--- Open the file explorer(NvimTree) to the left
-keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+-- Open the file explorer(nvim-tree if active) to the left
+if nvim_tree_status_ok then
+  keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+else
+  keymap('n', '<leader>e', ':Lex 25<CR>', opts)
+end
 
 -- Formatting
 keymap('n', '<leader>f', ':Format<CR>', opts)
