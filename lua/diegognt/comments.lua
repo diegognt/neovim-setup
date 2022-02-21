@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 comment.setup {
-  pre_iook = function(context)
+  pre_hook = function(context)
     local Utils = require 'Comment.utils'
 
     local location = nil
