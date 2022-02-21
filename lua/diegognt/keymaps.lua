@@ -31,13 +31,24 @@ keymap('n', '<C-l>', '<C-w>l', opts)
 
 -- Open the file explorer(nvim-tree if active) to the left
 if nvim_tree_status_ok then
-  keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+	keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 else
-  keymap('n', '<leader>e', ':Lex 25<CR>', opts)
+	keymap('n', '<leader>e', ':Lex 25<CR>', opts)
 end
 
 -- Formatting
-keymap('n', '<leader>f', ':Format<CR>', opts)
+keymap('n', '<C-f>', ':Format<CR>', opts)
+
+-- Telescope
+keymap( -- Find files
+	'n',
+	'<leader>f',
+	':lua require"telescope.builtin".find_files(require("telescope.themes").get_dropdown({ previewer = false }))<CR>',
+	opts
+)
+keymap('n', '<leader>ft', ':Telescope live_grep<CR>', opts) -- Live grep
+keymap('n', '<leader>ff', ':Telescope current_buffer_fuzzy_find<CR>', opts) -- Current buffer fuzzy find
+keymap('n', '<leader>fs', 'Telescope lsp_document_symbols<CR>', opts) -- Document symbols using LSP
 
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize +2<CR>', opts)
@@ -68,10 +79,10 @@ keymap('v', 'p', '"_dP', opts)
 
 -- Visual Block Mode --
 -- Move text up and down
-keymap('x', 'J', ':move \'>+1<CR>gv-gv', opts)
-keymap('x', 'K', ':move \'<-2<CR>gv-gv', opts)
-keymap('x', '<A-j>', ':move \'>+1<CR>gv-gv', opts)
-keymap('x', '<A-k>', ':move \'<-2<CR>gv-gv', opts)
+keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
+keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
+keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
+keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal Mode --
 -- Tooggleterm applications bindings
@@ -82,4 +93,3 @@ keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
 keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
 keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
 keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
-
