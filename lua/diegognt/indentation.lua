@@ -1,0 +1,11 @@
+-- Setup nvim-cmp.
+local status_ok, indent_blankline = pcall(require, 'indent_blankline')
+if not status_ok then
+  vim.notify('"indent_blankline" plugin was not found.')
+  return
+end
+
+indent_blankline.setup {
+  show_end_of_line = true,
+  space_char_blankline = " ",
+}

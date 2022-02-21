@@ -54,6 +54,7 @@ return packer.startup(function(use)
   use 'akinsho/bufferline.nvim' -- Bufferline plugin
   use 'moll/vim-bbye' -- Plugin to avoid close nvim when close a buffer
   use 'akinsho/toggleterm.nvim' --Nice Terminal for nvim
+  use 'lukas-reineke/indent-blankline.nvim' -- Nice indentation
 
   -- File Explorer
   use 'kyazdani42/nvim-tree.lua' -- Nvim file explorer
