@@ -57,12 +57,14 @@ return packer.startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim' -- Nice indentation
   use 'ahmedkhalf/project.nvim' -- Cool projects/workspaces manager
   use 'goolord/alpha-nvim' -- A simple greeter screen with style
+  use 'lewis6991/impatient.nvim'
 
   -- File Explorer
   use 'kyazdani42/nvim-tree.lua' -- Nvim file explorer
 
   -- Tselescope
   use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-project.nvim'
 
   -- Colorschemes
   use 'folke/tokyonight.nvim'
