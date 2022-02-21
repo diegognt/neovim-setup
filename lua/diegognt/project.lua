@@ -1,6 +1,6 @@
 local status_ok, project = pcall(require, 'project_nvim')
 if not status_ok then
-  vim.notify('`ahmedkhalf/project.nvim` plugin was not found.')
+  vim.notify('The `ahmedkhalf/project.nvim` plugin was not found.')
 	return
 end
 project.setup({

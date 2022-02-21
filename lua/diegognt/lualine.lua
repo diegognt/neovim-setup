@@ -1,6 +1,6 @@
 local status_ok, lualine = pcall(require, 'lualine')
 if not status_ok then
-  vim.notify('Lualine plugin was not found.')
+  vim.notify('The `nvim-lualine/lualine.nvim` plugin was not found.')
 	return
 end
 
