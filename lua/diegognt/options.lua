@@ -14,14 +14,14 @@ cmd('set whichwrap+=<,>,[,],h,l')       -- move to next line with theses keys
 local options = {
   -- hidden = true                            -- required to keep multiple buffers and open multiple buffers
   backup = false,                          -- Creates a backup file
-  clipboard = "unnamedplus",               -- Allows neovim to access the system clipboard
+  clipboard = 'unnamedplus',               -- Allows neovim to access the system clipboard
   cmdheight = 1,                           -- More space in the neovim command line for displaying messages
-  completeopt = { "menuone", "noselect" }, -- Mostly just for cmp
+  completeopt = { 'menuone', 'noselect' }, -- Mostly just for cmp
   conceallevel = 0,                        -- So that `` is visible in markdown files
-  fileencoding = "utf-8",                  -- The encoding written to a file
+  fileencoding = 'utf-8',                  -- The encoding written to a file
   hlsearch = true,                         -- Highlight all matches on previous search pattern
   ignorecase = true,                       -- Ignores case in search patterns
-  mouse = "a",                             -- Allows the mouse to be used in neovim
+  mouse = 'a',                             -- Allows the mouse to be used in neovim
   pumheight = 10,                          -- Pop up menu height
   showmode = false,                        -- We don't need to see things like -- INSERT -- anymore
   showtabline = 2,                         -- Always show tabs
@@ -42,14 +42,17 @@ local options = {
   number = true,                           -- Sets the numbered lines
   relativenumber = true,                   -- Sets the relative numbered lines
   numberwidth = 4,                         -- Set the number column width to 2 {default 4}
-  signcolumn = "yes",                      -- Always show the sign column, otherwise it would shift the text each time
+  signcolumn = 'yes',                      -- Always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- Displays lines as one long line
   scrolloff = 8,                           -- Is one of my fav
   sidescrolloff = 8,
-  guifont = "monospace:h17",               -- The font used in graphical neovim applications
+  guifont = 'monospace:h17',               -- The font used in graphical neovim applications
+  list = true
 }
 
-vim.opt.shortmess:append "c"
+opt.listchars:append('space:⋅')
+opt.listchars:append('eol:')
+opt.shortmess:append 'c'
 
 for k, v in pairs(options) do
   vim.opt[k] = v
