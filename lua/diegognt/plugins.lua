@@ -56,6 +56,7 @@ return packer.startup(function(use)
   use 'akinsho/toggleterm.nvim' --Nice Terminal for nvim
   use 'lukas-reineke/indent-blankline.nvim' -- Nice indentation
   use 'ahmedkhalf/project.nvim' -- Cool projects/workspaces manager
+  use 'goolord/alpha-nvim' -- A simple greeter screen with style
 
   -- File Explorer
   use 'kyazdani42/nvim-tree.lua' -- Nvim file explorer
