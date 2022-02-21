@@ -95,7 +95,7 @@ local mappings = {
 		'Find files',
 	},
 	['F'] = { '<cmd>Telescope live_grep theme=ivy<CR>', 'Find Text' },
-	['P'] = { "<cmd>lua require('telescope').extensions.projects.projects()<CR>", 'Projects' },
+	['P'] = { '<cmd>lua require("telescope").extensions.projects.projects()<CR>', 'Projects' },
 
 	p = {
 		name = 'Packer',
@@ -106,7 +106,7 @@ local mappings = {
 		u = { '<cmd>PackerUpdate<CR>', 'Update' },
 	},
 
-	g = {
+	G = {
 		name = 'Git',
 		g = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<CR>", 'Next Hunk' },
@@ -117,12 +117,12 @@ local mappings = {
 		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<CR>", 'Reset Buffer' },
 		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<CR>", 'Stage Hunk' },
 		u = {
-			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<CR>",
+			'<cmd>lua require "gitsigns".undo_stage_hunk()<CR>',
 			'Undo Stage Hunk',
 		},
 		o = { '<cmd>Telescope git_status<CR>', 'Open changed file' },
-		b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
-		c = { '<cmd>Telescope git_commits<CR>', 'Checkout commit' },
+		-- b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
+		-- c = { '<cmd>Telescope git_commits<CR>', 'Checkout commit' },
 		d = {
 			'<cmd>Gitsigns diffthis HEAD<CR>',
 			'Diff',
@@ -160,6 +160,10 @@ local mappings = {
 			'Workspace Symbols',
 		},
 	},
+  m = {
+    name = 'Mode',
+    t = {'<cmd>Twilight<CR>', 'Twilight' }
+  },
 	s = {
 		name = 'Search',
 		b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
