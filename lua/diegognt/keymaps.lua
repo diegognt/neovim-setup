@@ -4,7 +4,6 @@
 
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
-local nvim_tree_status_ok = pcall(require, 'nvim-tree')
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -29,26 +28,7 @@ keymap('n', '<C-j>', '<C-w>j', opts)
 keymap('n', '<C-k>', '<C-w>k', opts)
 keymap('n', '<C-l>', '<C-w>l', opts)
 
--- Open the file explorer(nvim-tree if active) to the left
-if nvim_tree_status_ok then
-	keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
-else
-	keymap('n', '<leader>e', ':Lex 25<CR>', opts)
-end
-
--- Formatting
 keymap('n', '<C-f>', ':Format<CR>', opts)
-
--- Telescope
-keymap( -- Find files
-	'n',
-	'<leader>f',
-	':lua require"telescope.builtin".find_files(require("telescope.themes").get_dropdown({ previewer = false }))<CR>',
-	opts
-)
-keymap('n', '<leader>F', ':Telescope live_grep<CR>', opts) -- Live grep
-keymap('n', '<leader>sf', ':Telescope current_buffer_fuzzy_find<CR>', opts) -- Current buffer fuzzy find
-keymap('n', '<leader>ss', 'Telescope lsp_document_symbols<CR>', opts) -- Document symbols using LSP
 
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize +2<CR>', opts)
@@ -59,9 +39,6 @@ keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 -- Navigate between buffers
 keymap('n', '<S-l>', ':bnext<CR>', opts)
 keymap('n', '<S-h>', ':bprevious<CR>', opts)
-
--- Modes during insert
-keymap('n', '<leader>mt', ':Twilight<CR>', opts)
 
 -- Insert Mode --
 -- Press jk fast to enter
@@ -85,8 +62,6 @@ keymap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
 keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal Mode --
--- Tooggleterm applications bindings
-keymap('n', '<C-t><C-g>', ':lua _LAZYGIT_TOGGLE()<CR>', opts)
 
 -- Better terminal navigation
 keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
