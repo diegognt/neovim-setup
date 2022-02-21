@@ -46,9 +46,9 @@ keymap( -- Find files
 	':lua require"telescope.builtin".find_files(require("telescope.themes").get_dropdown({ previewer = false }))<CR>',
 	opts
 )
-keymap('n', '<leader>ft', ':Telescope live_grep<CR>', opts) -- Live grep
-keymap('n', '<leader>ff', ':Telescope current_buffer_fuzzy_find<CR>', opts) -- Current buffer fuzzy find
-keymap('n', '<leader>fs', 'Telescope lsp_document_symbols<CR>', opts) -- Document symbols using LSP
+keymap('n', '<leader>F', ':Telescope live_grep<CR>', opts) -- Live grep
+keymap('n', '<leader>sf', ':Telescope current_buffer_fuzzy_find<CR>', opts) -- Current buffer fuzzy find
+keymap('n', '<leader>ss', 'Telescope lsp_document_symbols<CR>', opts) -- Document symbols using LSP
 
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize +2<CR>', opts)

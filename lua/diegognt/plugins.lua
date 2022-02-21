@@ -101,6 +101,8 @@ return packer.startup(function(use)
   -- Status line.
   use 'nvim-lualine/lualine.nvim'
 
+  use 'folke/which-key.nvim' -- Keymap helper
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
