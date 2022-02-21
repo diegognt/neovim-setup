@@ -1,6 +1,7 @@
 local status_ok, toggleterm = pcall(require, 'toggleterm')
 if not status_ok then
-  vim.notify('Toggleterm plugin was not found.')
+  vim.notify('The `akinsho/toggleterm.nvim` plugin was not found.')
+  return
 end
 
 toggleterm.setup({

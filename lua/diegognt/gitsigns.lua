@@ -1,6 +1,6 @@
 local status_ok, gitsigns = pcall(require, 'gitsigns')
 if not status_ok then
-  vim.notify('Gitsigns was not found.')
+  vim.notify('The `lewis6991/gitsigns.nvim` plugin was not found.')
   return
 end
 

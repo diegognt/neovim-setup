@@ -1,7 +1,7 @@
 -- Setup nvim-cmp.
 local status_ok, indent_blankline = pcall(require, 'indent_blankline')
 if not status_ok then
-  vim.notify('"indent_blankline" plugin was not found.')
+  vim.notify('The `lukas-reineke/indent-blankline.nvim` plugin was not found.')
   return
 end
 

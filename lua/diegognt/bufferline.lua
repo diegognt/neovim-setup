@@ -1,6 +1,7 @@
 local status_ok, bufferline = pcall(require, 'bufferline')
 if not status_ok then
-  vim.notify('Bufferline was not found.')
+  vim.notify('The `akinsho/bufferline.nvim` plugin was not found.')
+  return
 end
 
 bufferline.setup {

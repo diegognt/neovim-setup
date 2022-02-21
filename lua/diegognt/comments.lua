@@ -1,5 +1,6 @@
 local status_ok, comment = pcall(require, 'Comment')
 if not status_ok then
+  vim.notify('The `numToStr/Comment.nvim` plugin was not found.')
   return
 end
 

@@ -1,6 +1,6 @@
 local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
 if not status_ok then
-  vim.notify('TreeSitter plugin was not found')
+  vim.notify('The `nvim-treesitter/nvim-treesitter` plugin was not found')
   return
 end
 

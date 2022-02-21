@@ -1,6 +1,6 @@
 local cmp_status_ok, cmp = pcall(require, 'cmp')
 if not cmp_status_ok then
-  vim.notify('The completion plugin was not found.')
+  vim.notify('The `hrsh7th/nvim-cmp` plugin was not found.')
   return
 end
 

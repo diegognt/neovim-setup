@@ -1,7 +1,7 @@
 -- Setup nvim-cmp.
 local status_ok, npairs = pcall(require, 'nvim-autopairs')
 if not status_ok then
-  vim.notify('Autopairs was not found.')
+  vim.notify('The `windwp/nvim-autopairs` plugin was not found.')
   return
 end
 
