@@ -58,6 +58,7 @@ return packer.startup(function(use)
   use 'ahmedkhalf/project.nvim' -- Cool projects/workspaces manager
   use 'goolord/alpha-nvim' -- A simple greeter screen with style
   use 'lewis6991/impatient.nvim'
+  use 'folke/todo-comments.nvim' -- Fancy TODO manager
 
   -- File Explorer
   use 'kyazdani42/nvim-tree.lua' -- Nvim file explorer
