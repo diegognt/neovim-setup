@@ -5,6 +5,7 @@ if not status_ok then
 end
 
 local dashboard = require('alpha.themes.dashboard')
+-- TODO: Find a better ASCII art.
 dashboard.section.header.val = {
 	[[                               __                ]],
 	[[  ___     ___    ___   __  __ /\_\    ___ ___    ]],

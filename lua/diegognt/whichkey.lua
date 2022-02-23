@@ -174,8 +174,8 @@ local mappings = {
 		R = { '<cmd>Telescope registers<CR>', 'Registers' },
 		k = { '<cmd>Telescope keymaps<CR>', 'Keymaps' },
 		C = { '<cmd>Telescope commands<CR>', 'Commands' },
+    t = { '<cmd>TodoTelescope<CR>', 'TODOs' }
 	},
-
 	t = {
 		name = 'Terminal',
 		n = { '<cmd>lua _NODE_TOGGLE()<CR>', 'Node' },
