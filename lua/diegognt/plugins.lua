@@ -87,6 +87,7 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig' -- Enables LSP
   use 'williamboman/nvim-lsp-installer' -- A language server installer
   use 'jose-elias-alvarez/null-ls.nvim' -- null-ls
+  use 'folke/trouble.nvim' -- Elegant diagnostic tools for LSP
 
   -- TreeSitter
   use {
