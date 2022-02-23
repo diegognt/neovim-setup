@@ -82,7 +82,7 @@ local opts = {
 local mappings = {
 	['a'] = { '<cmd>Alpha<CR>', 'Alpha' },
 	['b'] = {
-		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<CR>",
+		'<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown{previewer = false})<CR>',
 		'Buffers',
 	},
 	['e'] = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
@@ -91,9 +91,10 @@ local mappings = {
 	['c'] = { '<cmd>Bdelete!<CR>', 'Close Buffer' },
 	['h'] = { '<cmd>nohlsearch<CR>', 'No Highlight' },
 	['f'] = {
-		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<CR>",
+		'<cmd>lua require("telescope.builtin").find_files(require("telescope.themes").get_dropdown{previewer = false})<CR>',
 		'Find files',
 	},
+  ['K'] = { '<cmd>lua vim.buf.hover()<CR>', 'Hover' },
 	['F'] = { '<cmd>Telescope live_grep theme=ivy<CR>', 'Find Text' },
 	['P'] = { '<cmd>lua require("telescope").extensions.projects.projects()<CR>', 'Projects' },
 
@@ -105,17 +106,23 @@ local mappings = {
 		S = { '<cmd>PackerStatus<CR>', 'Status' },
 		u = { '<cmd>PackerUpdate<CR>', 'Update' },
 	},
-
+  g = {
+    name = 'Go to',
+    d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' },
+    D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
+    i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
+    r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'References'}
+  },
 	G = {
 		name = 'Git',
-		g = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
-		j = { "<cmd>lua require 'gitsigns'.next_hunk()<CR>", 'Next Hunk' },
-		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<CR>", 'Prev Hunk' },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<CR>", 'Blame' },
-		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<CR>", 'Preview Hunk' },
-		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<CR>", 'Reset Hunk' },
-		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<CR>", 'Reset Buffer' },
-		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<CR>", 'Stage Hunk' },
+		-- g = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
+		j = { '<cmd>lua require "gitsigns".next_hunk()<CR>', 'Next Hunk' },
+		k = { '<cmd>lua require "gitsigns".prev_hunk()<CR>', 'Prev Hunk' },
+		l = { '<cmd>lua require "gitsigns".blame_line()<CR>', 'Blame' },
+		p = { '<cmd>lua require "gitsigns".preview_hunk()<CR>', 'Preview Hunk' },
+		r = { '<cmd>lua require "gitsigns".reset_hunk()<CR>', 'Reset Hunk' },
+		R = { '<cmd>lua require "gitsigns".reset_buffer()<CR>', 'Reset Buffer' },
+		s = { '<cmd>lua require "gitsigns".stage_hunk()<CR>', 'Stage Hunk' },
 		u = {
 			'<cmd>lua require "gitsigns".undo_stage_hunk()<CR>',
 			'Undo Stage Hunk',
@@ -123,42 +130,18 @@ local mappings = {
 		o = { '<cmd>Telescope git_status<CR>', 'Open changed file' },
 		-- b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
 		-- c = { '<cmd>Telescope git_commits<CR>', 'Checkout commit' },
-		d = {
-			'<cmd>Gitsigns diffthis HEAD<CR>',
-			'Diff',
-		},
+		d = { '<cmd>Gitsigns diffthis HEAD<CR>', 'Diff' },
 	},
 
 	l = {
 		name = 'LSP',
 		a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
-		d = {
-			'<cmd>Telescope lsp_document_diagnostics<CR>',
-			'Document Diagnostics',
-		},
-		w = {
-			'<cmd>Telescope lsp_workspace_diagnostics<CR>',
-			'Workspace Diagnostics',
-		},
 		f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format' },
 		i = { '<cmd>LspInfo<CR>', 'Info' },
 		I = { '<cmd>LspInstallInfo<CR>', 'Installer Info' },
-		j = {
-			'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-			'Next Diagnostic',
-		},
-		k = {
-			'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
-			'Prev Diagnostic',
-		},
 		l = { '<cmd>lua vim.lsp.codelens.run()<CR>', 'CodeLens Action' },
-		q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Quickfix' },
 		r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
 		s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
-		S = {
-			'<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
-			'Workspace Symbols',
-		},
 	},
   m = {
     name = 'Mode',
@@ -186,6 +169,13 @@ local mappings = {
 		h = { '<cmd>ToggleTerm size=10 direction=horizontal<CR>', 'Horizontal' },
 		v = { '<cmd>ToggleTerm size=80 direction=vertical<CR>', 'Vertical' },
 	},
+  x = {
+    name = 'Diagnostic',
+    w = { '<cmd>Trouble workspace_diagnostics<CR>', 'Workspace' },
+    d = { '<cmd>Trouble document_diagnostics<CR>', 'Document' },
+    t = { '<cmd>TodoTrouble<CR>', 'TODOs' },
+    q = { '<cmd>Trouble quickfix<CR>', 'Quickfix' }
+  }
 }
 
 which_key.setup(setup)
