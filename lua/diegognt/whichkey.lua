@@ -91,7 +91,7 @@ local mappings = {
 	['c'] = { '<cmd>Bdelete!<CR>', 'Close Buffer' },
 	['h'] = { '<cmd>nohlsearch<CR>', 'No Highlight' },
 	['f'] = {
-		'<cmd>lua require("telescope.builtin").find_files(require("telescope.themes").get_dropdown{previewer = false})<CR>',
+		'<cmd>lua require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({previewer = false}))<CR>',
 		'Find files',
 	},
   ['K'] = { '<cmd>lua vim.buf.hover()<CR>', 'Hover' },
