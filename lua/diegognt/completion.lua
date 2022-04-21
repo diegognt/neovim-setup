@@ -121,8 +121,11 @@ cmp.setup {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  documentation = {
-    border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+  window = {
+    completion = cmp.config.window.bordered()
+    -- documentation = {
+    --   border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+    -- },
   },
   experimental = {
     ghost_text = true,
