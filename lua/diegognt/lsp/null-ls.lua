@@ -13,8 +13,15 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
 	debug = false,
 	sources = {
-		diagnostics.eslint,
-		formatting.prettier,
+		diagnostics.eslint.with({
+			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
+		}),
+		formatting.prettier.with({
+			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
+		}),
+		formatting.stylelint.with({
+			command = 'npx stylelint',
+		}),
 		formatting.stylua,
 		diagnostics.flake8,
 	},
