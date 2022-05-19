@@ -97,6 +97,7 @@ return packer.startup(function(use)
   use 'p00f/nvim-ts-rainbow' -- Better parentheses rainbow using treesitter
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'nvim-treesitter/nvim-tree-docs'
+  use 'windwp/nvim-ts-autotag'
 
   -- Git stuff
   use 'lewis6991/gitsigns.nvim'

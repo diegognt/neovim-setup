@@ -16,7 +16,10 @@ configs.setup {
     disable = { '' }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { 'yaml' } },
+  indent = {
+    enable = true,
+    disable = { 'yaml' }
+   },
   rainbow = {
     enable = true,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
@@ -29,14 +32,7 @@ configs.setup {
     enable = true,
     enable_autocmd = false
   },
-  tree_docs = {
-    enable = true,
-    spec_config = {
-      jsdoc = {
-        slots = {
-          class = {author = true}
-        }
-      }
-    }
-  }
+  autotag = { -- `Uses windwp/nvim-ts-autotag` to autoclose or autoremane HTML tags.
+    enable = true
+  },
 }
