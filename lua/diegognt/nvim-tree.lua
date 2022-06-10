@@ -1,25 +1,4 @@
--- The following options are the default
 -- Each of these are documented in `:help nvim-tree.OPTION_NAME`
-vim.g.nvim_tree_icons = {
-  default = '',
-  symlink = '',
-  git = {
-    unstaged = '',
-    staged = 'S',
-    unmerged = '',
-    renamed = '➜',
-    deleted = '',
-    untracked = 'U',
-    ignored = '◌',
-  },
-  folder = {
-    default = '',
-    open = '',
-    empty = '',
-    empty_open = '',
-    symlink = '',
-  },
-}
 
 local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
@@ -55,6 +34,44 @@ nvim_tree.setup {
       warning = '',
       error = '',
     },
+  },
+  renderer = {
+    icons = {
+      webdev_colors = true,
+      git_placement = "before",
+      padding = " ",
+      symlink_arrow = " 壟 ",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+      },
+      glyphs = {
+        default = "",
+        symlink = "",
+        folder = {
+          arrow_closed = "",
+          arrow_open = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+        git = {
+          unstaged = '',
+          staged = '',
+          unmerged = '',
+          renamed = '',
+          deleted = '',
+          untracked = '',
+          ignored = '',
+        },
+      },
+    },
+    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
   },
   update_focused_file = {
     enable = true,
