@@ -142,6 +142,7 @@ local mappings = {
 		l = { '<cmd>lua vim.lsp.codelens.run()<CR>', 'CodeLens Action' },
 		r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
 		s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
+    S = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature help' },
 	},
   m = {
     name = 'Mode',
@@ -171,8 +172,11 @@ local mappings = {
 	},
   x = {
     name = 'Diagnostic',
-    w = { '<cmd>Trouble workspace_diagnostics<CR>', 'Workspace' },
     d = { '<cmd>Trouble document_diagnostics<CR>', 'Document' },
+    j = { '<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>', 'Next Diagnostic'},
+    k = { '<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>', 'Previous Diagnostic'},
+    f = { 'lua vim.diagnostic.open_float()<CR>', 'Float window' },
+    w = { '<cmd>Trouble workspace_diagnostics<CR>', 'Workspace' },
     t = { '<cmd>TodoTrouble<CR>', 'TODOs' },
     q = { '<cmd>Trouble quickfix<CR>', 'Quickfix' }
   }

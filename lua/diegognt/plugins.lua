@@ -69,6 +69,7 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use 'folke/tokyonight.nvim'
+  use 'rebelot/kanagawa.nvim'
 
   --Completion plugins
   use 'hrsh7th/nvim-cmp' -- The completion plugin
@@ -88,6 +89,7 @@ return packer.startup(function(use)
   use 'williamboman/nvim-lsp-installer' -- A language server installer
   use 'jose-elias-alvarez/null-ls.nvim' -- null-ls
   use 'folke/trouble.nvim' -- Elegant diagnostic tools for LSP
+  use 'RRethy/vim-illuminate' -- Highlighting words occurance
 
   -- TreeSitter
   use {
