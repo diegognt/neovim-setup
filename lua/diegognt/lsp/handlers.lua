@@ -1,5 +1,15 @@
 local M = {}
 
+local status_cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if not status_cmp_ok then
+  vim.notify('The plugin `hrsh7th/cmp-nvim-lsp` has not been found.')
+	return
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
 M.setup = function()
 	local signs = {
 		{ name = 'DiagnosticSignError', text = '' },
@@ -13,17 +23,15 @@ M.setup = function()
 	end
 
 	local config = {
-		-- disable virtual text
-		virtual_text = false,
-		-- show signs
+		virtual_text = false, -- disable virtual text
 		signs = {
-			active = signs,
+			active = signs, -- show signs
 		},
 		update_in_insert = true,
 		underline = true,
 		severity_sort = true,
 		float = {
-			focusable = false,
+			focusable = true,
 			style = 'minimal',
 			border = 'rounded',
 			source = 'always',
@@ -43,38 +51,22 @@ M.setup = function()
 	})
 end
 
-local function lsp_highlight_document(client)
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-			false
-		)
-	end
-end
-
 M.on_attach = function(client)
-	if client.name == 'tsserver' or client.name == 'sumneko_lua' then
+	if client.name == 'tsserver' then
 		client.resolved_capabilities.document_formatting = false
 	end
 
-	lsp_highlight_document(client)
+	if client.name == 'sumneko_lua' then
+		client.resolved_capabilities.document_formatting = false
+	end
+
+	local status_ok, illuminate = pcall(require, 'illuminate')
+
+	if not status_ok then
+		vim.notify('The plugin `RRethy/vim-illuminate` has not been found.')
+		return
+	end
+	illuminate.on_attach(client)
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if not status_ok then
-	vim.notify('The `hrsh7th/cmp-nvim-lsp`, completion plugin for LSP was not found.')
-	return
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
+ 
 return M
