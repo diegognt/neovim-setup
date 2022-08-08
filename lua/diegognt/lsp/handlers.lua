@@ -2,7 +2,7 @@ local M = {}
 
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if not status_cmp_ok then
-  vim.notify('The plugin `hrsh7th/cmp-nvim-lsp` has not been found.')
+	vim.notify('The plugin `hrsh7th/cmp-nvim-lsp` has not been found.')
 	return
 end
 
@@ -37,6 +37,8 @@ M.setup = function()
 			source = 'always',
 			header = '',
 			prefix = '',
+			pad_top = 1,
+			pad_bottom = 1,
 		},
 	}
 
@@ -68,5 +70,5 @@ M.on_attach = function(client)
 	end
 	illuminate.on_attach(client)
 end
- 
+
 return M
