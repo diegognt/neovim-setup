@@ -1,6 +1,6 @@
 local status_ok, which_key = pcall(require, 'which-key')
 if not status_ok then
-  vim.notify('The `folke/which-key.nvim` plugin was not found.')
+	vim.notify('The `folke/which-key.nvim` plugin was not found.')
 	return
 end
 
@@ -94,7 +94,7 @@ local mappings = {
 		'<cmd>lua require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({previewer = false}))<CR>',
 		'Find files',
 	},
-  ['K'] = { '<cmd>lua vim.buf.hover()<CR>', 'Hover' },
+	['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
 	['F'] = { '<cmd>Telescope live_grep theme=ivy<CR>', 'Find Text' },
 	['P'] = { '<cmd>lua require("telescope").extensions.projects.projects()<CR>', 'Projects' },
 
@@ -106,13 +106,14 @@ local mappings = {
 		S = { '<cmd>PackerStatus<CR>', 'Status' },
 		u = { '<cmd>PackerUpdate<CR>', 'Update' },
 	},
-  g = {
-    name = 'Go to',
-    d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' },
-    D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
-    i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
-    r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'References'}
-  },
+	g = {
+		name = 'Go to',
+		d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' },
+		D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
+		i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
+		r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'References' },
+		t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type definition' },
+	},
 	G = {
 		name = 'Git',
 		-- g = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
@@ -142,12 +143,12 @@ local mappings = {
 		l = { '<cmd>lua vim.lsp.codelens.run()<CR>', 'CodeLens Action' },
 		r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
 		s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
-    S = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature help' },
+		S = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature help' },
 	},
-  m = {
-    name = 'Mode',
-    t = {'<cmd>Twilight<CR>', 'Twilight' }
-  },
+	m = {
+		name = 'Mode',
+		t = { '<cmd>Twilight<CR>', 'Twilight' },
+	},
 	s = {
 		name = 'Search',
 		b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
@@ -158,7 +159,7 @@ local mappings = {
 		R = { '<cmd>Telescope registers<CR>', 'Registers' },
 		k = { '<cmd>Telescope keymaps<CR>', 'Keymaps' },
 		C = { '<cmd>Telescope commands<CR>', 'Commands' },
-    t = { '<cmd>TodoTelescope<CR>', 'TODOs' }
+		t = { '<cmd>TodoTelescope<CR>', 'TODOs' },
 	},
 	t = {
 		name = 'Terminal',
@@ -170,16 +171,16 @@ local mappings = {
 		h = { '<cmd>ToggleTerm size=10 direction=horizontal<CR>', 'Horizontal' },
 		v = { '<cmd>ToggleTerm size=80 direction=vertical<CR>', 'Vertical' },
 	},
-  x = {
-    name = 'Diagnostic',
-    d = { '<cmd>Trouble document_diagnostics<CR>', 'Document' },
-    j = { '<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>', 'Next Diagnostic'},
-    k = { '<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>', 'Previous Diagnostic'},
-    f = { 'lua vim.diagnostic.open_float()<CR>', 'Float window' },
-    w = { '<cmd>Trouble workspace_diagnostics<CR>', 'Workspace' },
-    t = { '<cmd>TodoTrouble<CR>', 'TODOs' },
-    q = { '<cmd>Trouble quickfix<CR>', 'Quickfix' }
-  }
+	x = {
+		name = 'Diagnostic',
+		d = { '<cmd>Trouble document_diagnostics<CR>', 'Document' },
+		j = { '<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>', 'Next Diagnostic' },
+		k = { '<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>', 'Previous Diagnostic' },
+		f = { 'lua vim.diagnostic.open_float()<CR>', 'Float window' },
+		w = { '<cmd>Trouble workspace_diagnostics<CR>', 'Workspace' },
+		t = { '<cmd>TodoTrouble<CR>', 'TODOs' },
+		q = { '<cmd>Trouble quickfix<CR>', 'Quickfix' },
+	},
 }
 
 which_key.setup(setup)
