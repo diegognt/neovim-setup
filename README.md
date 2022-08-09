@@ -1,17 +1,17 @@
-# neovim-setup
+# Neovim-setup
 Personal set up for Neovim on macOS & Ubuntu.
 
 ## Requirements
 ### Hombrew(macOS)
 Follows the instruction of the [Hombrew site](https://brew.sh/)
 ### NodeJS
-Is recommended to use a Node version manager, like [fnm](https://github.com/Schniz/fnm)
+To use a Node version manager, like [fnm](https://github.com/Schniz/fnm)
 Then install the Neovim node support package,
 ~~~bash
 npm install -g neovim
 ~~~
 ### Python
-Is recommended to use a Python version manager, like [Pyenv](https://github.com/pyenv/pyenv)
+To use a Python version manager, like [Pyenv](https://github.com/pyenv/pyenv)
 Then install the Neovim node support package,
 ~~~bash
 pip install pynvim
@@ -27,7 +27,7 @@ This a Lua formatter, to install it run,
 ~~~bash
 cargo install stylua
 ~~~
->Note: Make sure to follow the post-instruction instruction.
+>Note: Make sure to follow the post-installation instruction.
 ### Lazygit
 This a Git UI for terminals, to install it on macOS run,
 ~~~bash
