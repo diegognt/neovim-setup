@@ -59,6 +59,7 @@ return packer.startup(function(use)
   use 'goolord/alpha-nvim' -- A simple greeter screen with style
   use 'lewis6991/impatient.nvim'
   use 'folke/todo-comments.nvim' -- Fancy TODO manager
+  use 'danymat/neogen' -- Doc annotation
 
   -- File Explorer
   use 'kyazdani42/nvim-tree.lua' -- Nvim file explorer
