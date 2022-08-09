@@ -24,5 +24,6 @@ null_ls.setup({
 		}),
 		formatting.stylua,
 		diagnostics.flake8,
+    diagnostics.vale
 	},
 })
