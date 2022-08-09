@@ -80,7 +80,7 @@ local opts = {
 }
 
 local mappings = {
-	['a'] = { '<cmd>Alpha<CR>', 'Alpha' },
+	['A'] = { '<cmd>Alpha<CR>', 'Alpha' },
 	['b'] = {
 		'<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown{previewer = false})<CR>',
 		'Buffers',
@@ -97,7 +97,12 @@ local mappings = {
 	['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
 	['F'] = { '<cmd>Telescope live_grep theme=ivy<CR>', 'Find Text' },
 	['P'] = { '<cmd>lua require("telescope").extensions.projects.projects()<CR>', 'Projects' },
-
+  a = {
+    name = 'Annotation',
+    a = { '<cmd>lua require("neogen").generate()<CR>', 'Annotation' },
+    c = { '<cmd>lua require("neogen").generate({type = "class"})<CR>', 'Class' },
+    f = { '<cmd>lua require("neogen").generate({type = "func"})<CR>', 'Function'}
+  },
 	p = {
 		name = 'Packer',
 		c = { '<cmd>PackerCompile<CR>', 'Compile' },
