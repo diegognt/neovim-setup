@@ -10,6 +10,8 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 
+-- NOTE: when using a node based tools used the `dynamic_command`.
+
 null_ls.setup({
 	debug = false,
 	sources = {
@@ -20,10 +22,14 @@ null_ls.setup({
 			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
 		}),
 		formatting.stylelint.with({
-			command = 'npx stylelint',
+			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
+		}),
+		diagnostics.stylelint.with({
+			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
 		}),
 		formatting.stylua,
-		diagnostics.flake8,
-    diagnostics.vale
+		diagnostics.pylint,
+		diagnostics.vale,
+		formatting.black,
 	},
 })
