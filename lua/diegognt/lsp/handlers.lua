@@ -62,6 +62,18 @@ M.on_attach = function(client)
 		client.resolved_capabilities.document_formatting = false
 	end
 
+  if client.name == 'pyright' then
+		client.resolved_capabilities.document_formatting = false
+  end
+
+  if client.name == 'cssls' then
+    client.resolved_capabilities.document_formatting = false
+  end
+
+  if client.name == 'jsonls' then
+    client.resolved_capabilities.document_formatting = false
+  end
+
 	local status_ok, illuminate = pcall(require, 'illuminate')
 
 	if not status_ok then

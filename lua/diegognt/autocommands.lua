@@ -25,3 +25,5 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup END
 ]]
+
+vim.cmd [[ autocmd BufRead,BufEnter *.astro set filetype=astro ]]
