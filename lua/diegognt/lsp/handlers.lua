@@ -73,14 +73,6 @@ M.on_attach = function(client)
   if client.name == 'jsonls' then
     client.resolved_capabilities.document_formatting = false
   end
-
-	local status_ok, illuminate = pcall(require, 'illuminate')
-
-	if not status_ok then
-		vim.notify('The plugin `RRethy/vim-illuminate` has not been found.')
-		return
-	end
-	illuminate.on_attach(client)
 end
 
 return M
