@@ -4,7 +4,7 @@ if not status_ok then
   return
 end
 
-bufferline.setup {
+bufferline.setup({
   options = {
     numbers = 'none', -- | 'ordinal' | 'buffer_id' | 'both' | function({ ordinal, id, lower, raise }): string,
     close_command = 'Bdelete! %d', -- can be a string | function, see 'Mouse actions'
@@ -14,7 +14,10 @@ bufferline.setup {
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
-    indicator_icon = '▎',
+    indicator = {
+      icon = '▎',
+      style = 'icon',
+    },
     buffer_close_icon = '',
     modified_icon = '●',
     close_icon = '',
@@ -47,4 +50,4 @@ bufferline.setup {
     enforce_regular_tabs = true,
     always_show_bufferline = true,
   },
-}
+})

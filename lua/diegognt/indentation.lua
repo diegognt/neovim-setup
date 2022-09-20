@@ -5,8 +5,8 @@ if not status_ok then
   return
 end
 
-indent_blankline.setup {
+indent_blankline.setup({
   show_end_of_line = true,
-  space_char_blankline = " ",
-  filetype_exclude = { 'alpha', 'toggleterm' }
-}
+  space_char_blankline = ' ',
+  filetype_exclude = { 'alpha', 'toggleterm' },
+})
