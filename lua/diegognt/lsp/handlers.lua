@@ -71,6 +71,10 @@ M.on_attach = function(client)
   end
 
   if client.name == 'jsonls' then
+    client.resolved_capabilities.document_formatting = true
+  end
+
+  if client.name == 'astro' then
     client.resolved_capabilities.document_formatting = false
   end
 end

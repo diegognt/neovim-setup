@@ -27,3 +27,5 @@ vim.cmd [[
 ]]
 
 vim.cmd [[ autocmd BufRead,BufEnter *.astro set filetype=astro ]]
+vim.cmd [[ autocmd BufRead,BufEnter .prettierrc set filetype=json ]]
+vim.cmd [[ autocmd BufRead,BufEnter .stylelintrc set filetype=json ]]

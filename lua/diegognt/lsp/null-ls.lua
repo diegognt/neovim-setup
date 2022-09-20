@@ -17,9 +17,11 @@ null_ls.setup({
 	sources = {
 		diagnostics.eslint.with({
 			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
+      filetypes = {"javascript", "typescript"}
 		}),
 		formatting.prettier.with({
 			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
+      filetypes = { "javascript", "typescript", "css", "scss", "astro", "html", "json", "yaml", "markdown"}
 		}),
 		formatting.stylelint.with({
 			dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
