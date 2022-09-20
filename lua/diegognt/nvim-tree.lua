@@ -14,11 +14,11 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
-nvim_tree.setup {
+nvim_tree.setup({
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
-  ignore_ft_on_setup = {'startify', 'dashboard', 'alpha'},
+  ignore_ft_on_setup = { 'startify', 'dashboard', 'alpha' },
   open_on_tab = false,
   hijack_cursor = false,
   update_cwd = true,
@@ -34,9 +34,9 @@ nvim_tree.setup {
   renderer = {
     icons = {
       webdev_colors = true,
-      git_placement = "before",
-      padding = " ",
-      symlink_arrow = " 壟 ",
+      git_placement = 'before',
+      padding = ' ',
+      symlink_arrow = ' 壟 ',
       show = {
         file = true,
         folder = true,
@@ -44,17 +44,17 @@ nvim_tree.setup {
         git = true,
       },
       glyphs = {
-        default = "",
-        symlink = "",
+        default = '',
+        symlink = '',
         folder = {
-          arrow_closed = "",
-          arrow_open = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = "",
+          arrow_closed = '',
+          arrow_open = '',
+          default = '',
+          open = '',
+          empty = '',
+          empty_open = '',
+          symlink = '',
+          symlink_open = '',
         },
         git = {
           unstaged = '',
@@ -67,7 +67,7 @@ nvim_tree.setup {
         },
       },
     },
-    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    special_files = { 'Cargo.toml', 'Makefile', 'README.md', 'readme.md' },
   },
   update_focused_file = {
     enable = true,
@@ -87,12 +87,12 @@ nvim_tree.setup {
     mappings = {
       custom_only = false,
       list = {
-        { key = { 'l', '<CR>', 'o' }, cb = tree_cb 'edit' },
-        { key = 'h', cb = tree_cb 'close_node' },
-        { key = 'v', cb = tree_cb 'vsplit' },
+        { key = { 'l', '<CR>', 'o' }, cb = tree_cb('edit') },
+        { key = 'h', cb = tree_cb('close_node') },
+        { key = 'v', cb = tree_cb('vsplit') },
       },
     },
     number = false,
     relativenumber = false,
   },
-}
+})
