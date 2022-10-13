@@ -89,13 +89,13 @@ local mappings = {
   ['w'] = { '<cmd>w!<CR>', 'Save' },
   ['q'] = { '<cmd>q!<CR>', 'Quit' },
   ['c'] = { '<cmd>Bdelete!<CR>', 'Close Buffer' },
-  ['h'] = { '<cmd>nohlsearch<CR>', 'No Highlight' },
+  ['h'] = { '<cmd>Telescope help_tags<CR>', 'Find on nvim help' },
   ['f'] = {
     '<cmd>lua require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({previewer = false}))<CR>',
     'Find files',
   },
   ['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
-  ['F'] = { '<cmd>Telescope live_grep theme=ivy<CR>', 'Find Text' },
+  ['F'] = { '<cmd>Telescope live_grep<CR>', 'Find Text' },
   ['P'] = { '<cmd>lua require("telescope").extensions.projects.projects()<CR>', 'Projects' },
   a = {
     name = 'Annotation',
@@ -134,9 +134,9 @@ local mappings = {
       'Undo Stage Hunk',
     },
     o = { '<cmd>Telescope git_status<CR>', 'Open changed file' },
-    -- b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
-    -- c = { '<cmd>Telescope git_commits<CR>', 'Checkout commit' },
+    c = { '<cmd>Telescope git_commits<CR>', 'Checkout commit' },
     d = { '<cmd>Gitsigns diffthis HEAD<CR>', 'Diff' },
+    b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
   },
 
   l = {
@@ -156,9 +156,7 @@ local mappings = {
   },
   s = {
     name = 'Search',
-    b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
     c = { '<cmd>Telescope colorscheme<CR>', 'Colorscheme' },
-    h = { '<cmd>Telescope help_tags<CR>', 'Find Help' },
     M = { '<cmd>Telescope man_pages<CR>', 'Man Pages' },
     r = { '<cmd>Telescope oldfiles<CR>', 'Open Recent File' },
     R = { '<cmd>Telescope registers<CR>', 'Registers' },
