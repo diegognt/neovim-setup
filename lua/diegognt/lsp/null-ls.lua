@@ -31,7 +31,7 @@ null_ls.setup({
     }),
     formatting.stylua,
     diagnostics.pylint,
-    diagnostics.vale,
+    -- diagnostics.vale,
     formatting.black,
   },
 })
