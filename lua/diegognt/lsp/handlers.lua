@@ -6,6 +6,17 @@ if not status_cmp_ok then
   return
 end
 
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(client)
+      -- apply whatever logic you want (in this example, we'll only use null-ls)
+      return client.name == 'null-ls'
+    end,
+    bufnr = bufnr,
+  })
+end
+
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
@@ -53,29 +64,16 @@ M.setup = function()
   })
 end
 
-M.on_attach = function(client)
-  if client.name == 'tsserver' then
-    client.server_capabilities.document_formatting = false
-  end
-
-  if client.name == 'sumneko_lua' then
-    client.server_capabilities.document_formatting = false
-  end
-
-  if client.name == 'pyright' then
-    client.server_capabilities.document_formatting = false
-  end
-
-  if client.name == 'cssls' then
-    client.server_capabilities.document_formatting = false
-  end
-
-  if client.name == 'jsonls' then
-    client.server_capabilities.document_formatting = true
-  end
-
-  if client.name == 'astro' then
-    client.server_capabilities.document_formatting = false
+M.on_attach = function(client, bufnr)
+  if client.supports_method('textDocument/formatting') then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
   end
 end
 
