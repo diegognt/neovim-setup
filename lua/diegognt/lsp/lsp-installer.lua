@@ -7,14 +7,16 @@ end
 local servers = {
   'astro',
   'bashls',
-  'ccls',
   'cmake',
   'cssls',
+  'dockerls',
+  'gopls',
   'html',
   'jsonls',
-  'pyright',
+  'pylsp',
   'sumneko_lua',
   'tsserver',
+  'yamlls',
 }
 
 lsp_installer.setup()
