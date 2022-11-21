@@ -9,6 +9,7 @@ local servers = {
   'bashls',
   'cmake',
   'cssls',
+  'clangd',
   'dockerls',
   'gopls',
   'html',
