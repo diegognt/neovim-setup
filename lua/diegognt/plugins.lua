@@ -111,6 +111,14 @@ return packer.startup(function(use)
 
   use('folke/which-key.nvim') -- Keymap helper
 
+  -- Debugger Adapter Protocol
+  use('mfussenegger/nvim-dap')
+  use('rcarriga/nvim-dap-ui')
+  use('theHamsta/nvim-dap-virtual-text')
+  use('leoluz/nvim-dap-go') -- GO adapter
+  use('mfussenegger/nvim-dap-python') -- Python adapter
+  use('mxsdev/nvim-dap-vscode-js') -- JS/TS adapter
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
