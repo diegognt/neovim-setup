@@ -94,6 +94,7 @@ local mappings = {
     '<cmd>lua require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({previewer = false}))<CR>',
     'Find files',
   },
+  ['D'] = { '<cmd>lua require("dap").continue()<CR>', 'Debugging' },
   ['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
   ['F'] = { '<cmd>Telescope live_grep<CR>', 'Find Text' },
   ['P'] = { '<cmd>lua require("telescope").extensions.projects.projects()<CR>', 'Projects' },
