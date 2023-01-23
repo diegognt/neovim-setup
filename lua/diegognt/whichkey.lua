@@ -94,6 +94,7 @@ local mappings = {
     '<cmd>lua require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({previewer = false}))<CR>',
     'Find files',
   },
+  ['m'] = { '<cmd>Mason<CR>', 'Mason' },
   ['D'] = { '<cmd>lua require("dap").continue()<CR>', 'Debugging' },
   ['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
   ['F'] = { '<cmd>Telescope live_grep<CR>', 'Find Text' },
@@ -145,13 +146,12 @@ local mappings = {
     a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
     f = { '<cmd>lua vim.lsp.buf.format { async = true }<CR>', 'Format' },
     i = { '<cmd>LspInfo<CR>', 'Info' },
-    I = { '<cmd>LspInstallInfo<CR>', 'Installer Info' },
     l = { '<cmd>lua vim.lsp.codelens.run()<CR>', 'CodeLens Action' },
     r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
     s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
     S = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature help' },
   },
-  m = {
+  M = {
     name = 'Mode',
     t = { '<cmd>Twilight<CR>', 'Twilight' },
   },
