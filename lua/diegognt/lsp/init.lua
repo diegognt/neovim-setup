@@ -4,6 +4,6 @@ if not status_ok then
   return
 end
 
-require('diegognt.lsp.lsp-installer')
+require('diegognt.lsp.mason')
 require('diegognt.lsp.handlers').setup()
 require('diegognt.lsp.null-ls')

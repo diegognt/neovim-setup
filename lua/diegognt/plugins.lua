@@ -88,7 +88,8 @@ return packer.startup(function(use)
 
   -- Language Server Protocol - LSP
   use('neovim/nvim-lspconfig') -- Enables LSP
-  use('williamboman/nvim-lsp-installer') -- A language server installer
+  use 'williamboman/mason.nvim' -- Manager
+  use 'williamboman/mason-lspconfig.nvim' -- LSP adapter for Mason
   use('jose-elias-alvarez/null-ls.nvim') -- null-ls
   use('folke/trouble.nvim') -- Elegant diagnostic tools for LSP
   use('RRethy/vim-illuminate') -- Highlighting words occurance
@@ -98,6 +99,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   })
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
   use('p00f/nvim-ts-rainbow') -- Better parentheses rainbow using treesitter
   use('JoosepAlviste/nvim-ts-context-commentstring')
   use('nvim-treesitter/nvim-tree-docs')
