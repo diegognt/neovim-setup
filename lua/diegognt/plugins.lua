@@ -43,6 +43,15 @@ return lazy.setup({
   'folke/todo-comments.nvim', -- Fancy TODO manager
   'danymat/neogen', -- Doc annotation
 
+  -- Notifications
+  {
+    'folke/noice.nvim',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
+    opts = require('diegognt.notifications'),
+  },
   -- File Explorer
   'kyazdani42/nvim-tree.lua', -- Nvim file explorer
 
