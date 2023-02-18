@@ -98,20 +98,13 @@ local mappings = {
   ['D'] = { '<cmd>lua require("dap").continue()<CR>', 'Debugging' },
   ['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
   ['F'] = { '<cmd>Telescope live_grep<CR>', 'Find Text' },
+  ['L'] = { '<cmd>Lazy<CR>', 'Lazy' },
   ['P'] = { '<cmd>lua require("telescope").extensions.projects.projects()<CR>', 'Projects' },
   a = {
     name = 'Annotation',
     a = { '<cmd>lua require("neogen").generate()<CR>', 'Annotation' },
     c = { '<cmd>lua require("neogen").generate({type = "class"})<CR>', 'Class' },
     f = { '<cmd>lua require("neogen").generate({type = "func"})<CR>', 'Function' },
-  },
-  p = {
-    name = 'Packer',
-    c = { '<cmd>PackerCompile<CR>', 'Compile' },
-    i = { '<cmd>PackerInstall<CR>', 'Install' },
-    s = { '<cmd>PackerSync<CR>', 'Sync' },
-    S = { '<cmd>PackerStatus<CR>', 'Status' },
-    u = { '<cmd>PackerUpdate<CR>', 'Update' },
   },
   g = {
     name = 'Go to',
