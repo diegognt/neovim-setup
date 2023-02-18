@@ -148,6 +148,13 @@ local mappings = {
     name = 'Mode',
     t = { '<cmd>Twilight<CR>', 'Twilight' },
   },
+  N = {
+    name = 'Notifications',
+    a = { '<cmd>lua require("noice").cmd("all")<CR>', 'All' },
+    l = { '<cmd>Noice last<CR>', 'Last one' },
+    h = { '<cmd>Noice <CR>', 'History' },
+    e = { '<cmd>Noice errors<CR>', 'Errors' },
+  },
   s = {
     name = 'Search',
     c = { '<cmd>Telescope colorscheme<CR>', 'Colorscheme' },
