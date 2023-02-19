@@ -1,6 +1,14 @@
 -- Find more schemas here: https://www.schemastore.org/json/
 local schemas = {
   {
+    description = 'Deno configuration file',
+    fileMatch = {
+      'deno.json',
+      'denos.jsonc',
+    },
+    url = 'https://raw.githubusercontent.com/denoland/deno/v1.30.3/cli/schemas/config-file.v1.json',
+  },
+  {
     description = 'TypeScript compiler configuration file',
     fileMatch = {
       'tsconfig.json',
