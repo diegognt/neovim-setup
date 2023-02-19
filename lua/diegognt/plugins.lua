@@ -28,7 +28,6 @@ end
 return lazy.setup({
   -- My plugins here
   'nvim-lua/popup.nvim', -- An implementation of the Popup API from vim in Neovim
-  'nvim-lua/plenary.nvim', -- Useful lua functions used ny lots of plugins
   'kyazdani42/nvim-web-devicons', -- Nice icons
   'folke/twilight.nvim', -- Focus on code stuff
   'windwp/nvim-autopairs', -- Autopairs plugin with treesitter and cmp
@@ -53,8 +52,18 @@ return lazy.setup({
     opts = require('diegognt.notifications'),
   },
   -- File Explorer
-  'kyazdani42/nvim-tree.lua', -- Nvim file explorer
-
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    cmd = 'Neotree',
+    branch = 'v2.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- Useful lua functions used ny lots of plugins
+    },
+    config = {
+      follow_current_file = true,
+      hijack_netrw_behavior = 'open_current',
+    },
+  },
   -- Tselescope
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-project.nvim',
