@@ -19,9 +19,18 @@ null_ls.setup({
       dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
       filetypes = { 'javascript', 'typescript' },
     }),
+    formatting.deno_fmt.with({
+      condition = function(utils)
+        return utils.root_has_file({ 'deno.json', 'deno.jsonc' })
+      end,
+      extra_args = { '--config', 'deno.js' },
+    }),
     formatting.prettier.with({
       dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
       filetypes = { 'javascript', 'typescript', 'css', 'scss', 'astro', 'html', 'json', 'yaml', 'markdown' },
+      condition = function(utils)
+        return utils.root_has_file({ 'package.json', 'tsconfig.json' })
+      end,
     }),
     formatting.stylelint.with({
       dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,

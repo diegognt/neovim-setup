@@ -19,7 +19,6 @@ end
 local servers = {
   'astro',
   'bashls',
-  'cmake',
   'cssls',
   'denols',
   'dockerls',
@@ -58,7 +57,7 @@ mason_lspconfig.setup_handlers({
       opts = vim.tbl_deep_extend('force', jsonls_opts, opts)
     end
 
-    if server_name == 'sumneko_lua' then
+    if server_name == 'lua_ls' then
       local sumneko_opts = require('diegognt.lsp.settings.sumneko_lua')
       opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
     end
@@ -67,7 +66,7 @@ mason_lspconfig.setup_handlers({
       local denols_opts = {
         root_dir = lspconfig.util.root_pattern('deno.json'),
         init_options = {
-          lint = false,
+          lint = true,
         },
       }
       opts = vim.tbl_deep_extend('force', denols_opts, opts)
@@ -75,7 +74,8 @@ mason_lspconfig.setup_handlers({
 
     if server_name == 'tsserver' then
       local tsserver_opts = {
-        root_dir = lspconfig.util.find_node_modules_ancestors,
+        root_dir = lspconfig.util.root_pattern('package.json'),
+        single_file_support = false,
         init_options = {
           lint = true,
         },
@@ -83,6 +83,12 @@ mason_lspconfig.setup_handlers({
       opts = vim.tbl_deep_extend('force', tsserver_opts, opts)
     end
 
+    if server_name == 'tailwindcss' then
+      local tsserver_opts = {
+        root_dir = lspconfig.util.root_pattern('tailwind.config.js'),
+      }
+      opts = vim.tbl_deep_extend('force', tsserver_opts, opts)
+    end
     lspconfig[server_name].setup(opts)
   end,
 })
