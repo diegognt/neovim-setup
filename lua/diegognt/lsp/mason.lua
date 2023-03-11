@@ -85,7 +85,7 @@ mason_lspconfig.setup_handlers({
 
     if server_name == 'tailwindcss' then
       local tsserver_opts = {
-        root_dir = lspconfig.util.root_pattern('tailwind.config.js'),
+        root_dir = lspconfig.util.root_pattern({ 'tailwind.config.js', 'twind.config.ts', 'tailwind.config.cjs' }),
       }
       opts = vim.tbl_deep_extend('force', tsserver_opts, opts)
     end

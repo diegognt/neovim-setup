@@ -1,4 +1,4 @@
-local colorscheme = 'kanagawa'
+local colorscheme = 'nordfox'
 
 -- Tokyo Night set up
 if colorscheme == 'tokyonight' then
