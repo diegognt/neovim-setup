@@ -35,13 +35,24 @@ return lazy.setup({
   'akinsho/bufferline.nvim', -- Bufferline plugin
   'moll/vim-bbye', -- Plugin to avoid close nvim when close a buffer
   'akinsho/toggleterm.nvim', --Nice Terminal for nvim
-  'lukas-reineke/indent-blankline.nvim', -- Nice indentation
   'ahmedkhalf/project.nvim', -- Cool projects/workspaces manager
   'goolord/alpha-nvim', -- A simple greeter screen with style
   'lewis6991/impatient.nvim',
   'folke/todo-comments.nvim', -- Fancy TODO manager
   'danymat/neogen', -- Doc annotation
 
+  -- Nice indentation
+  {
+    'echasnovski/mini.indentscope',
+    dependencies = {
+      'echasnovski/mini.nvim',
+    },
+    version = '*',
+    config = function()
+      local options = require('diegognt.indentation')
+      require('mini.indentscope').setup(options)
+    end,
+  },
   -- Notifications
   {
     'folke/noice.nvim',
@@ -61,6 +72,7 @@ return lazy.setup({
     },
     config = {
       follow_current_file = true,
+      hide_dotfiles = false,
       hijack_netrw_behavior = 'open_current',
     },
   },
