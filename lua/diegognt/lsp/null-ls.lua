@@ -21,9 +21,9 @@ null_ls.setup({
     }),
     formatting.deno_fmt.with({
       condition = function(utils)
-        return utils.root_has_file({ 'deno.json', 'deno.jsonc' })
+        return utils.root_has_file('deno.json')
       end,
-      extra_args = { '--config', 'deno.js' },
+      extra_args = { '--config', 'deno.json' },
     }),
     formatting.prettier.with({
       dynamic_command = require('null-ls.helpers.command_resolver').from_node_modules,
