@@ -74,6 +74,13 @@ return lazy.setup({
       follow_current_file = true,
       hide_dotfiles = false,
       hijack_netrw_behavior = 'open_current',
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = true,
+        },
+      },
     },
   },
   -- Tselescope
