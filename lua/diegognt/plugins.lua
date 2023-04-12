@@ -134,6 +134,55 @@ return lazy.setup({
       'windwp/nvim-ts-autotag',
     },
   },
+  -- AI
+  {
+    'jackMort/ChatGPT.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('chatgpt').setup({
+        popup_input = {
+          prompt = '  ',
+          border = {
+            highlight = 'FloatBorder',
+            style = 'rounded',
+            text = {
+              top_align = 'center',
+              top = ' Prompt ',
+            },
+          },
+          win_options = {
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+          },
+          submit = '<C-s>',
+        },
+      })
+    end,
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = '<A-Right>',
+            accept_word = false,
+            accept_line = false,
+            next = '<A-Down>',
+            prev = '<A-Up>',
+            dismiss = '<A-d>',
+          },
+        },
+      })
+    end,
+  },
   -- Git stuff
   'lewis6991/gitsigns.nvim',
 
