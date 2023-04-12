@@ -80,7 +80,6 @@ local opts = {
 }
 
 local mappings = {
-  ['A'] = { '<cmd>Alpha<CR>', 'Alpha' },
   ['b'] = {
     '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown{previewer = false})<CR>',
     'Buffers',
@@ -94,7 +93,7 @@ local mappings = {
     '<cmd>lua require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({previewer = false}))<CR>',
     'Find files',
   },
-  ['m'] = { '<cmd>Mason<CR>', 'Mason' },
+  ['M'] = { '<cmd>Mason<CR>', 'Mason' },
   ['D'] = { '<cmd>lua require("dap").continue()<CR>', 'Debugging' },
   ['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
   ['F'] = { '<cmd>Telescope live_grep<CR>', 'Find Text' },
@@ -105,6 +104,17 @@ local mappings = {
     a = { '<cmd>lua require("neogen").generate()<CR>', 'Annotation' },
     c = { '<cmd>lua require("neogen").generate({type = "class"})<CR>', 'Class' },
     f = { '<cmd>lua require("neogen").generate({type = "func"})<CR>', 'Function' },
+  },
+  A = {
+    name = 'Asistant',
+    c = { '<cmd>ChatGPT<CR>', 'Chat' },
+    a = { '<cmd>ChatGPTActAs<CR>', 'Chat as' },
+  },
+  C = {
+    name = 'Copilot',
+    p = { '<cmd>Copilot panel<CR>', 'Panel' },
+    d = { '<cmd>Copilot disable<CR>', 'Disable' },
+    e = { '<cmd>Copilot enable<CR>', 'Enable' },
   },
   g = {
     name = 'Go to',
@@ -144,7 +154,7 @@ local mappings = {
     s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
     S = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature help' },
   },
-  M = {
+  m = {
     name = 'Mode',
     t = { '<cmd>Twilight<CR>', 'Twilight' },
   },
