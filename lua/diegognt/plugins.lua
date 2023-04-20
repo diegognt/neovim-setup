@@ -1,7 +1,3 @@
--- For this set up Packer is used as the plugin manager
-
-local fn = vim.fn
-
 -- Autoinstall LazyVim if not installed
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -136,32 +132,31 @@ return lazy.setup({
   },
   -- AI
   {
-    'jackMort/ChatGPT.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('chatgpt').setup({
-        popup_input = {
-          prompt = '  ',
-          border = {
-            highlight = 'FloatBorder',
-            style = 'rounded',
-            text = {
-              top_align = 'center',
-              top = ' Prompt ',
-            },
-          },
-          win_options = {
-            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
-          },
-          submit = '<C-s>',
-        },
-      })
-    end,
+    'Bryley/neoai.nvim',
     dependencies = {
       'MunifTanjim/nui.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
     },
+    cmd = {
+      'NeoAI',
+      'NeoAIOpen',
+      'NeoAIClose',
+      'NeoAIToggle',
+      'NeoAIContext',
+      'NeoAIContextOpen',
+      'NeoAIContextClose',
+      'NeoAIInject',
+      'NeoAIInjectCode',
+      'NeoAIInjectContext',
+      'NeoAIInjectContextCode',
+    },
+    keys = {
+      { '<leader>as', desc = 'summarize text' },
+      { '<leader>ag', desc = 'generate git message' },
+    },
+    config = function()
+      local options = require('diegognt.ai')
+      require('neoai').setup(options)
+    end,
   },
   {
     'zbirenbaum/copilot.lua',
@@ -173,8 +168,6 @@ return lazy.setup({
           auto_trigger = true,
           keymap = {
             accept = '<A-Right>',
-            accept_word = false,
-            accept_line = false,
             next = '<A-Down>',
             prev = '<A-Up>',
             dismiss = '<A-d>',

@@ -107,8 +107,7 @@ local mappings = {
   },
   A = {
     name = 'Asistant',
-    c = { '<cmd>ChatGPT<CR>', 'Chat' },
-    a = { '<cmd>ChatGPTActAs<CR>', 'Chat as' },
+    p = { '<cmd>NeoAIToggle<CR>', 'Prompt' },
   },
   C = {
     name = 'Copilot',
