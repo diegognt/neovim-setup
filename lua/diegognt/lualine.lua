@@ -1,9 +1,3 @@
-local status_ok, lualine = pcall(require, 'lualine')
-if not status_ok then
-  vim.notify('The `nvim-lualine/lualine.nvim` plugin was not found.')
-  return
-end
-
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
 end
@@ -63,7 +57,7 @@ local spaces = function()
   return 'spaces: ' .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
 end
 
-lualine.setup({
+return {
   options = {
     icons_enabled = true,
     theme = 'auto',
@@ -90,4 +84,4 @@ lualine.setup({
   },
   tabline = {},
   extensions = {},
-})
+}

@@ -24,19 +24,57 @@ end
 return lazy.setup({
   -- My plugins here
   'nvim-lua/popup.nvim', -- An implementation of the Popup API from vim in Neovim
-  'kyazdani42/nvim-web-devicons', -- Nice icons
-  'folke/twilight.nvim', -- Focus on code stuff
-  'windwp/nvim-autopairs', -- Autopairs plugin with treesitter and cmp
-  'numToStr/Comment.nvim', -- Comments make it easy
-  'akinsho/bufferline.nvim', -- Bufferline plugin
-  'moll/vim-bbye', -- Plugin to avoid close nvim when close a buffer
+  -- Plugin to avoid close nvim when close a buffer
+  {
+    'moll/vim-bbye',
+    event = 'VeryLazy',
+  },
   'akinsho/toggleterm.nvim', --Nice Terminal for nvim
-  'ahmedkhalf/project.nvim', -- Cool projects/workspaces manager
-  'goolord/alpha-nvim', -- A simple greeter screen with style
   'lewis6991/impatient.nvim',
-  'folke/todo-comments.nvim', -- Fancy TODO manager
+  -- Fancy TODO manager
+  {
+    'folke/todo-comments.nvim',
+    cmd = { 'TodoTrouble' },
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = true,
+  },
   'danymat/neogen', -- Doc annotation
-
+  -- Bufferline plugin
+  {
+    'akinsho/bufferline.nvim',
+    event = 'VeryLazy',
+    opts = require('diegognt.bufferline'),
+    config = function(_, opts)
+      require('bufferline').setup(opts)
+    end,
+  },
+  -- ui components
+  {
+    'MunifTanjim/nui.nvim',
+    lazy = true,
+  },
+  -- A simple greeter screen with style
+  {
+    'goolord/alpha-nvim',
+    event = 'VimEnter',
+    opts = function()
+      local opts = require('diegognt.greeter')
+      return opts.dashboard
+    end,
+    config = function(_, dashboard)
+      require('alpha').setup(dashboard.opts)
+    end,
+  },
+  -- Nice icons
+  {
+    'kyazdani42/nvim-web-devicons',
+    lazy = true,
+  },
+  -- Focus on code stuff
+  {
+    'folke/twilight.nvim',
+    lazy = true,
+  },
   -- Nice indentation
   {
     'echasnovski/mini.indentscope',
@@ -44,9 +82,18 @@ return lazy.setup({
       'echasnovski/mini.nvim',
     },
     version = '*',
-    config = function()
-      local options = require('diegognt.indentation')
-      require('mini.indentscope').setup(options)
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = require('diegognt.indentation'),
+    config = function(_, opts)
+      require('mini.indentscope').setup(opts)
+    end,
+  },
+  -- Auto pairs
+  {
+    'echasnovski/mini.pairs',
+    event = 'VeryLazy',
+    config = function(_, opts)
+      require('mini.pairs').setup(opts)
     end,
   },
   -- Notifications
@@ -57,6 +104,7 @@ return lazy.setup({
       'rcarriga/nvim-notify',
     },
     opts = require('diegognt.notifications'),
+    event = 'VeryLazy',
   },
   -- File Explorer
   {
@@ -64,7 +112,7 @@ return lazy.setup({
     cmd = 'Neotree',
     branch = 'v2.x',
     dependencies = {
-      'nvim-lua/plenary.nvim', -- Useful lua functions used ny lots of plugins
+      'nvim-lua/plenary.nvim', -- Useful lua functions used by lots of plugins
     },
     config = {
       follow_current_file = true,
@@ -79,9 +127,15 @@ return lazy.setup({
       },
     },
   },
-  -- Tselescope
-  'nvim-telescope/telescope.nvim',
-  'nvim-telescope/telescope-project.nvim',
+  -- Telescope
+  {
+    'nvim-telescope/telescope.nvim',
+    cmd = 'Telescope',
+    version = false,
+    dependencies = {
+      'nvim-telescope/telescope-project.nvim',
+    },
+  },
 
   -- Colorschemes
   'folke/tokyonight.nvim',
@@ -99,6 +153,7 @@ return lazy.setup({
       'hrsh7th/cmp-nvim-lsp', -- The LSP completion plugin extension
       'hrsh7th/cmp-nvim-lua', -- The Lua language completion plugin extension
     },
+    event = 'InsertEnter',
   },
   -- Snippets
   'L3MON4D3/LuaSnip', -- A snippet engine
@@ -111,25 +166,55 @@ return lazy.setup({
       'williamboman/mason.nvim', -- Manager
       'williamboman/mason-lspconfig.nvim', -- LSP adapter for Mason
       'jose-elias-alvarez/null-ls.nvim', -- null-ls
-      'jayp0521/mason-nvim-dap.nvim', -- Install the required tools for adapters
-      'folke/trouble.nvim', -- Elegant diagnostic tools for LSP
-      'RRethy/vim-illuminate', -- Highlighting words occurance
+      -- Highlighting words occurance
+      {
+        'RRethy/vim-illuminate',
+        lazy = true,
+      },
     },
+  },
+  -- Elegant diagnostic tools for LSP
+  {
+    'folke/trouble.nvim',
+    cmd = { 'Trouble' },
+    opts = { use_diagnostic_signs = true },
   },
   -- TreeSitter
   {
     'nvim-treesitter/nvim-treesitter',
-    build = function()
-      pcall(require('nvim-treesitter.install').update({ with_sync = true }))
-    end,
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ':TSUpdate',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'p00f/nvim-ts-rainbow', -- Better parentheses rainbow using treesitter
-      'JoosepAlviste/nvim-ts-context-commentstring',
-      'nvim-treesitter/nvim-tree-docs',
-      'windwp/nvim-ts-autotag',
+      { 'nvim-treesitter/nvim-treesitter-textobjects' },
+      {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        lazy = true,
+      },
+      { 'nvim-treesitter/playground' },
+      { 'nvim-treesitter/nvim-treesitter-refactor' },
+      { 'windwp/nvim-ts-autotag' },
     },
+    opts = require('diegognt.treesitter'),
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end,
   },
+  {
+    'echasnovski/mini.comment',
+    event = 'VeryLazy',
+    opts = {
+      hooks = {
+        pre = function()
+          require('ts_context_commentstring.internal').update_commentstring({})
+        end,
+      },
+    },
+    config = function(_, opts)
+      require('mini.comment').setup(opts)
+    end,
+  },
+
   -- AI
   {
     'Bryley/neoai.nvim',
@@ -160,6 +245,7 @@ return lazy.setup({
   },
   {
     'zbirenbaum/copilot.lua',
+    build = ':Copilot auth',
     event = 'InsertEnter',
     config = function()
       require('copilot').setup({
@@ -177,22 +263,86 @@ return lazy.setup({
     end,
   },
   -- Git stuff
-  'lewis6991/gitsigns.nvim',
+  {
+    'lewis6991/gitsigns.nvim',
+    event = 'BufRead',
+  },
 
   -- Status line.
-  'nvim-lualine/lualine.nvim',
+  {
+    'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
+    opts = function()
+      local opts = require('diegognt.lualine')
+      return opts
+    end,
+    config = function(_, opts)
+      require('lualine').setup(opts)
+    end,
+  },
 
-  'folke/which-key.nvim', -- Keymap helper
+  -- Keymap helper
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    opts = function()
+      local opts = require('diegognt.whichkey')
+      return opts
+    end,
+    config = function(_, opts)
+      local whichkey = require('which-key')
+      whichkey.setup(opts.opts)
+      whichkey.register(opts.mappings, opts.mappings_opts)
+    end,
+  },
 
   -- Debugger Adapter Protocol
   {
     'mfussenegger/nvim-dap',
     dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'theHamsta/nvim-dap-virtual-text',
-      'leoluz/nvim-dap-go', -- GO adapter
-      'mfussenegger/nvim-dap-python', -- Python adapter
-      'mxsdev/nvim-dap-vscode-js', -- JS/TS adapter
+      {
+        'rcarriga/nvim-dap-ui',
+        opts = {},
+        config = function(_, opts)
+          local dap = require('dap')
+          local dapui = require('dapui')
+          dapui.setup(opts)
+          dap.listeners.after.event_initialized['dapui_config'] = function()
+            dapui.open({})
+          end
+          dap.listeners.before.event_terminated['dapui_config'] = function()
+            dapui.close({})
+          end
+          dap.listeners.before.event_exited['dapui_config'] = function()
+            dapui.close({})
+          end
+        end,
+      },
+      -- DAP virtual text
+      {
+        'theHamsta/nvim-dap-virtual-text',
+        opts = {},
+      },
+      -- Mason integration with DAP
+      {
+        'jay-babu/mason-nvim-dap.nvim',
+        dependencies = 'mason.nvim',
+        cmd = { 'DapInstall', 'DapUninstall' },
+        opts = {
+          -- Makes a best effort to setup the various debuggers with
+          -- reasonable debug configurations
+          automatic_setup = true,
+          -- You can provide additional configuration to the handlers,
+          -- see mason-nvim-dap README for more information
+          handlers = {},
+          -- You'll need to check that you have the required things installed
+          -- online, please don't ask me how to install them :)
+          ensure_installed = {
+            -- Update this to ensure that you have the debuggers for the langs you want
+          },
+        },
+      },
     },
+    event = 'VeryLazy',
   },
 })

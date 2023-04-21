@@ -28,7 +28,6 @@ local servers = {
   'lua_ls',
   'marksman',
   'pylsp',
-  'sqls',
   'taplo',
   'tailwindcss',
   'tsserver',

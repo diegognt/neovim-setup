@@ -1,10 +1,4 @@
-local status_ok, bufferline = pcall(require, 'bufferline')
-if not status_ok then
-  vim.notify('The `akinsho/bufferline.nvim` plugin was not found.')
-  return
-end
-
-bufferline.setup({
+return {
   options = {
     numbers = 'none', -- | 'ordinal' | 'buffer_id' | 'both' | function({ ordinal, id, lower, raise }): string,
     close_command = 'Bdelete! %d', -- can be a string | function, see 'Mouse actions'
@@ -36,7 +30,7 @@ bufferline.setup({
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
-    diagnostics = false, -- | 'nvim_lsp' | 'coc',
+    diagnostics = 'nvim_lsp', -- | 'nvim_lsp' | 'coc',
     diagnostics_update_in_insert = false,
     offsets = { { filetype = 'NvimTree', text = '', padding = 1 } },
     show_buffer_icons = true,
@@ -50,4 +44,4 @@ bufferline.setup({
     enforce_regular_tabs = true,
     always_show_bufferline = true,
   },
-})
+}

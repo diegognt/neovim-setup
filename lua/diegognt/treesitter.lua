@@ -1,13 +1,47 @@
-local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
-if not status_ok then
-  vim.notify('The `nvim-treesitter/nvim-treesitter` plugin was not found')
-  return
-end
-
-configs.setup({
-  ensure_installed = 'all', -- one of 'all', 'maintained' (parsers with maintainers), or a list of languages
+return {
+  ensure_installed = {
+    'astro',
+    'bash',
+    'c',
+    'cmake',
+    'cpp',
+    'css',
+    'dockerfile',
+    'dot',
+    'git_config',
+    'git_rebase',
+    'gitattributes',
+    'gitcommit',
+    'gitignore',
+    'go',
+    'graphql',
+    'html',
+    'javascript',
+    'jsdoc',
+    'json',
+    'lua',
+    'luadoc',
+    'luap',
+    'make',
+    'markdown',
+    'markdown_inline',
+    'php',
+    'phpdoc',
+    'prisma',
+    'pug',
+    'python',
+    'query',
+    'regex',
+    'scss',
+    'terraform',
+    'toml',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'yaml',
+  },
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { '' }, -- List of parsers to ignore installing
   autopairs = {
     enable = true,
   },
@@ -20,14 +54,6 @@ configs.setup({
     enable = true,
     disable = { 'yaml' },
   },
-  rainbow = {
-    enable = true,
-    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
-  },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
@@ -35,4 +61,4 @@ configs.setup({
   autotag = { -- `Uses windwp/nvim-ts-autotag` to autoclose or autoremane HTML tags.
     enable = true,
   },
-})
+}
