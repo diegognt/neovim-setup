@@ -106,7 +106,6 @@ M.mappings = {
   },
   C = {
     name = 'Copilot',
-    p = { '<cmd>Copilot panel<CR>', 'Panel' },
     d = { '<cmd>Copilot disable<CR>', 'Disable' },
     e = { '<cmd>Copilot enable<CR>', 'Enable' },
   },
