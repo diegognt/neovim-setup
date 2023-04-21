@@ -215,7 +215,7 @@ return lazy.setup({
     end,
   },
 
-  -- AI
+  -- AI - NeoAI
   {
     'Bryley/neoai.nvim',
     dependencies = {
@@ -238,28 +238,19 @@ return lazy.setup({
       { '<leader>as', desc = 'summarize text' },
       { '<leader>ag', desc = 'generate git message' },
     },
-    config = function()
-      local options = require('diegognt.ai')
-      require('neoai').setup(options)
+    opts = require('diegognt.ai').neoai,
+    config = function(_, opts)
+      require('neoai').setup(opts)
     end,
   },
+  -- AI - Copilot
   {
     'zbirenbaum/copilot.lua',
     build = ':Copilot auth',
     event = 'InsertEnter',
-    config = function()
-      require('copilot').setup({
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          keymap = {
-            accept = '<A-Right>',
-            next = '<A-Down>',
-            prev = '<A-Up>',
-            dismiss = '<A-d>',
-          },
-        },
-      })
+    opts = require('diegognt.ai').copilot,
+    config = function(_, opts)
+      require('copilot').setup(opts)
     end,
   },
   -- Git stuff
