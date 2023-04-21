@@ -1,10 +1,5 @@
-local status_ok, which_key = pcall(require, 'which-key')
-if not status_ok then
-  vim.notify('The `folke/which-key.nvim` plugin was not found.')
-  return
-end
-
-local setup = {
+local M = {}
+M.opts = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -70,7 +65,7 @@ local setup = {
   },
 }
 
-local opts = {
+M.mappings_opts = {
   mode = 'n', -- NORMAL mode
   prefix = '<leader>',
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -79,7 +74,7 @@ local opts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
-local mappings = {
+M.mappings = {
   ['b'] = {
     '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown{previewer = false})<CR>',
     'Buffers',
@@ -196,5 +191,4 @@ local mappings = {
   },
 }
 
-which_key.setup(setup)
-which_key.register(mappings, opts)
+return M
