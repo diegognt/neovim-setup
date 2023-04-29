@@ -6,4 +6,3 @@ end
 
 require('diegognt.lsp.mason')
 require('diegognt.lsp.handlers').setup()
-require('diegognt.lsp.null-ls')
