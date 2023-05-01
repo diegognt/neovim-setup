@@ -136,13 +136,14 @@ M.mappings = {
     d = { '<cmd>Gitsigns diffthis HEAD<CR>', 'Diff' },
     b = { '<cmd>Telescope git_branches<CR>', 'Checkout branch' },
   },
-
   l = {
     name = 'LSP',
     a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
     f = { '<cmd>lua vim.lsp.buf.format { async = true }<CR>', 'Format' },
+    e = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic' },
     i = { '<cmd>LspInfo<CR>', 'Info' },
     l = { '<cmd>lua vim.lsp.codelens.run()<CR>', 'CodeLens Action' },
+    k = { '<cmd> lua vim.lsp.buf.signature_help()<CR>', 'Symbol Signature' },
     r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
     s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
     S = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature help' },
