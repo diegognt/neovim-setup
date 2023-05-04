@@ -144,26 +144,26 @@ return lazy.setup({
 
   --Completion plugins
   {
-    'hrsh7th/nvim-cmp',           -- The completion plugin
+    'hrsh7th/nvim-cmp', -- The completion plugin
     dependencies = {
-      'hrsh7th/cmp-buffer',       -- The buffer completions plugin extension
-      'hrsh7th/cmp-path',         -- The path completions plugin extension
-      'hrsh7th/cmp-cmdline',      -- The cmdline completions plugin extension
+      'hrsh7th/cmp-buffer', -- The buffer completions plugin extension
+      'hrsh7th/cmp-path', -- The path completions plugin extension
+      'hrsh7th/cmp-cmdline', -- The cmdline completions plugin extension
       'saadparwaiz1/cmp_luasnip', -- The LuaSnip completions plugin extension
-      'hrsh7th/cmp-nvim-lsp',     -- The LSP completion plugin extension
-      'hrsh7th/cmp-nvim-lua',     -- The Lua language completion plugin extension
+      'hrsh7th/cmp-nvim-lsp', -- The LSP completion plugin extension
+      'hrsh7th/cmp-nvim-lua', -- The Lua language completion plugin extension
     },
     event = 'InsertEnter',
   },
   -- Snippets
-  'L3MON4D3/LuaSnip',             -- A snippet engine
+  'L3MON4D3/LuaSnip', -- A snippet engine
   'rafamadriz/friendly-snippets', -- A bunch of snippets to use
 
   -- Language Server Protocol - LSP
   {
-    'neovim/nvim-lspconfig',               -- Enables LSP
+    'neovim/nvim-lspconfig', -- Enables LSP
     dependencies = {
-      'williamboman/mason.nvim',           -- Manager
+      'williamboman/mason.nvim', -- Manager
       'williamboman/mason-lspconfig.nvim', -- LSP adapter for Mason
       -- Highlighting words occurance
       {
@@ -175,7 +175,7 @@ return lazy.setup({
   -- Null-ls
   {
     'jose-elias-alvarez/null-ls.nvim',
-    opts = function ()
+    opts = function()
       local builtins = require('null-ls.builtins')
       local opts = require('diegognt.null-ls')
       return opts.opts(builtins.formatting, builtins.diagnostics)
@@ -347,5 +347,24 @@ return lazy.setup({
       },
     },
     event = 'VeryLazy',
+  },
+
+  -- Testing
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'marilari88/neotest-vitest',
+    },
+    version = 'v3.x',
+    config = function()
+      require('neotest').setup({
+        adapters = {
+          require('neotest-vitest'),
+        },
+      })
+    end,
   },
 })
