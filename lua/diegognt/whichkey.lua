@@ -179,6 +179,13 @@ M.mappings = {
     h = { '<cmd>ToggleTerm size=10 direction=horizontal<CR>', 'Horizontal' },
     v = { '<cmd>ToggleTerm size=80 direction=vertical<CR>', 'Vertical' },
   },
+  T = {
+    name = 'Test',
+    r = { '<cmd>lua require("neotest").run.run()<CR>', 'Run nearest' },
+    f = { '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', 'Run File' },
+    p = { '<cmd>lua require("neotest").output_panel.open()<CR>', 'Panel' },
+    s = { '<cmd>lua require("neotest").summary.open()<CR>', 'Tests Summary' },
+  },
   x = {
     name = 'Diagnostic',
     d = { '<cmd>Trouble document_diagnostics<CR>', 'Document' },
