@@ -345,6 +345,14 @@ return lazy.setup({
           },
         },
       },
+      {
+        'mfussenegger/nvim-dap-python',
+        event = 'VeryLazy',
+        config = function()
+          require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+          require('dap-python').test_runner = 'pytest'
+        end,
+      },
     },
     event = 'VeryLazy',
   },
@@ -357,12 +365,14 @@ return lazy.setup({
       'nvim-treesitter/nvim-treesitter',
       'antoinemadec/FixCursorHold.nvim',
       'marilari88/neotest-vitest',
+      'nvim-neotest/neotest-python',
     },
     version = 'v3.x',
     config = function()
       require('neotest').setup({
         adapters = {
           require('neotest-vitest'),
+          require('neotest-python'),
         },
       })
     end,
