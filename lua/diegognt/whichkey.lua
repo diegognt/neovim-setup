@@ -181,6 +181,7 @@ M.mappings = {
   },
   T = {
     name = 'Test',
+    d = { '<cmd>lua require("neotest").run.run({strategy = "dap"})<CR>', 'Debug nearest' },
     r = { '<cmd>lua require("neotest").run.run()<CR>', 'Run nearest' },
     f = { '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', 'Run File' },
     p = { '<cmd>lua require("neotest").output_panel.open()<CR>', 'Panel' },
