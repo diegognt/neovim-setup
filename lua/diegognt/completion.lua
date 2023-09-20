@@ -47,7 +47,8 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
-cmp.setup({
+return {
+
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -131,4 +132,4 @@ cmp.setup({
     ghost_text = true,
     native_menu = false,
   },
-})
+}

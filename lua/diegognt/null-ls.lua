@@ -5,18 +5,36 @@ local M = {}
 M.opts = function(formatting, diagnostics)
   return {
     sources = {
-      diagnostics.eslint,
+      diagnostics.eslint.with({
+        condition = function(utils)
+          return utils.root_has_file('.eslintrc.json')
+        end,
+      }),
       formatting.deno_fmt.with({
         condition = function(utils)
           return utils.root_has_file('deno.json')
         end,
         extra_args = { '--config', 'deno.json' },
       }),
-      formatting.prettier,
-      formatting.stylelint,
-      diagnostics.stylelint,
+      formatting.prettier.with({
+        condition = function(utils)
+          return utils.root_has_file('.prettierrc')
+        end,
+        extra_args = { '--config', '.prettierrc' },
+      }),
+      formatting.stylelint.with({
+        consition = function(utils)
+          return utils.root_has_file('.stylelintrc')
+        end,
+      }),
+      diagnostics.stylelint.with({
+        condition = function(utils)
+          return utils.root_has_file('.stylelintrc')
+        end,
+      }),
       formatting.stylua,
       -- diagnostics.vale,
+      formatting.beautysh, -- Make sure to run `pip install --user beautysh`
       -- Python tools with Pipenv
       diagnostics.flake8.with({
         command = { 'pipenv', 'run', 'flake8' },

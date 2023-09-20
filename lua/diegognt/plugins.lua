@@ -67,7 +67,7 @@ return lazy.setup({
   },
   -- Nice icons
   {
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     lazy = true,
   },
   -- Focus on code stuff
@@ -154,6 +154,9 @@ return lazy.setup({
       'hrsh7th/cmp-nvim-lua', -- The Lua language completion plugin extension
     },
     event = 'InsertEnter',
+    opts = function()
+      return require('diegognt.completion')
+    end,
   },
   -- Snippets
   'L3MON4D3/LuaSnip', -- A snippet engine
@@ -163,7 +166,8 @@ return lazy.setup({
   {
     'neovim/nvim-lspconfig', -- Enables LSP
     dependencies = {
-      'williamboman/mason.nvim', -- Manager
+      -- LSP Manager
+      { 'williamboman/mason.nvim' },
       'williamboman/mason-lspconfig.nvim', -- LSP adapter for Mason
       -- Highlighting words occurance
       {
@@ -366,6 +370,7 @@ return lazy.setup({
       'antoinemadec/FixCursorHold.nvim',
       'marilari88/neotest-vitest',
       'nvim-neotest/neotest-python',
+      'markemmons/neotest-deno',
     },
     version = 'v3.x',
     config = function()
@@ -373,6 +378,7 @@ return lazy.setup({
         adapters = {
           require('neotest-vitest'),
           require('neotest-python'),
+          require('neotest-deno'),
         },
       })
     end,
