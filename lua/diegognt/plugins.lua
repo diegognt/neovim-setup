@@ -38,7 +38,7 @@ return lazy.setup({
     event = { 'BufReadPost', 'BufNewFile' },
     config = true,
   },
-  'danymat/neogen', -- Doc annotation
+  { 'danymat/neogen', opts = require('diegognt.annotation'), lazy = true }, -- Doc annotation
   -- Bufferline plugin
   {
     'akinsho/bufferline.nvim',

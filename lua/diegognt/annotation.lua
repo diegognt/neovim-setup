@@ -1,11 +1,4 @@
-local status_ok, neogen = pcall(require, 'neogen')
-
-if not status_ok then
-  vim.notify('The `danymat/neogen` plugin was not found.')
-  return
-end
-
-neogen.setup({
+return {
   languages = {
     c = {
       template = {
@@ -33,4 +26,4 @@ neogen.setup({
       },
     },
   },
-})
+}
