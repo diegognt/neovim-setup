@@ -1,8 +1,16 @@
-local status_ok, _ = pcall(require, 'lspconfig')
-if not status_ok then
-  vim.notify('The `neovim/nvim-lspconfig` plugin was not found.')
+local lsp_zero_status, lsp_zero = pcall(require, 'lsp-zero')
+if not lsp_zero_status then
+  vim.notify('The `VonHeikemen/lsp-zero.nvim` plugin was not found.')
   return
 end
 
-require('diegognt.lsp.mason')
-require('diegognt.lsp.handlers').setup()
+lsp_zero.on_attach(function()
+  lsp_zero.buffer_autoformat()
+end)
+
+lsp_zero.set_sign_icons({
+  error = '',
+  warn = '',
+  hint = '',
+  info = '',
+})
