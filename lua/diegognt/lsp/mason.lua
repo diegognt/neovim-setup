@@ -1,12 +1,6 @@
-local mason_status, mason = pcall(require, 'mason')
-if not mason_status then
-  vim.notify('The `williamboman/mason` plugin was not found.')
-  return
-end
-
-local mason_lspconfig_status, mason_lspconfig = pcall(require, 'mason-lspconfig')
-if not mason_lspconfig_status then
-  vim.notify('The `williamboman/mason-lspconfig` plugin was not found.')
+local lsp_zero_status, lsp_zero = pcall(require, 'lsp-zero')
+if not lsp_zero_status then
+  vim.notify('The `VonHeikemen/lsp-zero.nvim` plugin was not found.')
   return
 end
 
@@ -22,6 +16,7 @@ local servers = {
   'cssls',
   'denols',
   'dockerls',
+  'eslint',
   'gopls',
   'html',
   'jsonls',
@@ -31,63 +26,56 @@ local servers = {
   'taplo',
   'tailwindcss',
   'tsserver',
+  'stylelint_lsp',
   'yamlls',
 }
 
--- Setup mason so it can manage external tooling
-mason.setup()
-
--- Ensure the servers above are installed
-mason_lspconfig.setup({
+return {
   ensure_installed = servers,
-})
-
-local opts = {}
-
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    opts = {
-      on_attach = require('diegognt.lsp.handlers').on_attach,
-      capabilities = require('diegognt.lsp.handlers').capabilities,
-    }
-
-    if server_name == 'jsonls' then
-      local jsonls_opts = require('diegognt.lsp.settings.jsonls')
-      opts = vim.tbl_deep_extend('force', jsonls_opts, opts)
-    end
-
-    if server_name == 'lua_ls' then
-      local sumneko_opts = require('diegognt.lsp.settings.sumneko_lua')
-      opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
-    end
-
-    if server_name == 'denols' then
-      local denols_opts = {
-        root_dir = lspconfig.util.root_pattern('deno.json'),
-        init_options = {
-          lint = true,
-        },
-      }
-      opts = vim.tbl_deep_extend('force', denols_opts, opts)
-    end
-
-    if server_name == 'tsserver' then
-      local tsserver_opts = {
-        root_dir = lspconfig.util.root_pattern('package.json'),
-        single_file_support = false,
-        init_options = {
-          lint = true,
-        },
-      }
-      opts = vim.tbl_deep_extend('force', tsserver_opts, opts)
-    end
-
-    if server_name == 'tailwindcss' then
-      local tsserver_opts = {
+  handlers = {
+    lsp_zero.default_setup,
+    cssls = function()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
+      })
+    end,
+    html = function()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      lspconfig.html.setup({
+        capabilities = capabilities,
+      })
+    end,
+    jsonls = function()
+      local opts = require('diegognt.lsp.settings.jsonls')
+      lspconfig.jsonls.setup(opts)
+    end,
+    lua_ls = function()
+      local opts = require('diegognt.lsp.settings.lua_ls')
+      lspconfig.lua_ls.setup(opts)
+    end,
+    eslint = function()
+      local opts = require('diegognt.lsp.settings.eslint')
+      lspconfig.eslint.setup(opts)
+    end,
+    tsserver = function()
+      local opts = require('diegognt.lsp.settings.tsserver')
+      lspconfig.tsserver.setup(opts)
+    end,
+    denols = function()
+      local opts = require('diegognt.lsp.settings.denols')
+      lspconfig.denols.setup(opts)
+    end,
+    stylelint_lsp = function()
+      local opts = require('diegognt.lsp.settings.stylelint_lsp')
+      lspconfig.stylelint_lsp.setup(opts)
+    end,
+    tailwindcss = function()
+      lspconfig.tailwindcss.setup({
         root_dir = lspconfig.util.root_pattern({ 'tailwind.config.js', 'twind.config.ts', 'tailwind.config.cjs' }),
-      }
-      opts = vim.tbl_deep_extend('force', tsserver_opts, opts)
-    end
-    lspconfig[server_name].setup(opts)
-  end,
-})
+      })
+    end,
+  },
+}

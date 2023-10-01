@@ -38,7 +38,12 @@ return lazy.setup({
     event = { 'BufReadPost', 'BufNewFile' },
     config = true,
   },
-  { 'danymat/neogen', opts = require('diegognt.annotation'), lazy = true }, -- Doc annotation
+  -- Doc annotation
+  {
+    'danymat/neogen',
+    opts = require('diegognt.annotation'),
+    event = 'VeryLazy',
+  },
   -- Bufferline plugin
   {
     'akinsho/bufferline.nvim',
@@ -110,9 +115,10 @@ return lazy.setup({
   {
     'nvim-neo-tree/neo-tree.nvim',
     cmd = 'Neotree',
-    branch = 'v2.x',
+    branch = 'v3.x',
     dependencies = {
       'nvim-lua/plenary.nvim', -- Useful lua functions used by lots of plugins
+      'MunifTanjim/nui.nvim',
     },
     config = {
       follow_current_file = true,
@@ -164,11 +170,23 @@ return lazy.setup({
 
   -- Language Server Protocol - LSP
   {
-    'neovim/nvim-lspconfig', -- Enables LSP
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    lazy = true,
+    config = false,
+  },
+  {
+    'neovim/nvim-lspconfig',
     dependencies = {
       -- LSP Manager
-      { 'williamboman/mason.nvim' },
-      'williamboman/mason-lspconfig.nvim', -- LSP adapter for Mason
+      { 'williamboman/mason.nvim', config = true },
+      -- LSP adapter for Mason
+      {
+        'williamboman/mason-lspconfig.nvim',
+        opts = function()
+          return require('diegognt.lsp.mason')
+        end,
+      },
       -- Highlighting words occurance
       {
         'RRethy/vim-illuminate',
@@ -280,8 +298,7 @@ return lazy.setup({
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     opts = function()
-      local opts = require('diegognt.lualine')
-      return opts
+      return require('diegognt.lualine')
     end,
     config = function(_, opts)
       require('lualine').setup(opts)
@@ -293,8 +310,7 @@ return lazy.setup({
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = function()
-      local opts = require('diegognt.whichkey')
-      return opts
+      return require('diegognt.whichkey')
     end,
     config = function(_, opts)
       local whichkey = require('which-key')
