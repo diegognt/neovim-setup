@@ -3,6 +3,7 @@ require "diegognt.options"
 require "diegognt.keymaps"
 -- Specs goes here
 spec "diegognt.colorscheme"
+spec "diegognt.treesitter"
 spec "diegognt.extras.devicons"
 
 
