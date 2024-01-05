@@ -18,6 +18,25 @@ Spec.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
 end
 
+function Spec.common_capabilities()
+  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if status_ok then
+    return cmp_nvim_lsp.default_capabilities()
+  end
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  }
+
+  return capabilities
+end
+
 function Spec.config()
   local lspconfig = require "lspconfig"
   local icons = require "diegognt.icons"
@@ -60,7 +79,7 @@ function Spec.config()
   for _, server in pairs(servers) do
     local opts = {
       on_attach = Spec.on_attach,
-      -- Add capabilities when completion added
+      capabilities = Spec.common_capabilities(),
     }
 
     local require_ok, settings = pcall(require, "diegognt.lsp.settings." .. server)

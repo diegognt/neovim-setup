@@ -7,6 +7,7 @@ spec "diegognt.colorscheme"
 spec "diegognt.treesitter"
 spec "diegognt.mason"
 spec "diegognt.lsp"
+spec "diegognt.completion"
 spec "diegognt.extras.devicons"
 -- Specs ends here
 require "diegognt.lazy"
