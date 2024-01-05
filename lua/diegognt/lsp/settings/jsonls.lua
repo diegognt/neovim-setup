@@ -1,90 +1,14 @@
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
+local lspconfig_status, _ = pcall(require, "lspconfig")
 
 if not lspconfig_status then
   vim.notify "The `nvim/lspconfig` plugin was not found."
   return
 end
 
--- Find more schemas here: https://www.schemastore.org/json/
-local schemas = {
-  {
-    description = "Deno configuration file",
-    fileMatch = {
-      "deno.json",
-      "denos.jsonc",
-    },
-    url = "https://raw.githubusercontent.com/denoland/deno/v1.30.3/cli/schemas/config-file.v1.json",
-  },
-  {
-    description = "TypeScript compiler configuration file",
-    fileMatch = {
-      "tsconfig.json",
-      "tsconfig.*.json",
-    },
-    url = "https://json.schemastore.org/tsconfig.json",
-  },
-  {
-    description = "Babel configuration",
-    fileMatch = {
-      ".babelrc.json",
-      ".babelrc",
-      "babel.config.json",
-    },
-    url = "https://json.schemastore.org/babelrc.json",
-  },
-  {
-    description = "ESLint config",
-    fileMatch = {
-      ".eslintrc.json",
-      ".eslintrc",
-    },
-    url = "https://json.schemastore.org/eslintrc.json",
-  },
-  {
-    description = "Prettier config",
-    fileMatch = {
-      ".prettierrc",
-      ".prettierrc.json",
-      "prettier.config.json",
-    },
-    url = "https://json.schemastore.org/prettierrc",
-  },
-  {
-    description = "Stylelint config",
-    fileMatch = {
-      ".stylelintrc",
-      ".stylelintrc.json",
-      "stylelint.config.json",
-    },
-    url = "https://json.schemastore.org/stylelintrc",
-  },
-  {
-    description = "Json schema for properties json file for a GitHub Workflow template",
-    fileMatch = {
-      ".github/workflow-templates/**.properties.json",
-    },
-    url = "https://json.schemastore.org/github-workflow-template-properties.json",
-  },
-  {
-    description = "NPM configuration file",
-    fileMatch = {
-      "package.json",
-    },
-    url = "https://json.schemastore.org/package.json",
-  },
-  {
-    description = "JSON schema for Visual Studio component configuration files",
-    fileMatch = {
-      "*.vsconfig",
-    },
-    url = "https://json.schemastore.org/vsconfig.json",
-  },
-}
-
 return {
   settings = {
     json = {
-      schemas = schemas,
+      schemas = require("schemastore").json.schemas(),
     },
   },
   setup = {

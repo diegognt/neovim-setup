@@ -7,39 +7,29 @@ local Spec = {
       cmd = { "Trouble" },
       opts = { use_diagnostic_signs = true },
     },
+    {
+      "b0o/schemastore.nvim",
+      lazy = true,
+    }
   },
 }
 
-local function lsp_keymaps(_, bufnr)
+local function lsp_keymaps(client, bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+
   keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
-Spec.on_attach = function(_, bufnr)
-  lsp_keymaps(bufnr)
-end
-
 function Spec.common_capabilities()
-  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  if status_ok then
-    return cmp_nvim_lsp.default_capabilities()
-  end
-
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+
   capabilities.textDocument.completion.completionItem.snippetSupport = true
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
-    },
-  }
 
   return capabilities
 end
@@ -92,7 +82,9 @@ function Spec.config()
 
   for _, server in pairs(servers) do
     local opts = {
-      on_attach = Spec.on_attach,
+      on_attach = function (client, bufnr)
+        lsp_keymaps(client, bufnr)
+      end,
       capabilities = Spec.common_capabilities(),
     }
 
