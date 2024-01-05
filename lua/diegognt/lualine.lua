@@ -1,18 +1,18 @@
 local icons = require "diegognt.icons"
 local diff = {
-  'diff',
+  "diff",
   colored = false,
-  symbols = { 
+  symbols = {
     added = icons.git.LineAdded,
     modified = icons.git.LineModified,
-    removed = icons.git.LineRemoved
+    removed = icons.git.LineRemoved,
   }, -- Changes the symbols used by the diff.
 }
 
 local branch = {
-  'branch',
+  "branch",
   icons_enabled = true,
-  icon = '',
+  icon = "",
 }
 
 local Spec = {
@@ -21,7 +21,7 @@ local Spec = {
     options = {
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-      disabled_filetypes = { 'alpha', 'dashboard', 'NvimTree', 'Outline' },
+      disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
       ignore_focus = { "NvimTree" },
     },
     sections = {
@@ -34,8 +34,7 @@ local Spec = {
     },
     extensions = { "quickfix", "man", "fugitive" },
   },
-  config = true
+  config = true,
 }
 
 return Spec
-

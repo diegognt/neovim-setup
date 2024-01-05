@@ -13,8 +13,7 @@ local Spec = {
     depth_limit = 0,
     depth_limit_indicator = "..",
   },
-  config = true
+  config = true,
 }
-
 
 return Spec

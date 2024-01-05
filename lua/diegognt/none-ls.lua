@@ -5,33 +5,32 @@ local Spec = {
 }
 
 function Spec.config()
-  local none = require "null-ls"  
+  local none = require "null-ls"
   local formatting = none.builtins.formatting
   local diagnostics = none.builtins.diagnostics
 
-  none.setup {
+  none.setup({
     sources = {
       formatting.prettier.with({
         condition = function(utils)
-          return utils.root_has_file('.prettierrc')
+          return utils.root_has_file ".prettierrc"
         end,
-        extra_args = { '--config', '.prettierrc' },
+        extra_args = { "--config", ".prettierrc" },
       }),
       -- diagnostics.vale,
       -- formatting.beautysh, -- Make sure to run `pip install --user beautysh`
       -- Python tools with Pipenv
       diagnostics.flake8.with({
-        command = { 'pipenv', 'run', 'flake8' },
+        command = { "pipenv", "run", "flake8" },
       }),
       formatting.black.with({
-        command = { 'pipenv', 'run', 'black' },
+        command = { "pipenv", "run", "black" },
       }),
       formatting.isort.with({
-        command = { 'pipenv', 'run', 'isort' },
+        command = { "pipenv", "run", "isort" },
       }),
     },
-  }
+  })
 end
-
 
 return Spec

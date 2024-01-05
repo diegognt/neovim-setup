@@ -3,8 +3,8 @@ local Spec = {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     { -- Elegant diagnostic tools for lsp_keymaps
-      'folke/trouble.nvim',
-      cmd = { 'Trouble' },
+      "folke/trouble.nvim",
+      cmd = { "Trouble" },
       opts = { use_diagnostic_signs = true },
     },
   },
@@ -72,16 +72,23 @@ function Spec.config()
     },
   }
 
-  require("lspconfig.ui.windows").default_options.border = "rounded"  
+  require("lspconfig.ui.windows").default_options.border = "rounded"
 
   vim.diagnostic.config(default_diagnostic_config)
 
-  for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+  for _, sign in
+    ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {})
+  do
+    vim.fn.sign_define(
+      sign.name,
+      { texthl = sign.name, text = sign.text, numhl = sign.name }
+    )
   end
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+  vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+  vim.lsp.handlers["textDocument/signatureHelp"] =
+    vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
   for _, server in pairs(servers) do
     local opts = {
@@ -89,7 +96,8 @@ function Spec.config()
       capabilities = Spec.common_capabilities(),
     }
 
-    local require_ok, settings = pcall(require, "diegognt.lsp.settings." .. server)
+    local require_ok, settings =
+      pcall(require, "diegognt.lsp.settings." .. server)
 
     if require_ok then
       opts = vim.tbl_deep_extend("force", settings, opts)
@@ -100,4 +108,3 @@ function Spec.config()
 end
 
 return Spec
-

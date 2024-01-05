@@ -1,13 +1,13 @@
 local Spec = {
   "echasnovski/mini.pairs",
-  event = 'VeryLazy',
+  event = "VeryLazy",
   dependencies = {
-    "echasnovski/mini.nvim"
-  }
+    "echasnovski/mini.nvim",
+  },
 }
 
 function Spec.config(_, opts)
-  require "mini.pairs".setup(opts)
+  require("mini.pairs").setup(opts)
 end
 
 return Spec

@@ -1,15 +1,15 @@
 local icons = require "diegognt.icons"
 local Spec = {
-  'nvim-telescope/telescope.nvim',
-  cmd = 'Telescope',
+  "nvim-telescope/telescope.nvim",
+  cmd = "Telescope",
   version = false,
-  lazy = true
+  lazy = true,
 }
 
 function Spec.config()
   local actions = require "telescope.actions"
 
-  require "telescope".setup {
+  require("telescope").setup({
     defaults = {
       prompt_prefix = icons.ui.Telescope .. " ",
       selection_caret = icons.ui.Forward .. " ",
@@ -96,9 +96,8 @@ function Spec.config()
         theme = "dropdown",
         initial_mode = "normal",
       },
-
-    }
-  }
+    },
+  })
 end
 
 return Spec

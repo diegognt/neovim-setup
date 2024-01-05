@@ -1,24 +1,24 @@
-local lspconfig_status, lspconfig = pcall(require, 'lspconfig')
+local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 
 if not lspconfig_status then
-  vim.notify('The `nvim/lspconfig` plugin was not found.')
+  vim.notify "The `nvim/lspconfig` plugin was not found."
   return
 end
 
 return {
   root_dir = lspconfig.util.root_pattern({
-    '.eslintrc.json',
-    '.eslintrc.js',
-    '.eslintrc',
-    '.eslintrc.cjs',
-    '.eslintrc.yaml',
-    '.eslintrc.yml',
+    ".eslintrc.json",
+    ".eslintrc.js",
+    ".eslintrc",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
   }),
   setttings = {
     codeAction = {
       disableRuleComment = {
         enable = true,
-        location = 'separateLine',
+        location = "separateLine",
       },
       showDocumentation = {
         enable = true,
@@ -26,9 +26,9 @@ return {
     },
     codeActionOnSave = {
       enable = true,
-      mode = 'all',
+      mode = "all",
     },
     format = false,
-    onIgnoredFiles = 'on',
+    onIgnoredFiles = "on",
   },
 }
