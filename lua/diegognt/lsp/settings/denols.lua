@@ -10,7 +10,6 @@ return {
   settings = {
     deno = {
       enable = true,
-      importMap = 'import_map.json',
       lint = true,
     },
   },

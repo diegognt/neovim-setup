@@ -6,6 +6,5 @@ if not lspconfig_status then
 end
 
 return {
-  single_file_support = false,
-  root_dir = lspconfig.util.root_pattern({ 'tsconfig.json' }),
+  root_dir = lspconfig.util.root_pattern({ 'tailwind.config.js', 'twind.config.ts', 'tailwind.config.cjs' }),
 }
