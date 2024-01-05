@@ -11,6 +11,7 @@ spec "diegognt.navic"
 spec "diegognt.breadcrumbs"
 spec "diegognt.completion"
 spec "diegognt.none-ls"
+spec "diegognt.telescope"
 spec "diegognt.extras.devicons"
 -- Specs ends here
   require "diegognt.lazy"
