@@ -10,9 +10,10 @@ spec "diegognt.lsp"
 spec "diegognt.navic"
 spec "diegognt.breadcrumbs"
 spec "diegognt.completion"
+spec "diegognt.none-ls"
 spec "diegognt.extras.devicons"
 -- Specs ends here
-require "diegognt.lazy"
+  require "diegognt.lazy"
 -- require('diegognt.plugins')
 -- require('diegognt.gitsigns')
 -- require('diegognt.telescope')
