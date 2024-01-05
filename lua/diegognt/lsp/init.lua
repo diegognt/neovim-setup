@@ -1,9 +1,16 @@
 local Spec = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    { -- Elegant diagnostic tools for lsp_keymaps
+      'folke/trouble.nvim',
+      cmd = { 'Trouble' },
+      opts = { use_diagnostic_signs = true },
+    },
+  },
 }
 
-local function lsp_keymaps(client, bufnr)
+local function lsp_keymaps(_, bufnr)
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
   keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -14,7 +21,7 @@ local function lsp_keymaps(client, bufnr)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
-Spec.on_attach = function(client, bufnr)
+Spec.on_attach = function(_, bufnr)
   lsp_keymaps(bufnr)
 end
 
