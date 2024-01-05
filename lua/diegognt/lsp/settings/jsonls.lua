@@ -1,3 +1,10 @@
+local lspconfig_status, lspconfig = pcall(require, 'lspconfig')
+
+if not lspconfig_status then
+  vim.notify('The `nvim/lspconfig` plugin was not found.')
+  return
+end
+
 -- Find more schemas here: https://www.schemastore.org/json/
 local schemas = {
   {
@@ -74,7 +81,7 @@ local schemas = {
   },
 }
 
-local opts = {
+return {
   settings = {
     json = {
       schemas = schemas,
@@ -90,5 +97,3 @@ local opts = {
     },
   },
 }
-
-return opts
