@@ -1,9 +1,15 @@
 -- NOTE: When using a node based tools used the `dynamic_command`.
 -- NOTE: When using custom command, use a lua table instead of a string.
-local M = {}
+local Spec = {
+  "nvimtools/none-ls.nvim",
+}
 
-M.opts = function(formatting, diagnostics)
-  return {
+function Spec.config()
+  local none = require "null-ls"  
+  local formatting = none.builtins.formatting
+  local diagnostics = none.builtins.diagnostics
+
+  none.setup {
     sources = {
       formatting.prettier.with({
         condition = function(utils)
@@ -11,9 +17,8 @@ M.opts = function(formatting, diagnostics)
         end,
         extra_args = { '--config', '.prettierrc' },
       }),
-      formatting.stylua,
       -- diagnostics.vale,
-      formatting.beautysh, -- Make sure to run `pip install --user beautysh`
+      -- formatting.beautysh, -- Make sure to run `pip install --user beautysh`
       -- Python tools with Pipenv
       diagnostics.flake8.with({
         command = { 'pipenv', 'run', 'flake8' },
@@ -28,4 +33,5 @@ M.opts = function(formatting, diagnostics)
   }
 end
 
-return M
+
+return Spec
