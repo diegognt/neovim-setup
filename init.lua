@@ -13,13 +13,12 @@ spec "diegognt.completion"
 spec "diegognt.none-ls"
 spec "diegognt.telescope"
 spec "diegognt.lualine"
+spec "diegognt.autopairs"
 spec "diegognt.extras.devicons"
 -- Specs ends here
   require "diegognt.lazy"
 -- require('diegognt.plugins')
 -- require('diegognt.gitsigns')
--- require('diegognt.telescope')
 -- require('diegognt.toggleterm')
--- require('diegognt.lualine')
 -- require('diegognt.impatient')
 -- require('diegognt.illuminate')
