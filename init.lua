@@ -15,6 +15,7 @@ spec "diegognt.telescope"
 spec "diegognt.lualine"
 spec "diegognt.autopairs"
 spec "diegognt.comments"
+spec "diegognt.indentation"
 spec "diegognt.extras.devicons"
 -- Specs ends here
   require "diegognt.lazy"
