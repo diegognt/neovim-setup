@@ -1,6 +1,7 @@
 require "diegognt.launch"
 require "diegognt.options"
 require "diegognt.keymaps"
+require "diegognt.autocommands"
 -- Specs goes here
 spec "diegognt.colorscheme"
 spec "diegognt.treesitter"
@@ -15,5 +16,4 @@ require "diegognt.lazy"
 -- require('diegognt.toggleterm')
 -- require('diegognt.lualine')
 -- require('diegognt.impatient')
--- require('diegognt.autocommands')
 -- require('diegognt.illuminate')

@@ -5,12 +5,6 @@ local SpelledGroup = vim.api.nvim_create_augroup('SpelledFiles', { clear = true 
 local AlphaGroup = vim.api.nvim_create_augroup('AlphaUser', { clear = true })
 local ResizeGroup = vim.api.nvim_create_augroup('AutoResize', { clear = true })
 
-vim.api.nvim_create_autocmd('User AlphaReady', {
-  group = AlphaGroup,
-  pattern = 'alpha',
-  command = 'vim.opt.showtabline = 0',
-})
-
 vim.api.nvim_create_autocmd('BufUnload', {
   group = AlphaGroup,
   pattern = 'alpha',
@@ -63,7 +57,9 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd({ 'BufWinEnter', 'BufRead', 'BufNewFile' }, {
   group = GeneralSettingsGroup,
   pattern = '*',
-  command = 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o',
+  callback = function()
+    vim.cmd "set formatoptions-=cro"
+  end,
 })
 
 -- wrap and check for spell in text filetypes
