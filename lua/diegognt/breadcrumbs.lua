@@ -1,6 +1,6 @@
 local Spec = {
   "LunarVim/breadcrumbs.nvim",
-  config = true
+  config = true,
 }
 
 return Spec

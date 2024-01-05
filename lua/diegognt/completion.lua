@@ -35,7 +35,7 @@ local Spec = {
     },
     {
       "hrsh7th/cmp-nvim-lua",
-    }
+    },
   },
 }
 
@@ -55,13 +55,13 @@ function Spec.config()
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
   end
 
-  cmp.setup {
+  cmp.setup({
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body) -- For `luasnip` users.
       end,
     },
-    mapping = cmp.mapping.preset.insert {
+    mapping = cmp.mapping.preset.insert({
       ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
       ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
       ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -69,13 +69,13 @@ function Spec.config()
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<C-e>"] = cmp.mapping {
+      ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
-      },
+      }),
       -- Accept currently selected item. If none selected, `select` first item.
       -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm { select = true },
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -104,7 +104,7 @@ function Spec.config()
         "i",
         "s",
       }),
-    },
+    }),
     formatting = {
       fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
@@ -149,7 +149,8 @@ function Spec.config()
       {
         name = "nvim_lsp",
         entry_filter = function(entry, ctx)
-          local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+          local kind =
+            require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
           if kind == "Snippet" and ctx.prev_context.filetype == "java" then
             return false
           end
@@ -191,8 +192,7 @@ function Spec.config()
         native_menu = false,
       },
     },
-  }
-
+  })
 end
 
 return Spec
