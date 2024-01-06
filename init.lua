@@ -17,6 +17,7 @@ spec "diegognt.autopairs"
 spec "diegognt.comments"
 spec "diegognt.indentation"
 spec "diegognt.whichkey"
+spec "diegognt.greeter"
 spec "diegognt.extras.devicons"
 spec "diegognt.extras.annotation"
 -- Specs ends here
