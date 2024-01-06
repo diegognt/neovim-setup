@@ -8,6 +8,16 @@ local Spec = {
 
 function Spec.config()
   local actions = require "telescope.actions"
+  local whichkey = require "which-key"
+
+  whichkey.register({
+    ["<leader>sc"] = { "<cmd>Telescope colorscheme<CR>", "Colorscheme" },
+    ["<leader>sM"] = { "<cmd>Telescope man_pages<CR>", "Man Pages" },
+    ["<leader>sr"] = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
+    ["<leader>sk"] = { "<cmd>Telescope keymaps<CR>", "Keymaps" },
+    ["<leader>sC"] = { "<cmd>Telescope commands<CR>", "Commands" },
+    ["<leader>st"] = { "<cmd>TodoTelescope<CR>", "TODOs" },
+  })
 
   require("telescope").setup({
     defaults = {
@@ -57,6 +67,10 @@ function Spec.config()
         theme = "dropdown",
       },
       find_files = {
+        theme = "dropdown",
+        previewer = false,
+      },
+      git_files = {
         theme = "dropdown",
         previewer = false,
       },
