@@ -10,7 +10,7 @@ local Spec = {
     {
       "b0o/schemastore.nvim",
       lazy = true,
-    }
+    },
   },
 }
 
@@ -34,10 +34,24 @@ function Spec.common_capabilities()
   return capabilities
 end
 
+Spec.on_attach = function(client, bufnr)
+  lsp_keymaps(client, bufnr)
+
+  -- if client.supports_method "textDocument/inlayHint" then
+  --   vim.lsp.inlay_hint.enable(bufnr)
+  -- end
+end
+
+-- Spec.toggle_inlay_hints = function ()
+--   local bufnr = vim.api.nvim_get_current_buf()
+--   vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+-- end
+
 function Spec.config()
   local lspconfig = require "lspconfig"
   local icons = require "diegognt.icons"
   local servers = require "diegognt.lsp.servers"
+  local whichkey = require "which-key"
   local default_diagnostic_config = {
     signs = {
       active = true,
@@ -62,6 +76,30 @@ function Spec.config()
     },
   }
 
+  whichkey.register({
+    ["<leader>li"] = { "<cmd>LspInfo<CR>", "Info" },
+    ["<leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+    ["<leader>lf"] = {
+      "<cmd>lua vim.lsp.buf.format { async = true }<CR>",
+      "Format",
+    },
+    ["<leader>ll"] = {
+      "<cmd>lua vim.lsp.codelens.run()<CR>",
+      "CodeLens Action",
+    },
+    ["<leader>lk"] = {
+      "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+      "Symbol Signature",
+    },
+    ["<leader>lr"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+    ["<leader>ls"] = {
+      "<cmd>Telescope lsp_document_symbols<CR>",
+      "Document Symbols",
+    },
+    ["<leader>lq"] = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Quick fix" },
+    -- ["<leader>lh"] = { "<cmd>lua require('diegognt.lsp').toggle_inlay_hints()<CR>", "Hints" },
+  })
+
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   vim.diagnostic.config(default_diagnostic_config)
@@ -82,9 +120,7 @@ function Spec.config()
 
   for _, server in pairs(servers) do
     local opts = {
-      on_attach = function (client, bufnr)
-        lsp_keymaps(client, bufnr)
-      end,
+      on_attach = Spec.on_attach,
       capabilities = Spec.common_capabilities(),
     }
 
