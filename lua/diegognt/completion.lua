@@ -45,8 +45,8 @@ function Spec.config()
 
   local cmp = require "cmp"
   local luasnip = require "luasnip"
-
   local icons = require "diegognt.icons"
+
   require("luasnip/loaders/from_vscode").lazy_load()
   require("luasnip").filetype_extend("typescriptreact", { "html" })
 
@@ -117,15 +117,6 @@ function Spec.config()
           path = "",
           emoji = "",
         })[entry.source.name]
-        if entry.source.name == "copilot" then
-          vim_item.kind = icons.git.Octoface
-          vim_item.kind_hl_group = "CmpItemKindCopilot"
-        end
-
-        if entry.source.name == "cmp_tabnine" then
-          vim_item.kind = icons.misc.Robot
-          vim_item.kind_hl_group = "CmpItemKindTabnine"
-        end
 
         if entry.source.name == "crates" then
           vim_item.kind = icons.misc.Package
@@ -146,26 +137,7 @@ function Spec.config()
       end,
     },
     sources = {
-      {
-        name = "nvim_lsp",
-        entry_filter = function(entry, ctx)
-          local kind =
-            require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-          if kind == "Snippet" and ctx.prev_context.filetype == "java" then
-            return false
-          end
-
-          if ctx.prev_context.filetype == "markdown" then
-            return true
-          end
-
-          if kind == "Text" then
-            return false
-          end
-
-          return true
-        end,
-      },
+      { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "cmp_tabnine" },
       { name = "nvim_lua" },
