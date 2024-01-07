@@ -22,6 +22,7 @@ spec "diegognt.whichkey"
 spec "diegognt.greeter"
 spec "diegognt.extras.devicons"
 spec "diegognt.extras.annotation"
+spec "diegognt.extras.copilot"
 -- Specs ends here
 require "diegognt.lazy"
 -- require('diegognt.plugins')
