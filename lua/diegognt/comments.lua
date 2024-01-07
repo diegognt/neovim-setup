@@ -1,30 +1,37 @@
 local Spec = {
-  "echasnovski/mini.comment",
+  "numToStr/Comment.nvim",
   event = "VeryLazy",
-  opts = {
-    mappings = {
-      -- Toggle comment (like `gcip` - comment inner paragraph) for both
-      -- Normal and Visual modes
-      comment = "/",
-      -- Toggle comment on current line
-      comment_line = "/",
-
-      -- Toggle comment on visual selection
-      comment_visual = "/",
-
-      -- Define 'comment' textobject (like `dgc` - delete whole comment block)
-      textobject = "gc",
+  lazy = false,
+  dependencies = {
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      event = "VeryLazy",
     },
-    hooks = {
-      pre = function()
-        require("ts_context_commentstring.internal").update_commentstring({})
-      end,
-    },
-  },
+  }
 }
 
-function Spec.config(_, opts)
-  require("mini.comment").setup(opts)
+function Spec.config()
+  local whichkey = require "which-key"
+
+  whichkey.register({
+    ["<leader>/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment" },
+  })
+
+  whichkey.register({
+    ["<leader>/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment", mode = "v"}
+  })
+
+  vim.g.skip_ts_commentstring_module = true
+
+  ---@diagnostic disable: missing-fields
+  require('ts_context_commentstring').setup {
+  enable_autocmd = false,
+  }
+
+  require("Comment").setup({
+    pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+  })
+
 end
 
 return Spec
