@@ -17,6 +17,11 @@ function Spec.config()
         end,
         extra_args = { "--config", ".prettierrc" },
       }),
+      formatting.stylua.with({
+        condition = function(utils)
+          return utils.root_has_file ".stylua.toml"
+        end,
+      }),
       -- diagnostics.vale,
       -- formatting.beautysh, -- Make sure to run `pip install --user beautysh`
       -- Python tools with Pipenv
