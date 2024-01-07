@@ -20,6 +20,7 @@ local mappings = {
   L = { "<cmd>Lazy<CR>", "Lazy" },
   a = { name = "Annotation" },
   l = { name = "LSP" },
+  x = { name = "Diagnostic" },
   s = { name = "Search" },
   -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   -- ["D"] = { '<cmd>lua require("dap").continue()<CR>', "Debugging" },
@@ -56,13 +57,6 @@ local mappings = {
   -- name = "Mode",
   -- t = { "<cmd>Twilight<CR>", "Twilight" },
   -- },
-  -- N = {
-  -- name = "Notifications",
-  -- a = { '<cmd>lua require("noice").cmd("all")<CR>', "All" },
-  -- l = { "<cmd>Noice last<CR>", "Last one" },
-  -- h = { "<cmd>Noice <CR>", "History" },
-  -- e = { "<cmd>Noice errors<CR>", "Errors" },
-  -- },
   -- t = {
   -- name = "Terminal",
   -- n = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node" },
@@ -86,22 +80,6 @@ local mappings = {
   -- },
   -- p = { '<cmd>lua require("neotest").output_panel.open()<CR>', "Panel" },
   -- s = { '<cmd>lua require("neotest").summary.open()<CR>', "Tests Summary" },
-  -- },
-  -- x = {
-  -- name = "Diagnostic",
-  -- d = { "<cmd>Trouble document_diagnostics<CR>", "Document" },
-  -- j = {
-  --   "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
-  --   "Next Diagnostic",
-  -- },
-  -- k = {
-  --   "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>",
-  --   "Previous Diagnostic",
-  -- },
-  -- f = { "lua vim.diagnostic.open_float()<CR>", "Float window" },
-  -- w = { "<cmd>Trouble workspace_diagnostics<CR>", "Workspace" },
-  -- t = { "<cmd>TodoTrouble<CR>", "TODOs" },
-  -- q = { "<cmd>Trouble quickfix<CR>", "Quickfix" },
   -- },
 }
 
