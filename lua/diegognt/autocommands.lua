@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = GeneralSettingsGroup,
   pattern = {
     "qf",
+    "oil",
     "help",
     "man",
     "notify",
