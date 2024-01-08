@@ -25,6 +25,7 @@ spec "diegognt.extras.annotation"
 spec "diegognt.extras.copilot"
 spec "diegognt.extras.harpoon"
 spec "diegognt.extras.oil"
+spec "diegognt.extras.folding"
 -- Specs ends here
 require "diegognt.lazy"
 -- require('diegognt.plugins')
