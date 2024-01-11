@@ -28,6 +28,7 @@ spec "diegognt.extras.harpoon"
 spec "diegognt.extras.oil"
 spec "diegognt.extras.folding"
 spec "diegognt.extras.todo-manager"
+spec "diegognt.extras.zen-mode"
 -- Specs ends here
 require "diegognt.lazy"
 -- require('diegognt.plugins')
