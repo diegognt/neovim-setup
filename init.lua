@@ -10,6 +10,7 @@ spec "diegognt.mason"
 spec "diegognt.lsp"
 spec "diegognt.lsp.diagnostic"
 spec "diegognt.lsp.notifications"
+spec "diegognt.gitsigns"
 spec "diegognt.navic"
 spec "diegognt.breadcrumbs"
 spec "diegognt.completion"
@@ -32,7 +33,5 @@ spec "diegognt.extras.zen-mode"
 -- Specs ends here
 require "diegognt.lazy"
 -- require('diegognt.plugins')
--- require('diegognt.gitsigns')
--- require('diegognt.toggleterm')
 -- require('diegognt.impatient')
 -- require('diegognt.illuminate')
