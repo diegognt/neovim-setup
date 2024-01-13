@@ -13,8 +13,6 @@ g.skip_ts_context_commentstring_module = true
 -- cmd('set inccommand=split')             -- show what you are substituting in real time
 cmd "set iskeyword+=-" -- treat dash as a separate word
 cmd "set whichwrap+=<,>,[,],h,l" -- move to next line with theses keys
-cmd "set foldmethod=expr" -- set foldmethod to expression
-cmd "set foldexpr=nvim_treesitter#foldexpr()" -- set foldexpr to treesitter
 
 -- User options
 local options = {
