@@ -12,19 +12,20 @@ local mappings_opts = {
 local mappings = {
   F = { "<cmd>Telescope find_files<CR>", "Find files" },
   f = { "<cmd>Telescope git_files<CR>", "Find git files" },
-  b = { "<cmd>Telescope buffers<CR>", "Buffers" }, -- When Buffers, use it as category
-  w = { "<cmd>w!<CR>", "Save" },
   q = { "<cmd>q!<CR>", "Quit" },
   h = { "<cmd>Telescope help_tags<CR>", "Find on nvim help" },
   M = { "<cmd>Mason<CR>", "Mason" },
   L = { "<cmd>Lazy<CR>", "Lazy" },
+  b = { name = "Buffers" },
   a = { name = "Annotation" },
   l = { name = "LSP" },
   x = { name = "Diagnostic" },
   s = { name = "Search" },
-  -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  t = { name = "Test" },
+  m = { name = "Mode" },
+  g = { name = "Git" },
+  N = { name = "Notifications" },
   -- ["D"] = { '<cmd>lua require("dap").continue()<CR>', "Debugging" },
-  -- ["F"] = { "<cmd>Telescope live_grep<CR>", "Find Text" }, -- Send to the buffer category
   -- A = {
   --   name = "Asistant",
   --   p = { "<cmd>NeoAIToggle<CR>", "Prompt" },
@@ -33,53 +34,6 @@ local mappings = {
   --   name = "Copilot",
   --   d = { "<cmd>Copilot disable<CR>", "Disable" },
   --   e = { "<cmd>Copilot enable<CR>", "Enable" },
-  -- },
-  -- g = {
-  -- name = "Git",
-  -- g = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
-  -- j = { '<cmd>lua require "gitsigns".next_hunk()<CR>', "Next Hunk" },
-  -- k = { '<cmd>lua require "gitsigns".prev_hunk()<CR>', "Prev Hunk" },
-  -- l = { '<cmd>lua require "gitsigns".blame_line()<CR>', "Blame" },
-  -- p = { '<cmd>lua require "gitsigns".preview_hunk()<CR>', "Preview Hunk" },
-  -- r = { '<cmd>lua require "gitsigns".reset_hunk()<CR>', "Reset Hunk" },
-  -- R = { '<cmd>lua require "gitsigns".reset_buffer()<CR>', "Reset Buffer" },
-  -- s = { '<cmd>lua require "gitsigns".stage_hunk()<CR>', "Stage Hunk" },
-  -- u = {
-  --   '<cmd>lua require "gitsigns".undo_stage_hunk()<CR>',
-  --   "Undo Stage Hunk",
-  -- },
-  -- o = { "<cmd>Telescope git_status<CR>", "Open changed file" },
-  -- c = { "<cmd>Telescope git_commits<CR>", "Checkout commit" },
-  -- d = { "<cmd>Gitsigns diffthis HEAD<CR>", "Diff" },
-  -- b = { "<cmd>Telescope git_branches<CR>", "Checkout branch" },
-  -- },
-  -- m = {
-  -- name = "Mode",
-  -- t = { "<cmd>Twilight<CR>", "Twilight" },
-  -- },
-  -- t = {
-  -- name = "Terminal",
-  -- n = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node" },
-  -- u = { "<cmd>lua _NCDU_TOGGLE()<CR>", "NCDU" },
-  -- t = { "<cmd>lua _HTOP_TOGGLE()<CR>", "Htop" },
-  -- p = { "<cmd>lua _PYTHON_TOGGLE()<CR>", "Python" },
-  -- f = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
-  -- h = { "<cmd>ToggleTerm size=10 direction=horizontal<CR>", "Horizontal" },
-  -- v = { "<cmd>ToggleTerm size=80 direction=vertical<CR>", "Vertical" },
-  -- },
-  -- T = {
-  -- name = "Test",
-  -- d = {
-  --   '<cmd>lua require("neotest").run.run({strategy = "dap"})<CR>',
-  --   "Debug nearest",
-  -- },
-  -- r = { '<cmd>lua require("neotest").run.run()<CR>', "Run nearest" },
-  -- f = {
-  --   '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>',
-  --   "Run File",
-  -- },
-  -- p = { '<cmd>lua require("neotest").output_panel.open()<CR>', "Panel" },
-  -- s = { '<cmd>lua require("neotest").summary.open()<CR>', "Tests Summary" },
   -- },
 }
 
