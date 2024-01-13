@@ -69,10 +69,12 @@ function Spec.config()
       find_files = {
         theme = "dropdown",
         previewer = false,
+        hidden = true,
       },
       git_files = {
         theme = "dropdown",
         previewer = false,
+        hidden = true,
       },
       buffers = {
         theme = "dropdown",
