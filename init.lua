@@ -20,6 +20,7 @@ spec "diegognt.lualine"
 spec "diegognt.autopairs"
 spec "diegognt.comments"
 spec "diegognt.indentation"
+spec "diegognt.illuminate"
 spec "diegognt.whichkey"
 spec "diegognt.greeter"
 spec "diegognt.extras.devicons"
@@ -35,4 +36,3 @@ spec "diegognt.extras.color-highlight"
 require "diegognt.lazy"
 -- require('diegognt.plugins')
 -- require('diegognt.impatient')
--- require('diegognt.illuminate')
