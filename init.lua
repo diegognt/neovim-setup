@@ -16,6 +16,7 @@ spec "diegognt.navic"
 spec "diegognt.breadcrumbs"
 spec "diegognt.completion"
 spec "diegognt.none-ls"
+spec "diegognt.testing"
 spec "diegognt.telescope"
 spec "diegognt.lualine"
 spec "diegognt.autopairs"
@@ -35,5 +36,3 @@ spec "diegognt.extras.zen-mode"
 spec "diegognt.extras.color-highlight"
 -- Specs ends here
 require "diegognt.lazy"
--- require('diegognt.plugins')
--- require('diegognt.impatient')
