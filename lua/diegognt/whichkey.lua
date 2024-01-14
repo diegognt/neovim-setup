@@ -25,7 +25,6 @@ local mappings = {
   m = { name = "Mode" },
   g = { name = "Git" },
   N = { name = "Notifications" },
-  -- ["D"] = { '<cmd>lua require("dap").continue()<CR>', "Debugging" },
   -- A = {
   --   name = "Asistant",
   --   p = { "<cmd>NeoAIToggle<CR>", "Prompt" },
