@@ -1,10 +1,11 @@
 local icons = require "diegognt.icons"
 local Spec = {
   "folke/trouble.nvim",
-  cmd = { 'Trouble' },
-  event = "VeryLazy",
+  cmd = { "Trouble" },
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "neovim/nvim-lspconfig",
   },
   opts = {
     auto_close = true, -- automatically close the list when you have no diagnostics
@@ -22,15 +23,13 @@ local Spec = {
 function Spec.config(_, opts)
   require("trouble").setup(opts)
 
-  local whichkey = require "which-key"
-
-  whichkey.register({
+  require("which-key").register {
     ["<leader>xd"] = { "<cmd>Trouble document_diagnostics<CR>", "Document" },
     ["<leader>xw"] = { "<cmd>Trouble workspace_diagnostics<CR>", "Workspace" },
     ["<leader>xl"] = { "<cmd>Trouble loclist<CR>", "Loclist" },
     ["<leader>xt"] = { "<cmd>TodoTrouble<CR>", "TODOs" },
     ["<leader>xq"] = { "<cmd>Trouble quickfix<CR>", "Quickfix" },
-  })
+  }
 end
 
 return Spec
