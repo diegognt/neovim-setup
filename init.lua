@@ -36,5 +36,3 @@ spec "diegognt.extras.zen-mode"
 spec "diegognt.extras.color-highlight"
 -- Specs ends here
 require "diegognt.lazy"
--- require('diegognt.plugins')
--- require('diegognt.impatient')
