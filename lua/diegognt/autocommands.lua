@@ -103,19 +103,34 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = LspConfigGroup,
   callback = function(ev)
-    local opts = { buffer = ev.buf }
+    local opts = { buffer = ev.buf, silent = true, noremap = true }
     local keymap = vim.keymap.set
 
     -- LSP default
-    keymap("n", "gd", vim.lsp.buf.definition, opts)
-    keymap("n", "gD", vim.lsp.buf.declaration, opts)
-    keymap("n", "K", vim.lsp.buf.hover, opts)
-    keymap("n", "gi", vim.lsp.buf.implementation, opts)
-    keymap("n", "gr", vim.lsp.buf.references, opts)
-    keymap("n", "<leader>la", vim.lsp.buf.code_action, opts)
-    keymap("n", "<leader>lr", vim.lsp.buf.rename, opts)
-    keymap("n", "<leader>lk", vim.lsp.buf.signature_help, opts)
-    keymap("n", "<leader>td", vim.lsp.buf.type_definition, opts)
+    keymap("n", "gd", vim.lsp.buf.definition, vim.tbl_deep_extend("force", opts, { desc = "Go to Definition" }))
+    keymap("n", "gD", vim.lsp.buf.declaration, vim.tbl_deep_extend("force", opts, { desc = "Go to Declaration" }))
+    keymap("n", "K", vim.lsp.buf.hover, vim.tbl_deep_extend("force", opts, { desc = "Hover" }))
+    keymap("n", "gi", vim.lsp.buf.implementation, vim.tbl_deep_extend("force", opts, { desc = "Go to Implementation" }))
+    keymap("n", "gr", vim.lsp.buf.references, vim.tbl_deep_extend("force", opts, { desc = "Go to References" }))
+    keymap(
+      { "n", "v" },
+      "<leader>la",
+      vim.lsp.buf.code_action,
+      vim.tbl_deep_extend("force", opts, { desc = "Code Action" })
+    )
+    keymap("n", "<leader>lr", vim.lsp.buf.rename, vim.tbl_deep_extend("force", opts, { desc = "Rename" }))
+    keymap(
+      "n",
+      "<leader>lk",
+      vim.lsp.buf.signature_help,
+      vim.tbl_deep_extend("force", opts, { desc = "Signature Help" })
+    )
+    keymap(
+      "n",
+      "<leader>td",
+      vim.lsp.buf.type_definition,
+      vim.tbl_deep_extend("force", opts, { desc = "Type Definition" })
+    )
     keymap("n", "<leader>lf", function()
       vim.lsp.buf.format {
         async = true,
@@ -123,18 +138,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
           return client.name ~= "tsserver"
         end,
       }
-    end, opts)
+    end, vim.tbl_deep_extend("force", opts, { desc = "Format" }))
 
     -- Workspace actions
-    keymap("n", "<leader>Wa", vim.lsp.buf.add_workspace_folder, opts)
-    keymap("n", "<leader>Wr", vim.lsp.buf.remove_workspace_folder, opts)
+    keymap(
+      "n",
+      "<leader>Wa",
+      vim.lsp.buf.add_workspace_folder,
+      vim.tbl_deep_extend("force", opts, { desc = "Add Workspace Folder" })
+    )
+    keymap(
+      "n",
+      "<leader>Wr",
+      vim.lsp.buf.remove_workspace_folder,
+      vim.tbl_deep_extend("force", opts, { desc = "Remove Workspace Folder" })
+    )
     keymap("n", "<leader>Wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-
+    end, vim.tbl_deep_extend("force", opts, { desc = "List Workspace Folders" }))
+    --
     -- Diagnostics
-    keymap("n", "<leader>xf", vim.diagnostic.open_float, opts)
+    keymap(
+      "n",
+      "<leader>xf",
+      vim.diagnostic.open_float,
+      vim.tbl_deep_extend("force", opts, { desc = "Open Diagnostics on Float" })
+    )
 
     -- Code Lenses
+    keymap("n", "<C-r>", vim.lsp.codelens.refresh, vim.tbl_deep_extend("force", opts, { desc = "Refresh Code Lens" }))
+    keymap("n", "<leader>lc", vim.lsp.codelens.run, vim.tbl_deep_extend("force", opts, { desc = "Run Code Lens" }))
   end,
 })
