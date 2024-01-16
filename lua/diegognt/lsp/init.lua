@@ -58,7 +58,7 @@ Spec.common_handlers = {
 
 Spec.set_keymaps = function()
   require("which-key").register {
-    ["<leader>li"] = { "<cmd>LspInfo<CR>", "Info" },
+    ["<leader>lI"] = { "<cmd>LspInfo<CR>", "Info" },
   }
 end
 
