@@ -50,15 +50,16 @@ Spec.diagnostics_setup = function()
   end
 end
 
+Spec.common_handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
+
 Spec.set_keymaps = function()
   require("which-key").register {
     ["<leader>li"] = { "<cmd>LspInfo<CR>", "Info" },
   }
-end
-
-Spec.setup_handlers = function()
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 end
 
 Spec.setup_servers = function()
@@ -68,6 +69,7 @@ Spec.setup_servers = function()
   for _, server in pairs(servers) do
     local opts = {
       capabilities = Spec.common_capabilities(),
+      handlers = Spec.common_handlers,
     }
 
     local require_ok, settings = pcall(require, "diegognt.lsp.settings." .. server)
@@ -84,7 +86,6 @@ function Spec.config()
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
   Spec.diagnostics_setup()
-  Spec.setup_handlers()
   Spec.set_keymaps()
   Spec.setup_servers()
 end
