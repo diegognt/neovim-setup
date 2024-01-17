@@ -17,20 +17,22 @@ local branch = {
 
 local Spec = {
   "nvim-lualine/lualine.nvim",
+  dependencies = {
+    "AndreM222/copilot-lualine",
+  },
   opts = {
     options = {
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-      disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
-      ignore_focus = { "NvimTree" },
+      disabled_filetypes = { "alpha", "dashboard", "Outline" },
     },
     sections = {
       lualine_a = { "mode" },
       lualine_b = { branch },
       lualine_c = { diff },
-      lualine_x = { "diagnostics" },
+      lualine_x = { "copilot" },
       lualine_y = { "filetype" },
-      lualine_z = { "progress" },
+      lualine_z = { "location", "progress" },
     },
     extensions = { "quickfix", "man", "fugitive" },
   },
