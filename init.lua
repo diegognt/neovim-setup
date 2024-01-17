@@ -34,5 +34,6 @@ spec "diegognt.extras.folding"
 spec "diegognt.extras.todo-manager"
 spec "diegognt.extras.zen-mode"
 spec "diegognt.extras.color-highlight"
+spec "diegognt.extras.markdown"
 -- Specs ends here
 require "diegognt.lazy"
