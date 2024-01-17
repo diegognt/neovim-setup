@@ -36,6 +36,10 @@ local Spec = {
     {
       "hrsh7th/cmp-nvim-lua",
     },
+    {
+      "roobert/tailwindcss-colorizer-cmp.nvim",
+      event = "InsertEnter",
+    }
   },
 }
 
@@ -106,10 +110,10 @@ function Spec.config()
       }),
     }),
     formatting = {
-      fields = { "kind", "abbr", "menu" },
-      format = function(entry, vim_item)
-        vim_item.kind = icons.kind[vim_item.kind]
-        vim_item.menu = ({
+      fields = { "abbr", "menu", "kind" },
+      format = function(entry, item)
+        item.kind = icons.kind[item.kind]
+        item.menu = ({
           nvim_lsp = "",
           nvim_lua = "",
           luasnip = "",
@@ -119,35 +123,35 @@ function Spec.config()
         })[entry.source.name]
 
         if entry.source.name == "crates" then
-          vim_item.kind = icons.misc.Package
-          vim_item.kind_hl_group = "CmpItemKindCrate"
+          item.kind = icons.misc.Package
+          item.kind_hl_group = "CmpItemKindCrate"
         end
 
         if entry.source.name == "lab.quick_data" then
-          vim_item.kind = icons.misc.CircuitBoard
-          vim_item.kind_hl_group = "CmpItemKindConstant"
+          item.kind = icons.misc.CircuitBoard
+          item.kind_hl_group = "CmpItemKindConstant"
         end
 
         if entry.source.name == "emoji" then
-          vim_item.kind = icons.misc.Smiley
-          vim_item.kind_hl_group = "CmpItemKindEmoji"
+          item.kind = icons.misc.Smiley
+          item.kind_hl_group = "CmpItemKindEmoji"
         end
 
-        return vim_item
+        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
       end,
     },
     sources = {
       { name = "nvim_lsp" },
+      { name = "tailwindcss" },
       { name = "luasnip" },
-      { name = "cmp_tabnine" },
-      { name = "nvim_lua" },
       { name = "buffer" },
       { name = "path" },
+      { name = "cmdline" },
+      { name = "nvim_lua" },
       { name = "calc" },
       { name = "emoji" },
       { name = "treesitter" },
       { name = "crates" },
-      { name = "tmux" },
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
