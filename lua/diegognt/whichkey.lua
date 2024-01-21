@@ -20,7 +20,7 @@ local mappings = {
   a = { name = "Annotation" },
   l = { name = "LSP" },
   x = { name = "Diagnostic" },
-  s = { name = "Search" },
+  S = { name = "Search" },
   t = { name = "Test" },
   m = { name = "Mode" },
   g = { name = "Git" },
