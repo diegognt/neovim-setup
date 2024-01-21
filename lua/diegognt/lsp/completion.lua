@@ -27,6 +27,19 @@ local Spec = {
       event = "InsertEnter",
     },
     {
+      "petertriho/cmp-git",
+      event = "InsertEnter",
+    },
+    {
+      "David-Kunz/cmp-npm",
+      ft = "json",
+      event = "InsertEnter",
+    },
+    {
+      "jcha0713/cmp-tw2css",
+      event = "InsertEnter",
+    },
+    {
       "L3MON4D3/LuaSnip",
       event = "InsertEnter",
       dependencies = {
@@ -39,9 +52,96 @@ local Spec = {
     {
       "roobert/tailwindcss-colorizer-cmp.nvim",
       event = "InsertEnter",
-    }
+    },
   },
 }
+
+function Spec.common_mapping()
+  local has_words_before = function()
+    unpack = unpack or table.unpack
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  end
+
+  local luasnip = require "luasnip"
+  local cmp = require "cmp"
+
+  return cmp.mapping.preset.insert {
+    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+      -- that way you will only jump inside the snippet region
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<C-e>"] = cmp.mapping {
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    },
+    ["<CR>"] = cmp.mapping {
+      i = function(fallback)
+        if cmp.visible() and cmp.get_active_entry() then
+          cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+        else
+          fallback()
+        end
+      end,
+      s = cmp.mapping.confirm { select = true },
+      c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+    },
+  }
+end
+
+function Spec.common_formatting()
+  local icons = require "diegognt.icons"
+
+  return {
+    fields = { "abbr", "kind", "menu" },
+    format = function(entry, item)
+      item.kind = icons.kind[item.kind]
+      item.menu = ({
+        nvim_lsp = "",
+        nvim_lua = "",
+        luasnip = "",
+        buffer = "",
+        path = "",
+        emoji = "",
+      })[entry.source.name]
+
+      if entry.source.name == "lab.quick_data" then
+        item.kind = icons.misc.CircuitBoard
+        item.kind_hl_group = "CmpItemKindConstant"
+      end
+
+      if entry.source.name == "emoji" then
+        item.kind = icons.misc.Smiley
+        item.kind_hl_group = "CmpItemKindEmoji"
+      end
+
+      return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+    end,
+  }
+end
 
 function Spec.config()
   vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
@@ -49,109 +149,30 @@ function Spec.config()
 
   local cmp = require "cmp"
   local luasnip = require "luasnip"
-  local icons = require "diegognt.icons"
 
   require("luasnip/loaders/from_vscode").lazy_load()
   require("luasnip").filetype_extend("typescriptreact", { "html" })
 
-  local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-  end
-
-  cmp.setup({
+  cmp.setup {
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body) -- For `luasnip` users.
       end,
     },
-    mapping = cmp.mapping.preset.insert({
-      ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-      ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<C-e>"] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      -- Accept currently selected item. If none selected, `select` first item.
-      -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expandable() then
-          luasnip.expand()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif check_backspace() then
-          fallback()
-        else
-          fallback()
-        end
-      end, {
-        "i",
-        "s",
-      }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, {
-        "i",
-        "s",
-      }),
-    }),
-    formatting = {
-      fields = { "abbr", "menu", "kind" },
-      format = function(entry, item)
-        item.kind = icons.kind[item.kind]
-        item.menu = ({
-          nvim_lsp = "",
-          nvim_lua = "",
-          luasnip = "",
-          buffer = "",
-          path = "",
-          emoji = "",
-        })[entry.source.name]
-
-        if entry.source.name == "crates" then
-          item.kind = icons.misc.Package
-          item.kind_hl_group = "CmpItemKindCrate"
-        end
-
-        if entry.source.name == "lab.quick_data" then
-          item.kind = icons.misc.CircuitBoard
-          item.kind_hl_group = "CmpItemKindConstant"
-        end
-
-        if entry.source.name == "emoji" then
-          item.kind = icons.misc.Smiley
-          item.kind_hl_group = "CmpItemKindEmoji"
-        end
-
-        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
-      end,
-    },
+    mapping = Spec.common_mapping(),
+    formatting = Spec.common_formatting(),
     sources = {
       { name = "nvim_lsp" },
+      { name = "nvim_lua" },
+      { name = "luasnip" },
       { name = "tailwindcss" },
       { name = "buffer" },
-      { name = "emoji" },
       { name = "path" },
-      { name = "nvim_lua" },
+      { name = "emoji" },
       { name = "cmdline" },
-      { name = "luasnip" },
-      { name = "calc" },
-      { name = "treesitter" },
-      { name = "crates" },
+      { name = "git" },
+      { name = "npm" },
+      { name = "tw2css" },
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
@@ -168,7 +189,7 @@ function Spec.config()
         native_menu = false,
       },
     },
-  })
+  }
 end
 
 return Spec
