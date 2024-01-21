@@ -10,16 +10,16 @@ function Spec.config()
   local actions = require "telescope.actions"
   local whichkey = require "which-key"
 
-  whichkey.register({
-    ["<leader>sc"] = { "<cmd>Telescope colorscheme<CR>", "Colorscheme" },
-    ["<leader>sM"] = { "<cmd>Telescope man_pages<CR>", "Man Pages" },
-    ["<leader>sr"] = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
-    ["<leader>sk"] = { "<cmd>Telescope keymaps<CR>", "Keymaps" },
-    ["<leader>sC"] = { "<cmd>Telescope commands<CR>", "Commands" },
-    ["<leader>st"] = { "<cmd>TodoTelescope<CR>", "TODOs" },
-  })
+  whichkey.register {
+    ["<leader>Sc"] = { "<cmd>Telescope colorscheme<CR>", "Colorscheme" },
+    ["<leader>SM"] = { "<cmd>Telescope man_pages<CR>", "Man Pages" },
+    ["<leader>Sr"] = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
+    ["<leader>Sk"] = { "<cmd>Telescope keymaps<CR>", "Keymaps" },
+    ["<leader>SC"] = { "<cmd>Telescope commands<CR>", "Commands" },
+    ["<leader>St"] = { "<cmd>TodoTelescope<CR>", "TODOs" },
+  }
 
-  require("telescope").setup({
+  require("telescope").setup {
     defaults = {
       prompt_prefix = icons.ui.Telescope .. " ",
       selection_caret = icons.ui.Forward .. " ",
@@ -113,7 +113,7 @@ function Spec.config()
         initial_mode = "normal",
       },
     },
-  })
+  }
 end
 
 return Spec
