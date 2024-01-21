@@ -135,7 +135,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.format {
         async = true,
         filter = function(client)
-          return client.name ~= "tsserver"
+          return client.name ~= "typescript-tools"
         end,
       }
     end, vim.tbl_deep_extend("force", opts, { desc = "Format" }))
