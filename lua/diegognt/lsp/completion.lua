@@ -161,19 +161,18 @@ function Spec.config()
     },
     mapping = Spec.common_mapping(),
     formatting = Spec.common_formatting(),
-    sources = {
+    sources = cmp.config.sources({
       { name = "nvim_lsp" },
       { name = "nvim_lua" },
       { name = "luasnip" },
       { name = "tailwindcss" },
+      { name = "npm" },
+      { name = "tw2css" },
+    }, {
       { name = "buffer" },
       { name = "path" },
       { name = "emoji" },
-      { name = "cmdline" },
-      { name = "git" },
-      { name = "npm" },
-      { name = "tw2css" },
-    },
+    }),
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
@@ -190,6 +189,33 @@ function Spec.config()
       },
     },
   }
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype("gitcommit", {
+    sources = cmp.config.sources({
+      { name = "git" },
+    }, {
+      { name = "buffer" },
+    }),
+  })
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ "/", "?" }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "buffer" },
+    },
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = "path" },
+    }, {
+      { name = "cmdline" },
+    }),
+  })
 end
 
 return Spec
