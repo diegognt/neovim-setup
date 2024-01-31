@@ -1,5 +1,5 @@
 # Neovim-setup
-Personal set up for Neovim on macOS & Ubuntu.
+Personal set up for Neovim v 0.10.x on macOS & Ubuntu.
 
 ## Requirements
 
@@ -42,12 +42,7 @@ brew install Lazygit
 To install it on Ubuntu follow the instructions on the following [page](https://github.com/jesseduffield/lazygit#manual)
 
 ### Neovim(obviously)
-On macOS run
-~~~bash
-brew install neovim
-~~~
-
-On Ubuntu just build the 0.8.x version, check the [github page](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source) for instructions.
+Build the 0.10.x version, check the [github page](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source) for instructions.
 
 ## Set up
 1. Clone the repo
