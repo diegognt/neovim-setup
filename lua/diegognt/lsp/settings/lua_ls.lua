@@ -8,9 +8,8 @@ end
 return {
   settings = {
     Lua = {
-      format = {
-        enable = false,
-      },
+      format = { enable = false },
+      hint = { enable = true },
       diagnostics = {
         globals = { "vim", "spec" },
       },
