@@ -1,13 +1,22 @@
 -- Desc: Settings for tsserver
 
 local lspconfig = require "lspconfig"
-local code_lenses_settings = {
+local common_settings = {
   implementationsCodeLens = {
     enabled = true,
   },
   referencesCodeLens = {
     enabled = true,
     showOnAllFunctions = true,
+  },
+  inlayHints = {
+    includeInlayEnumMemberValueHints = true,
+    includeInlayFunctionLikeReturnTypeHints = true,
+    includeInlayFunctionParameterTypeHints = true,
+    includeInlayParameterNameHints = "all",
+    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+    includeInlayPropertyDeclarationTypeHints = true,
+    includeInlayVariableTypeHints = true,
   },
 }
 local function on_attach(_, bufnr)
@@ -56,11 +65,11 @@ return {
   single_file_support = false,
   root_dir = lspconfig.util.root_pattern { "tsconfig.json", "package.json" },
   settings = {
-    javascript = code_lenses_settings,
-    typescript = code_lenses_settings,
-    javascriptreact = code_lenses_settings,
-    typescriptreact = code_lenses_settings,
-    ["javascript.jsx"] = code_lenses_settings,
-    ["typescript.tsx"] = code_lenses_settings,
+    javascript = common_settings,
+    typescript = common_settings,
+    javascriptreact = common_settings,
+    typescriptreact = common_settings,
+    ["javascript.jsx"] = common_settings,
+    ["typescript.tsx"] = common_settings,
   },
 }
