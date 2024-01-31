@@ -168,5 +168,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Code Lenses
     keymap("n", "<C-r>", vim.lsp.codelens.refresh, vim.tbl_deep_extend("force", opts, { desc = "Refresh Code Lens" }))
     keymap("n", "<leader>lc", vim.lsp.codelens.run, vim.tbl_deep_extend("force", opts, { desc = "Run Code Lens" }))
+
+    -- Inlay Hints
+    if vim.lsp.inlay_hint then
+      keymap("n", "<leader>lh", function()
+        vim.lsp.inlay_hint.enable(ev.buf, not vim.lsp.inlay_hint.is_enabled(ev.buf))
+      end, vim.tbl_deep_extend("force", opts, { desc = "Inlay Hints" }))
+    end
   end,
 })
