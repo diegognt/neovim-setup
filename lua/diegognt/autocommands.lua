@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- close some filetypes with <q>
+-- Closes some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   group = GeneralSettingsGroup,
   pattern = {
@@ -64,7 +64,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
   end,
 })
 
--- wrap and check for spell in text filetypes
+-- Wraps and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
   group = SpelledGroup,
   pattern = { "gitcommit", "markdown" },
@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
   command = "set filetype=json",
 })
 
--- go to last loc when opening a buffer
+-- Go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = GeneralSettingsGroup,
   callback = function()
@@ -147,17 +147,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.add_workspace_folder,
       vim.tbl_deep_extend("force", opts, { desc = "Add Workspace Folder" })
     )
+
     keymap(
       "n",
       "<leader>Wr",
       vim.lsp.buf.remove_workspace_folder,
       vim.tbl_deep_extend("force", opts, { desc = "Remove Workspace Folder" })
     )
+
     keymap("n", "<leader>Wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, vim.tbl_deep_extend("force", opts, { desc = "List Workspace Folders" }))
-    --
-    -- Diagnostics
+
+    -- Float Diagnostics
     keymap(
       "n",
       "<leader>xf",
