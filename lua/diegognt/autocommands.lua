@@ -177,5 +177,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.lsp.inlay_hint.enable(ev.buf, not vim.lsp.inlay_hint.is_enabled(ev.buf))
       end, vim.tbl_deep_extend("force", opts, { desc = "Inlay Hints" }))
     end
+
+    -- LSP Info
+    keymap("n", "<leader>lI", "<cmd>LspInfo<CR>", vim.tbl_deep_extend("force", opts, { desc = "LSP Info" }))
   end,
 })
