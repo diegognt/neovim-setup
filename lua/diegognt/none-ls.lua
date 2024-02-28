@@ -25,9 +25,6 @@ function Spec.config()
       -- diagnostics.vale,
       -- formatting.beautysh, -- Make sure to run `pip install --user beautysh`
       -- Python tools with Pipenv
-      diagnostics.flake8.with({
-        command = { "pipenv", "run", "flake8" },
-      }),
       formatting.black.with({
         command = { "pipenv", "run", "black" },
       }),
