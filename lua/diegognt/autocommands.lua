@@ -56,6 +56,13 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "set nobuflisted",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = GeneralSettingsGroup,
+  pattern = "markdown",
+  command = "set conceallevel=2",
+})
+
+
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
   group = GeneralSettingsGroup,
   pattern = "*",
