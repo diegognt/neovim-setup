@@ -1,7 +1,6 @@
 -- Description: Configuration for the obsidian spec
--- TODO: Find the way to use path as a function to get the path from the system
 
-local globals = require("diegognt.globals")
+local globals = require "diegognt.globals"
 
 local Spec = {
   "epwalsh/obsidian.nvim",
@@ -18,6 +17,11 @@ local Spec = {
         path = globals.OBSIDIAN_VAULT,
       },
     },
+    note_path_func = function(spec)
+      -- This is equivalent to the default behavior.
+      local path = spec.dir / tostring(spec.title)
+      return path:with_suffix ".md"
+    end,
   },
 }
 
