@@ -1,6 +1,7 @@
 return {
   "astro",
   "bashls",
+  "biome",
   "cssls",
   "denols",
   "dockerls",
