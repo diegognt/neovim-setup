@@ -3,53 +3,59 @@ local Spec = {
   dependencies = {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
     "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    -- Adapters
     "marilari88/neotest-vitest",
-    "nvim-neotest/neotest-python",
     "markemmons/neotest-deno",
     "nvim-neotest/neotest-go",
     "thenbe/neotest-playwright",
   },
 }
 
-function Spec.set_keymaps()
-  require("which-key").register({
-    -- ["<leader>td"] = {
-    --   '<cmd>lua require("neotest").run.run({strategy = "dap"})<CR>',
-    --   "Debug nearest",
-    -- },
-    ["<leader>tr"] = {
-      '<cmd>lua require("neotest").run.run()<CR>',
-      "Run nearest",
-    },
-    ["<leader>tf"] = {
-      '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>',
-      "Run File",
-    },
-    ["<leader>tp"] = {
-      '<cmd>lua require("neotest").output_panel.open()<CR>',
-      "Panel",
-    },
-    ["<leader>ts"] = {
-      '<cmd>lua require("neotest").summary.open()<CR>',
-      "Tests Summary",
-    },
-  })
+local set_keymaps = function()
+  local opts = { silent = true, noremap = true }
+  local keymap = vim.keymap.set
+
+  keymap("n", "<leader>tn", function()
+    require("neotest").run.run()
+  end, vim.tbl_deep_extend("force", opts, { desc = "Runs a [n]ear test" }))
+
+  keymap("n", "<leader>tf", function()
+    require("neotest").run.run(vim.fn.expand "%")
+  end, vim.tbl_deep_extend("force", opts, { desc = "Runs all test in a [f]ile" }))
+
+  keymap("n", "<Leader>to", function()
+    require("neotest").output.open()
+  end, vim.tbl_deep_extend("force", opts, { desc = "Show test [o]utput" }))
+
+  keymap("n", "<leader>ts", function()
+    require("neotest").summary.toggle()
+  end, vim.tbl_deep_extend("force", opts, { desc = "Shows tests [s]ummary" }))
 end
 
 function Spec.config()
-  require("neotest").setup({
+  require("neotest").setup {
     adapters = {
-      require "neotest-vitest",
-      require "neotest-python",
-      require "neotest-deno",
+      require "neotest-vitest" {
+        -- Filter directories when searching for test files.
+        -- Useful in large projects (see Filter directories notes).
+        filter_dir = function(name, _, _)
+          return name ~= "node_modules"
+        end,
+      },
       require "neotest-go",
-      require "neotest-playwright",
+      require "neotest-deno",
+      require("neotest-playwright").adapter {
+        options = {
+          persist_project_selection = true,
+          enable_dynamic_test_discovery = true,
+        },
+      },
     },
-  })
+  }
 
-  Spec.set_keymaps()
+  set_keymaps()
 end
 
 return Spec
