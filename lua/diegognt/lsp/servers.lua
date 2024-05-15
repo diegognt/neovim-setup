@@ -3,6 +3,8 @@ return {
   "bashls",
   "biome",
   "cssls",
+  "clangd",
+  "codelldb",
   "denols",
   "dockerls",
   "eslint",

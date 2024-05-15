@@ -31,6 +31,8 @@ function Spec.config()
       formatting.isort.with({
         command = { "pipenv", "run", "isort" },
       }),
+      -- To use clang-format, make sure to install clang-format
+      formatting.clang_format,
     },
   })
 end

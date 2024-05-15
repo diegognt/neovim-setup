@@ -10,7 +10,7 @@ local Spec = {
   },
 }
 
-function Spec.common_capabilities()
+local common_capabilities = function()
   local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if status_ok then
     return cmp_nvim_lsp.default_capabilities()
@@ -33,7 +33,7 @@ function Spec.common_capabilities()
   return capabilities
 end
 
-Spec.diagnostics_setup = function()
+local diagnostics_setup = function()
   local diagnos1ics_opts = {
     signs = {
       active = true,
@@ -65,12 +65,12 @@ Spec.diagnostics_setup = function()
   end
 end
 
-Spec.common_handlers = {
+local common_handlers = {
   ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
 }
 
-Spec.setup_servers = function()
+local setup_servers = function()
   local lspconfig = require "lspconfig"
   local servers = require "diegognt.lsp.servers"
 
@@ -81,12 +81,10 @@ Spec.setup_servers = function()
         if settings.on_attach then
           settings.on_attach(_, bufnr)
         end
-
       end,
-      capabilities = Spec.common_capabilities(),
-      handlers = Spec.common_handlers,
+      capabilities = common_capabilities(),
+      handlers = common_handlers,
     }
-
 
     if require_ok then
       opts = vim.tbl_deep_extend("force", settings, opts)
@@ -99,8 +97,8 @@ end
 function Spec.config()
   require("lspconfig.ui.windows").default_options.border = "rounded"
 
-  Spec.diagnostics_setup()
-  Spec.setup_servers()
+  diagnostics_setup()
+  setup_servers()
 end
 
 return Spec
