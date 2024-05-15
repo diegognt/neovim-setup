@@ -1,6 +1,12 @@
 local Spec = {
   "mfussenegger/nvim-dap",
   dependencies = {
+    {
+      "jay-babu/mason-nvim-dap.nvim",
+      opts = {
+        handlers = {},
+      }
+    },
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
     "mfussenegger/nvim-dap-python",
@@ -14,18 +20,8 @@ Spec.set_keymap = function()
   local opts = { noremap = true, silent = true }
 
   keymap("n", "<C-b>", ':lua require("dap").toggle_breakpoint()<CR>', opts) -- Toggle Breakpoint
-  keymap(
-    "n",
-    "<F1>",
-    ':lua require("dapui").eval(vim.fn.input "[Expression] > ")<CR>',
-    opts
-  ) -- Evaluate Input
-  keymap(
-    "n",
-    "<F2>",
-    ':lua require("dap").set_breakpoint(vim.fn.input "[Condition] > ")<CR>',
-    opts
-  ) -- Conditional Breakpoint
+  keymap("n", "<F1>", ':lua require("dapui").eval(vim.fn.input "[Expression] > ")<CR>', opts) -- Evaluate Input
+  keymap("n", "<F2>", ':lua require("dap").set_breakpoint(vim.fn.input "[Condition] > ")<CR>', opts) -- Conditional Breakpoint
   keymap("n", "<F4>", ':lua require("dap.ui.widgets").hover()<CR>', opts) --Hover Variables
   keymap("n", "<F5>", ':lua require("dap").pause.toggle()<CR>', opts) --Pause
   keymap("n", "<F6>", ':lua require("dap").step_out()<CR>', opts) --Step Out
@@ -46,16 +42,16 @@ function Spec.config()
   require("dap-python").test_runner = "pytest"
   require("dap-go").setup()
 
-  dapui.setup({})
+  dapui.setup {}
 
   dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open({})
+    dapui.open {}
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close({})
+    dapui.close {}
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close({})
+    dapui.close {}
   end
 
   Spec.set_keymap()
