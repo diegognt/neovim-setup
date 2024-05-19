@@ -33,6 +33,7 @@ local Globals = {
     dap = {
       "codelldb",
       "debugpy",
+      "delve",
     },
   },
 }
