@@ -1,22 +1,2 @@
-return {
-  "astro",
-  "bashls",
-  "biome",
-  "cssls",
-  "clangd",
-  "codelldb",
-  "denols",
-  "dockerls",
-  "eslint",
-  "gopls",
-  "html",
-  "jsonls",
-  "lua_ls",
-  "marksman",
-  "pylsp",
-  "taplo",
-  "tailwindcss",
-  "tsserver",
-  "stylelint_lsp",
-  "yamlls",
-}
+return require("diegognt.globals").mason.lsp
+

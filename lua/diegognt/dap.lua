@@ -1,21 +1,19 @@
 local Spec = {
-  "mfussenegger/nvim-dap",
+  "jay-babu/mason-nvim-dap.nvim",
   dependencies = {
-    {
-      "jay-babu/mason-nvim-dap.nvim",
-      opts = {
-        handlers = {},
-      }
-    },
+    "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
     "mfussenegger/nvim-dap-python",
     "leoluz/nvim-dap-go",
   },
   event = "VeryLazy",
+  opts = {
+    ensure_installed = require("diegognt.globals").mason.dap,
+  },
 }
 
-Spec.set_keymap = function()
+local function set_keymap()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
 
@@ -35,12 +33,9 @@ Spec.set_keymap = function()
   keymap("n", "<C-U>", ':lua require("dapui").toggle()<CR>', opts) --Toggle UI
 end
 
-function Spec.config()
-  local dap = require "dap"
+local function set_ui()
   local dapui = require "dapui"
-  require("dap-python").setup "~/.virtualenvs/debugpy/bin/python"
-  require("dap-python").test_runner = "pytest"
-  require("dap-go").setup()
+  local dap = require "dap"
 
   dapui.setup {}
 
@@ -53,8 +48,21 @@ function Spec.config()
   dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close {}
   end
+end
 
-  Spec.set_keymap()
+local function set_python()
+  local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+  require("dap-python").setup(path)
+  require("dap-python").test_runner = "pytest"
+end
+
+function Spec.config(_, opts)
+  require("mason-nvim-dap").setup(opts)
+  require("dap-go").setup()
+
+  set_ui()
+  set_python()
+  set_keymap()
 end
 
 return Spec
