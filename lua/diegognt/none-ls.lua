@@ -1,40 +1,42 @@
 -- NOTE: When using a node based tools used the `dynamic_command`.
--- NOTE: When using custom command, use a lua table instead of a string.
+
 local Spec = {
-  "nvimtools/none-ls.nvim",
+  "jay-babu/mason-null-ls.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    "williamboman/mason.nvim",
+    "nvimtools/none-ls.nvim",
+  },
+  opts = {
+    ensure_installed = require("diegognt.globals").mason.none_ls,
+  },
 }
 
-function Spec.config()
+function Spec.config(_, opts)
   local none = require "null-ls"
   local formatting = none.builtins.formatting
   local diagnostics = none.builtins.diagnostics
 
-  none.setup({
+  require("mason-null-ls").setup(opts)
+
+  none.setup {
     sources = {
-      formatting.prettier.with({
+      formatting.prettier.with {
         condition = function(utils)
           return utils.root_has_file ".prettierrc"
         end,
         extra_args = { "--config", ".prettierrc" },
-      }),
-      formatting.stylua.with({
+      },
+      formatting.stylua.with {
         condition = function(utils)
           return utils.root_has_file ".stylua.toml"
         end,
-      }),
-      -- diagnostics.vale,
-      -- formatting.beautysh, -- Make sure to run `pip install --user beautysh`
-      -- Python tools with Pipenv
-      formatting.black.with({
-        command = { "pipenv", "run", "black" },
-      }),
-      formatting.isort.with({
-        command = { "pipenv", "run", "isort" },
-      }),
-      -- To use clang-format, make sure to install clang-format
+      },
+      formatting.black,
       formatting.clang_format,
+      diagnostics.mypy,
     },
-  })
+  }
 end
 
 return Spec
