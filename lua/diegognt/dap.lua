@@ -56,12 +56,42 @@ local function set_python()
   require("dap-python").test_runner = "pytest"
 end
 
+local function set_go()
+  require("dap-go").setup()
+end
+
+local function set_node()
+  local dap = require "dap"
+  dap.adapters["pwa-node"] = {
+    type = "server",
+    host = "127.0.0.1",
+    port = 8123,
+    executable = {
+      command = "js-debug-adapter",
+    },
+  }
+
+  for _, languaje in ipairs({ "javascript", "typescript" }) do
+    dap.configurations[languaje] = {
+      {
+        type = "pwa-node",
+        request = "launch",
+        name = "Launch File",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+        runtimeExecutable = "node",
+      },
+    }
+  end
+end
+
 function Spec.config(_, opts)
   require("mason-nvim-dap").setup(opts)
-  require("dap-go").setup()
 
   set_ui()
   set_python()
+  set_go()
+  set_node()
   set_keymap()
 end
 

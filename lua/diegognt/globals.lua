@@ -34,6 +34,7 @@ local Globals = {
       "codelldb",
       "debugpy",
       "delve",
+      "js-debug-adapter",
     },
   },
 }
