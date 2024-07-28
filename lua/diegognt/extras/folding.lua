@@ -36,13 +36,7 @@ function Spec.set_nvim_options()
   vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 end
 
-Spec.handle_folded_virtual_text = function(
-  virtText,
-  lnum,
-  endLnum,
-  width,
-  truncate
-)
+Spec.handle_folded_virtual_text = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
   local suffix = (" 󰡏 %d "):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)

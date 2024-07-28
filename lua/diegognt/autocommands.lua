@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   desc = "Highlight text on yank",
   callback = function()
-    require("vim.highlight").on_yank { higroup = "Search", timeout = 200 }
+    require("vim.highlight").on_yank({ higroup = "Search", timeout = 200 })
   end,
 })
 
@@ -61,7 +61,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   command = "set conceallevel=2",
 })
-
 
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
   group = GeneralSettingsGroup,
@@ -139,12 +138,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.tbl_deep_extend("force", opts, { desc = "Type Definition" })
     )
     keymap("n", "<leader>lf", function()
-      vim.lsp.buf.format {
+      vim.lsp.buf.format({
         async = true,
         filter = function(client)
           return client.name ~= "typescript-tools"
         end,
-      }
+      })
     end, vim.tbl_deep_extend("force", opts, { desc = "Format" }))
 
     -- Workspace actions

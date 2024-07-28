@@ -7,7 +7,7 @@ return {
     },
     python = {
       analysis = {
-        ignore = { '*' },
+        ignore = { "*" },
       },
     },
   },
