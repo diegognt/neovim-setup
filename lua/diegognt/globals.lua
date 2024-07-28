@@ -10,6 +10,7 @@ local Globals = {
       "denols",
       "dockerls",
       "eslint",
+      "glsl_analyzer",
       "gopls",
       "html",
       "jsonls",

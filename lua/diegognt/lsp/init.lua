@@ -89,7 +89,7 @@ local common_handlers = {
 
 local setup_servers = function()
   local lspconfig = require "lspconfig"
-  local servers = require "diegognt.lsp.servers"
+  local servers = require("diegognt.globals").mason.lsp
 
   for _, server in pairs(servers) do
     local require_ok, settings = pcall(require, "diegognt.lsp.settings." .. server)

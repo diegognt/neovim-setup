@@ -20,39 +20,39 @@ function Spec.config(_, opts)
 
   require("mason-null-ls").setup(opts)
 
-  none.setup {
+  none.setup({
     sources = {
-      formatting.prettier.with {
+      formatting.prettier.with({
         condition = function(utils)
           return utils.root_has_file ".prettierrc"
         end,
         extra_args = { "--config", ".prettierrc" },
-      },
-      formatting.stylua.with {
+      }),
+      formatting.stylua.with({
         condition = function(utils)
           return utils.root_has_file ".stylua.toml"
         end,
-      },
+      }),
       formatting.black,
       formatting.clang_format,
       diagnostics.mypy,
     },
     on_attach = function(client, bufnr)
       if client.supports_method "textDocument/formatting" then
-        vim.api.nvim_clear_autocmds {
+        vim.api.nvim_clear_autocmds({
           group = augroup,
           buffer = bufnr,
-        }
+        })
         vim.api.nvim_create_autocmd("BufWritePre", {
           group = augroup,
           buffer = bufnr,
           callback = function()
-            vim.lsp.buf.format { bufnr = bufnr }
+            vim.lsp.buf.format({ bufnr = bufnr })
           end,
         })
       end
     end,
-  }
+  })
 end
 
 return Spec
