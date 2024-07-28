@@ -33,19 +33,33 @@ local Spec = {
   event = "VeryLazy",
 }
 
+local function set_keymaps()
+  local opts = { silent = true, noremap = true, expr = true }
+  local keymap = vim.keymap.set
+
+  keymap(
+    "n",
+    "<leader>aa",
+    "<cmd>lua require('neogen').generate()<CR>",
+    vim.tbl_deep_extend("force", opts, { desc = "[a]nnotate" })
+  )
+  keymap(
+    "n",
+    "<leader>ac",
+    "<cmd>lua require('neogen').generate({type = 'class'})<CR>",
+    vim.tbl_deep_extend("force", opts, { desc = "[a]nnotate [c]lass" })
+  )
+  keymap(
+    "n",
+    "<leader>af",
+    "<cmd>lua require('neogen').generate({type = 'func'})<CR>",
+    vim.tbl_deep_extend("force", opts, { desc = "[a]nnotate [f]unction" })
+  )
+end
 function Spec.config(_, opts)
-  local whichkey = require "which-key"
+  require("neogen").setup(opts)
 
-  whichkey.register {
-    ["<leader>aa"] = { '<cmd>lua require("neogen").generate()<CR>', "Annotation" },
-    ["<leader>ac"] = { '<cmd>lua require("neogen").generate({type = "class"})<CR>', "Class" },
-    ["<leader>af"] = {
-      '<cmd>lua require("neogen").generate({type = "func"})<CR>',
-      "Function",
-    },
-  }
-
-  require "neogen".setup(opts)
+  set_keymaps()
 end
 
 return Spec

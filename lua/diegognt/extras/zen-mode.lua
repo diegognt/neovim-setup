@@ -22,17 +22,18 @@ local Spec = {
   },
 }
 
-function Spec.set_keymaps()
-  require("which-key").register({
-    ["<leader>mz"] = { "<cmd>ZenMode<CR>", "Zen Mode" },
-    ["<leader>mf"] = { "<cmd>Twilight<CR>", "Focus Mode" },
-  })
+local function set_keymaps()
+  local opts = { silent = true, noremap = true, expr = true }
+  local keymap = vim.keymap.set
+
+  keymap("n", "<leader>mz", "<cmd>ZenMode<CR>", vim.tbl_deep_extend("force", opts, { desc = "[m]ode [z]en" }))
+  keymap("n", "<leader>mf", "<cmd>Twilight<CR>", vim.tbl_deep_extend("force", opts, { desc = "[m]ode [f]ocus" }))
 end
 
 function Spec.config(_, opts)
   require("zen-mode").setup(opts)
 
-  Spec.set_keymaps()
+  set_keymaps()
 end
 
 return Spec

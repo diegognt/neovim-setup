@@ -1,40 +1,38 @@
-local icons = require "diegognt.icons"
+local function set_keymaps()
+  local opts = { silent = true, noremap = true }
+  local keymap = vim.keymap.set
 
-local mappings_opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
+  keymap(
+    "n",
+    "<leader>F",
+    "<cmd>Telescope find_files<CR>",
+    vim.tbl_deep_extend("force", opts, { desc = "[F]ind files" })
+  )
+  keymap(
+    "n",
+    "<leader>f",
+    "<cmd>Telescope git_files<CR>",
+    vim.tbl_deep_extend("force", opts, { desc = "[f]ind git files" })
+  )
+  keymap(
+    "n",
+    "<leader>h",
+    "<cmd>Telescope help_tags<CR>",
+    vim.tbl_deep_extend("force", opts, { desc = "Find on nvim [h]elp" })
+  )
+  keymap("n", "<leader>M", "<cmd>Mason<CR>", vim.tbl_deep_extend("force", opts, { desc = "[M]ason" }))
+  keymap("n", "<leader>L", "<cmd>Lazy<CR>", vim.tbl_deep_extend("force", opts, { desc = "[L]azy" }))
+end
 
-local mappings = {
-  F = { "<cmd>Telescope find_files<CR>", "Find files" },
-  f = { "<cmd>Telescope git_files<CR>", "Find git files" },
-  q = { "<cmd>q!<CR>", "Quit" },
-  h = { "<cmd>Telescope help_tags<CR>", "Find on nvim help" },
-  M = { "<cmd>Mason<CR>", "Mason" },
-  L = { "<cmd>Lazy<CR>", "Lazy" },
-  b = { name = "Buffers" },
-  a = { name = "Annotation" },
-  l = { name = "LSP" },
-  x = { name = "Diagnostic" },
-  S = { name = "Search" },
-  t = { name = "Test" },
-  m = { name = "Mode" },
-  g = { name = "Git" },
-  N = { name = "Notifications" },
-  -- A = {
-  --   name = "Asistant",
-  --   p = { "<cmd>NeoAIToggle<CR>", "Prompt" },
-  -- },
-  -- C = {
-  --   name = "Copilot",
-  --   d = { "<cmd>Copilot disable<CR>", "Disable" },
-  --   e = { "<cmd>Copilot enable<CR>", "Enable" },
-  -- },
-}
+-- A = {
+--   name = "Asistant",
+--   p = { "<cmd>NeoAIToggle<CR>", "Prompt" },
+-- },
+-- C = {
+--   name = "Copilot",
+--   d = { "<cmd>Copilot disable<CR>", "Disable" },
+--   e = { "<cmd>Copilot enable<CR>", "Enable" },
+-- },
 
 local Spec = {
   "folke/which-key.nvim",
@@ -67,35 +65,13 @@ local Spec = {
       separator = "➜", -- symbol used between a key and it's label
       group = "+", -- symbol prepended to a group
     },
-    popup_mappings = {
-      scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>", -- binding to scroll up inside the popup
-    },
-    window = {
-      border = "rounded", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0,
-    },
     layout = {
       height = { min = 4, max = 25 }, -- min and max height of the columns
       width = { min = 20, max = 50 }, -- min and max width of the columns
       spacing = 3, -- spacing between columns
       align = "left", -- align columns left, center or right
     },
-    ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
-    triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      i = { "j", "k" },
-      v = { "j", "k" },
-    },
   },
 }
 
@@ -103,7 +79,7 @@ function Spec.config(_, opts)
   local whichkey = require "which-key"
 
   whichkey.setup(opts)
-  whichkey.register(mappings, mappings_opts)
+  set_keymaps()
 end
 
 return Spec
