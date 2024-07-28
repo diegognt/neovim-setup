@@ -35,25 +35,25 @@ local set_keymaps = function()
 end
 
 function Spec.config()
-  require("neotest").setup {
+  require("neotest").setup({
     adapters = {
-      require "neotest-vitest" {
+      require "neotest-vitest"({
         -- Filter directories when searching for test files.
         -- Useful in large projects (see Filter directories notes).
         filter_dir = function(name, _, _)
           return name ~= "node_modules"
         end,
-      },
+      }),
       require "neotest-go",
       require "neotest-deno",
-      require("neotest-playwright").adapter {
+      require("neotest-playwright").adapter({
         options = {
           persist_project_selection = true,
           enable_dynamic_test_discovery = true,
         },
-      },
+      }),
     },
-  }
+  })
 
   set_keymaps()
 end

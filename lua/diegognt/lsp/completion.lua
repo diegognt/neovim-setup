@@ -66,7 +66,7 @@ function Spec.common_mapping()
   local luasnip = require "luasnip"
   local cmp = require "cmp"
 
-  return cmp.mapping.preset.insert {
+  return cmp.mapping.preset.insert({
     ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
     ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
@@ -94,22 +94,22 @@ function Spec.common_mapping()
         fallback()
       end
     end, { "i", "s" }),
-    ["<C-e>"] = cmp.mapping {
+    ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
-    },
-    ["<CR>"] = cmp.mapping {
+    }),
+    ["<CR>"] = cmp.mapping({
       i = function(fallback)
         if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
         else
           fallback()
         end
       end,
-      s = cmp.mapping.confirm { select = true },
-      c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
-    },
-  }
+      s = cmp.mapping.confirm({ select = true }),
+      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    }),
+  })
 end
 
 function Spec.common_formatting()
@@ -153,7 +153,7 @@ function Spec.config()
   require("luasnip/loaders/from_vscode").lazy_load()
   require("luasnip").filetype_extend("typescriptreact", { "html" })
 
-  cmp.setup {
+  cmp.setup({
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -188,7 +188,7 @@ function Spec.config()
         native_menu = false,
       },
     },
-  }
+  })
 
   -- Set configuration for specific filetype.
   cmp.setup.filetype("gitcommit", {
