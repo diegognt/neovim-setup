@@ -5,16 +5,16 @@ local Spec = {
     "nvim-lua/plenary.nvim",
   },
   opts = {
-    ensure_installed = require "diegognt.lsp.servers",
-  }
+    ensure_installed = require("diegognt.globals").mason.lsp,
+  },
 }
 
 function Spec.config(_, opts)
-  require("mason").setup {
+  require("mason").setup({
     ui = {
       border = "rounded",
     },
-  }
+  })
 
   require("mason-lspconfig").setup(opts)
 end
