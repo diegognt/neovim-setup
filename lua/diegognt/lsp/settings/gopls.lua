@@ -18,6 +18,11 @@ return {
         parameterNames = true,
         rangeVariableTypes = true,
       },
+      codelenses = {
+        generate = false, -- Don't show the `go generate` lens.
+        gc_details = true, --  Show a code lens toggling the display of gc's choices.
+        test = true, -- Show a code lens with the test status.
+      },
     },
   },
 }

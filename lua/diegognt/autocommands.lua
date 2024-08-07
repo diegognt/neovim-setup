@@ -108,9 +108,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- Lsp
 vim.api.nvim_create_autocmd("LspAttach", {
   group = LspConfigGroup,
-  callback = function(ev)
-    local opts = { buffer = ev.buf, silent = true, noremap = true }
+  callback = function(event)
+    local opts = { buffer = event.buf, silent = true, noremap = true }
     local keymap = vim.keymap.set
+    vim.lsp.codelens.refresh({ bufnr = 0 })
 
     -- LSP default
     keymap("n", "gd", vim.lsp.buf.definition, vim.tbl_deep_extend("force", opts, { desc = "Go to Definition" }))
@@ -174,15 +175,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
 
     -- Code Lenses
-    keymap("n", "<C-r>", vim.lsp.codelens.refresh, vim.tbl_deep_extend("force", opts, { desc = "Refresh Code Lens" }))
+    keymap("n", "<leader>ll", function()
+      vim.lsp.codelens.refresh({ bufnr = event.buf })
+    end, vim.tbl_deep_extend("force", opts, { desc = "Disp[l]ay Code [l]ens" }))
+
     keymap("n", "<leader>lc", vim.lsp.codelens.run, vim.tbl_deep_extend("force", opts, { desc = "Run Code Lens" }))
 
     -- Inlay Hints
-    if vim.lsp.inlay_hint then
-      keymap("n", "<leader>lh", function()
-        vim.lsp.inlay_hint.enable(ev.buf, not vim.lsp.inlay_hint.is_enabled(ev.buf))
-      end, vim.tbl_deep_extend("force", opts, { desc = "Inlay Hints" }))
-    end
+    keymap("n", "<leader>lh", function()
+      vim.lsp.inlay_hint.enable(not vim.lso.inlay_hint.is_enabled())
+    end, vim.tbl_deep_extend("force", opts, { desc = "Inlay Hints" }))
 
     -- LSP Info
     keymap("n", "<leader>lI", "<cmd>LspInfo<CR>", vim.tbl_deep_extend("force", opts, { desc = "LSP Info" }))
