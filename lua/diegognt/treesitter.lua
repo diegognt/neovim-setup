@@ -35,6 +35,7 @@ local Spec = {
       "gitattributes",
       "gitcommit",
       "gitignore",
+      "glsl",
       "go",
       "graphql",
       "html",
@@ -65,11 +66,6 @@ local Spec = {
     },
     ignore_install = { "" },
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-    highlight = {
-      enable = true,
-      disable = { "markdown" },
-      additional_vim_regex_highlighting = false,
-    },
     matchup = {
       enable = { "astro" },
       disable = { "lua" },

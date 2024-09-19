@@ -20,7 +20,7 @@ local Globals = {
       "ruff_lsp",
       "taplo",
       "tailwindcss",
-      "tsserver",
+      "ts_ls",
       "stylelint_lsp",
       "yamlls",
     },
