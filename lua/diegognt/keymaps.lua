@@ -34,7 +34,7 @@ keymap("n", "<C-Down>", ":resize-2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Quite vim
+-- Quit vim
 keymap("n", "<Space>q", ":q!<CR>", opts)
 
 -- Navigate between buffers
