@@ -109,9 +109,27 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = LspConfigGroup,
   callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
     local opts = { buffer = event.buf, silent = true, noremap = true }
     local keymap = vim.keymap.set
-    vim.lsp.codelens.refresh({ bufnr = 0 })
+
+    -- CodeLens
+    if client and client.supports_method "textDocument/codeLens" then
+      vim.lsp.codelens.refresh({ bufnr = 0 })
+
+      keymap("n", "<leader>ll", function()
+        vim.lsp.codelens.refresh({ bufnr = event.buf })
+      end, vim.tbl_deep_extend("force", opts, { desc = "Disp[l]ay Code [l]ens" }))
+
+      keymap("n", "<leader>lc", vim.lsp.codelens.run, vim.tbl_deep_extend("force", opts, { desc = "Run Code Lens" }))
+    end
+
+    -- Inlay Hints
+    if client and client.supports_method "textDocument/inlayHints" then
+      keymap("n", "<leader>lh", function()
+        vim.lsp.inlay_hint.enable(not vim.lso.inlay_hint.is_enabled())
+      end, vim.tbl_deep_extend("force", opts, { desc = "Inlay Hints" }))
+    end
 
     -- LSP default
     keymap("n", "gd", vim.lsp.buf.definition, vim.tbl_deep_extend("force", opts, { desc = "Go to Definition" }))
@@ -174,19 +192,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.tbl_deep_extend("force", opts, { desc = "Open Diagnostics on Float" })
     )
 
-    -- Code Lenses
-    keymap("n", "<leader>ll", function()
-      vim.lsp.codelens.refresh({ bufnr = event.buf })
-    end, vim.tbl_deep_extend("force", opts, { desc = "Disp[l]ay Code [l]ens" }))
-
-    keymap("n", "<leader>lc", vim.lsp.codelens.run, vim.tbl_deep_extend("force", opts, { desc = "Run Code Lens" }))
-
-    -- Inlay Hints
-    keymap("n", "<leader>lh", function()
-      vim.lsp.inlay_hint.enable(not vim.lso.inlay_hint.is_enabled())
-    end, vim.tbl_deep_extend("force", opts, { desc = "Inlay Hints" }))
-
     -- LSP Info
     keymap("n", "<leader>lI", "<cmd>LspInfo<CR>", vim.tbl_deep_extend("force", opts, { desc = "LSP Info" }))
+
+    -- LSP Document Symbols
+    keymap("n", "<leader>ds", function()
+      vim.lsp.buf.document_symbol({ loclist = true })
+    end, vim.tbl_deep_extend("force", opts, { desc = "[d]ocument [s]ymbols" }))
   end,
 })
