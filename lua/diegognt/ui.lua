@@ -28,9 +28,9 @@ local Spec = {
 function Spec.config(_, opts)
   require("noice").setup(opts)
   require("notify").setup({
-    stages = "fade_in_slide_out",
+    stages = "static",
     timeout = 3000,
-    background_colour = "NormalFloat",
+    background_colour = "",
   })
 end
 
