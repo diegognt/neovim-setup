@@ -18,7 +18,7 @@ local Globals = {
       "lua_ls",
       "marksman",
       "pyright",
-      "ruff_lsp",
+      "ruff",
       "taplo",
       "tailwindcss",
       "ts_ls",
