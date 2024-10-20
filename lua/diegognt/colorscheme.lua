@@ -1,26 +1,3 @@
-local colorscheme = "nightfox"
-
--- Tokyo Night set up
--- if colorscheme == 'tokyonight' then
--- require('tokyonight').setup({
--- styles = {
--- Style to be applied to different syntax groups
--- comments = { italic = true },
--- keywords = { italic = false },
--- },
--- })
--- end
-
--- TODO: Add each setup when the colorscheme is in used.
--- require('kanagawa').setup({
--- transparent = true, -- do not set background color
--- functionStyle = {},
--- commentStyle = { italic = true },
--- keywordStyle = { italic = true },
--- statementStyle = { bold = true },
--- typeStyle = { bold = true, italic = true },
--- })
-
 local Spec = {
   "EdenEast/nightfox.nvim",
   lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -30,15 +7,7 @@ local Spec = {
       transparent = true,
       styles = {
         comments = "italic", -- Value is any valid attr-list value `:help attr-list`
-        conditionals = "NONE",
-        constants = "NONE",
-        functions = "NONE",
-        keywords = "italic",
-        numbers = "NONE",
-        operators = "NONE",
-        strings = "NONE",
         types = "italic",
-        variables = "NONE",
       },
     },
   },
