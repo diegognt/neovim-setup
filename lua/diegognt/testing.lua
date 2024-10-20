@@ -10,6 +10,7 @@ local Spec = {
     "markemmons/neotest-deno",
     "nvim-neotest/neotest-go",
     "thenbe/neotest-playwright",
+    "nvim-neotest/neotest-jest",
   },
 }
 
@@ -44,6 +45,7 @@ function Spec.config()
           return name ~= "node_modules"
         end,
       }),
+      require "neotest-jest",
       require "neotest-go",
       require "neotest-deno",
       require("neotest-playwright").adapter({
