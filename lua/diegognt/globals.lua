@@ -2,6 +2,7 @@ local Globals = {
   OBSIDIAN_VAULT = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/PersonalVault",
   mason = {
     lsp = {
+      "angularls",
       "astro",
       "bashls",
       "biome",
