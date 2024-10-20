@@ -42,7 +42,7 @@ brew install Lazygit
 To install it on Ubuntu follow the instructions on the following [page](https://github.com/jesseduffield/lazygit#manual)
 
 ### Neovim(obviously)
-Build the 0.10.x version, check the [github page](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source) for instructions.
+Build the 0.10.x version, check the [Github page](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-source) for instructions.
 
 ## Set up
 1. Clone the repo
@@ -58,7 +58,23 @@ cd neovim-setup
 ln -s "$(pwd)" ~/.config/nvim
 ~~~
 
+### Python
+For Python, makes sure to set up the provider using a virtualenv, follows the following steps,
+
+Installs `pyenv` and `pyenv-virtualenv`, run on mac `brew install pyenv pyenv-virtualenv`
+
+~~~sh
+pyenv install <python-version>
+pyenv virtualenv <python-version> py3nvim
+pyenv activate py3nvim
+python -m pip install pynvim neovim
+pyenv which python  # save the path
+~~~
+
+Go to `./lua/diegognt/options.lua` and assign the python path to the `vim.g.python3_host_prog` field.
+
 ## Considerations
+
 - When using Iterm, go to `Profiles` > `Keys` and remap the `Right Option Key` to "Esc+". 
 
 ### AI
