@@ -9,6 +9,8 @@ local g = vim.g
 -- Global options
 g.skip_ts_context_commentstring_module = true
 
+g.python3_host_prog = "~/.pyenv/versions/py3nvim/bin/python"
+
 -- Commands
 -- cmd('set inccommand=split')             -- show what you are substituting in real time
 cmd "set iskeyword+=-" -- treat dash as a separate word
