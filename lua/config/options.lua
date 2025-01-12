@@ -11,6 +11,8 @@ local globals = require "globals"
 g.python3_host_prog = globals.paths.python_bin
 g.netrw_banner = 0
 g.netrw_mouse = 2
+g.mapleader = " "                      -- Remaping leader key
+g.maplocalleader = " "                 -- Remaping leader key
 
 -- Commands
 cmd "set inccommand=split"             -- show what you are substituting in real time
