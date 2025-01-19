@@ -14,7 +14,7 @@ return {
   opts = {
     ensure_installed = default_parsers,
     ignore_install = { "" },
-    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+    sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
     highlight = {
       enable = true, -- false will disable the whole extension
       disable = { "" }, -- list of language that will be disabled
