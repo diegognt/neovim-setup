@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "man",
     "qf",
     "loclist",
+    "oil",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
