@@ -25,7 +25,7 @@ local set_keymaps = function(bufnr)
   -- Actions
   keymap('n', "gw", gs.preview_hunk, { desc = "[g]it hunk previe[w]", buffer=bufnr })
   keymap("n", "gs", gs.toggle_signs, { desc = "Toggle [g]it [s]igns", buffer=bufnr })
-  keymap("n", "gl", gs.toggle_current_line_blame, { desc = "Toggle [g]it [b]lame", buffer=bufnr })
+  keymap("n", "gb", gs.toggle_current_line_blame, { desc = "Toggle [g]it [b]lame", buffer=bufnr })
   keymap("n", "gf", gs.setloclist, { desc = "All [g]it di[f]f", buffer=bufnr })
 end
 
