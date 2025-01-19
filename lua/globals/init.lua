@@ -26,7 +26,8 @@ local Globals = {
   },
   paths = {
     python_bin = "~/.pyenv/versions/pynvim/bin/python"
-  }
+  },
+  treesitter = require "globals.treesitter"
 }
 
 return Globals
