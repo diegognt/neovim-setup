@@ -1,5 +1,4 @@
-local globals = require "globals"
-local icons = globals.icons
+local icons = require "globals.icons"
 
 return {
   "folke/which-key.nvim",

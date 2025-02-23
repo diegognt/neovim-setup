@@ -1,5 +1,5 @@
 local globals = require "globals"
-local icons = globals.icons
+local icons = require "globals.icons"
 
 local set_keymaps = function(bufnr)
   local keymap = globals.keymaps.set
@@ -13,7 +13,7 @@ local set_keymaps = function(bufnr)
       gs.nav_hunk("next")
     end
   end, {desc="Next git [h]unk", buffer=bufnr})
-  
+
   keymap("n", "[h", function()
     if vim.wo.diff then
       vim.cmd.normal({"[h", bang = true})

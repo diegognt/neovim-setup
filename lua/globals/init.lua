@@ -10,7 +10,6 @@ local set_keymap = function(mode, keymap, action, opts)
     i = {},
     v = {},
     x = {},
-    t = {},
     c = {},
   }
 
@@ -20,14 +19,12 @@ local set_keymap = function(mode, keymap, action, opts)
 end
 
 local Globals = {
-  icons = require "globals.icons",
   keymaps = {
     set = set_keymap,
   },
   paths = {
     python_bin = "~/.pyenv/versions/pynvim/bin/python"
   },
-  treesitter = require "globals.treesitter"
 }
 
 return Globals

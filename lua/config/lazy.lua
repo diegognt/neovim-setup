@@ -21,6 +21,7 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "extras" },
     { import = "snacks" },
+    { import = "coding" },
   },
   -- automatically check for plugin updates
   checker = { enabled = true },

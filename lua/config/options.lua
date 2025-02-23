@@ -7,17 +7,10 @@ local opt = vim.opt
 local g = vim.g
 local globals = require "globals"
 
--- Global options
-g.python3_host_prog = globals.paths.python_bin
-g.netrw_banner = 0
-g.netrw_mouse = 2
-g.mapleader = " "                      -- Remaping leader key
-g.maplocalleader = " "                 -- Remaping leader key
-
 -- Commands
-cmd "set inccommand=split"             -- show what you are substituting in real time
-cmd "set iskeyword+=-"                 -- treat dash as a separate word
-cmd "set whichwrap+=<,>,[,],h,l"       -- move to next line with theses keys
+cmd "set inccommand=split" -- show what you are substituting in real time
+cmd "set iskeyword+=-" -- treat dash as a separate word
+cmd "set whichwrap+=<,>,[,],h,l" -- move to next line with theses keys
 
 -- User options
 local options = {
@@ -60,7 +53,12 @@ local options = {
   guifont = "monospace:h17", -- The font used in graphical neovim applications
   list = true,
   title = false,
-  fillchars = opt.fillchars + "eob: ",
+  fillchars = opt.fillchars + "eob: ,fold: ,foldopen:,foldsep: ,foldclose:",
+  winbar = "%=%m %f",
+  foldcolumn = "1", -- '0' is not bad
+  foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
+  foldlevelstart = 99,
+  foldenable = true,
 }
 
 opt.listchars:append "space:⋅"
@@ -74,3 +72,10 @@ opt.fillchars:append({
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+-- Global options
+g.python3_host_prog = globals.paths.python_bin
+g.netrw_banner = 0
+g.netrw_mouse = 2
+g.mapleader = " " -- Remaping leader key
+g.maplocalleader = " " -- Remaping leader key

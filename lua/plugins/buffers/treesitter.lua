@@ -1,5 +1,4 @@
-local globals = require "globals"
-local default_parsers = globals.treesitter
+local parsers = require "globals.treesitter"
 
 return {
   "nvim-treesitter/nvim-treesitter",
@@ -12,8 +11,7 @@ return {
     },
   },
   opts = {
-    ensure_installed = default_parsers,
-    ignore_install = { "" },
+    ensure_installed = parsers,
     sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
     highlight = {
       enable = true, -- false will disable the whole extension
@@ -51,5 +49,7 @@ return {
       },
     },
   },
-  config = true,
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end
 }

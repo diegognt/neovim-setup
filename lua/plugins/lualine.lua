@@ -1,5 +1,4 @@
-local globals = require "globals" 
-local icons = globals.icons
+local icons = require "globals.icons"
 local diff = {
   "diff",
   colored = false,
@@ -22,14 +21,15 @@ return {
     options = {
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-      disabled_filetypes = {"snacks_dashboard", "snacks_picker_input", "oil", "oil_preview"},
+      disabled_filetypes = { "snacks_dashboard", "snacks_picker_input", "oil", "oil_preview" },
     },
     sections = {
       lualine_a = { "mode" },
       lualine_b = { branch },
       lualine_c = { diff },
-      lualine_y = { "filetype" },
-      lualine_z = { "location", "progress" },
+      lualine_x = { "encoding", "filetype" },
+      lualine_y = { "location" },
+      lualine_z = { "progress" },
     },
     extensions = { "quickfix", "man", "fugitive" },
   },

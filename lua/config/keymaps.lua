@@ -33,7 +33,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>")
 keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "[w]rite current buffer" })
 
 -- Managers
-keymap("n", "<leader>L", "<cmd>Lazy<CR>", {desc = "[L]azy panel"})
+keymap("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "[L]azy panel" })
 
 -- Quit vim
 keymap("n", "<Space>q", ":q!<CR>")

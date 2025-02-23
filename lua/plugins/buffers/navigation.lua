@@ -3,8 +3,8 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     float = {
-      max_width = 80,
-      max_height = 50,
+      max_width = 120,
+      max_height = 30,
     },
     keymaps = {
       ["s"] = { "actions.select", opts = { vertical = true } },
