@@ -1,4 +1,6 @@
 local GeneralSettingsGroup = vim.api.nvim_create_augroup("GeneralSettings", { clear = true })
+local ResizeGroup = vim.api.nvim_create_augroup("AutoResize", { clear = true })
+local LspConfigGroup = vim.api.nvim_create_augroup("LspConfig", { clear = true })
 
 -- Closes some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
@@ -55,4 +57,14 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
   end,
+})
+
+vim.api.nvim_create_autocmd("LspProgress", {
+  group = LspConfigGroup,
+  callback = require "lsp.progress",
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = LspConfigGroup,
+  callback = require "lsp.keymaps",
 })
