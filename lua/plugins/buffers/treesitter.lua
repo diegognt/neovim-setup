@@ -9,6 +9,10 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       event = "VeryLazy",
     },
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      event = "VeryLazy",
+    },
   },
   opts = {
     ensure_installed = parsers,
@@ -48,8 +52,16 @@ return {
         },
       },
     },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+    matchup = {
+      enable = { "astro" },
+      disable = { "lua" },
+    },
   },
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
-  end
+  end,
 }
