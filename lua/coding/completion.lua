@@ -1,35 +1,45 @@
 return {
-  'saghen/blink.cmp',
-  dependencies = 'rafamadriz/friendly-snippets',
-  version = '*',
+  "saghen/blink.cmp",
+  dependencies = {
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
+    { "moyiz/blink-emoji.nvim" },
+  },
+  version = "*",
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     keymap = { preset = "enter" },
     appearance = {
       use_nvim_cmp_as_default = true,
-      nerd_font_variant = 'mono',
+      nerd_font_variant = "mono",
     },
     completion = {
       menu = {
         border = "rounded",
         auto_show = function(ctx)
-          return ctx.mode ~= "cmdline" or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+          return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
         end,
       },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 250,
         treesitter_highlighting = true,
-        window = { border = "rounded" }
+        window = { border = "rounded" },
       },
     },
-    signature = { window = { border = "rounded" } },
+    signature = { enabled = true, window = { border = "rounded" } },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { "lsp", "path", "snippets", "buffer", "emoji" },
       providers = {
+        emoji = {
+          module = "blink-emoji",
+          name = "Emoji",
+          score_offset = 15, -- Tune by preference
+          opts = { insert = true }, -- Insert emoji (default) or complete its name
+        },
       },
     },
+    snippets = { preset = "luasnip" },
   },
-  opts_extend = { "sources.default" }
+  opts_extend = { "sources.default" },
 }
