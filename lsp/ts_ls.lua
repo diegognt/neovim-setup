@@ -1,6 +1,3 @@
--- Desc: Settings for tsserver
-
-local lspconfig = require "lspconfig"
 local common_settings = {
   implementationsCodeLens = {
     enabled = true,
@@ -19,9 +16,9 @@ local common_settings = {
     includeInlayVariableTypeHints = true,
   },
 }
-local function on_attach(_, bufnr)
-  local opts = { buffer = bufnr, silent = true, noremap = true }
-  local keymap = vim.keymap.set
+
+local on_attach = function()
+  local keymap = require("globals").keymaps.set
 
   -- LSP Code Actions
   keymap("n", "<leader>li", function()
@@ -37,7 +34,7 @@ local function on_attach(_, bufnr)
         diagnostics = {},
       },
     })
-  end, vim.tbl_deep_extend("force", opts, { desc = "Organize TS Imports" }))
+  end, { desc = "Organize TS Imports" })
 
   keymap("n", "<leader>lf", function()
     vim.lsp.buf.code_action({
@@ -47,7 +44,7 @@ local function on_attach(_, bufnr)
         diagnostics = {},
       },
     })
-  end, vim.tbl_deep_extend("force", opts, { desc = "Fix TS Problems" }))
+  end, { desc = "Fix TS Problems" })
 
   keymap("n", "<leader>lu", function()
     vim.lsp.buf.code_action({
@@ -57,13 +54,12 @@ local function on_attach(_, bufnr)
         diagnostics = {},
       },
     })
-  end, vim.tbl_deep_extend("force", opts, { desc = "Remove Unused Variables" }))
+  end, { desc = "Remove Unused Variables" })
 end
 
+---@type vim.lsp.Config
 return {
   on_attach = on_attach,
-  single_file_support = false,
-  root_dir = lspconfig.util.root_pattern({ "tsconfig.json", "package.json" }),
   settings = {
     javascript = common_settings,
     typescript = common_settings,

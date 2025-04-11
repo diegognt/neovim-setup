@@ -7,7 +7,7 @@ return {
         ui = {
           border = "rounded",
         },
-      }
+      },
     },
     "nvim-lua/plenary.nvim",
   },
@@ -15,6 +15,6 @@ return {
     ensure_installed = require "globals.lsp",
   },
   keys = {
-    { "<leader>M", "<cmd>Mason<CR>", desc = "Open [M]ason" }
-  }
+    { "<leader>M", "<cmd>Mason<CR>", desc = "Open [M]ason" },
+  },
 }

@@ -1,5 +1,4 @@
-local lspconfig = require "lspconfig"
-
+---@type vim.lsp.Config
 return {
   settings = {
     gopls = {

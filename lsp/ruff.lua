@@ -5,6 +5,7 @@ local on_attach = function(client, _)
   end
 end
 
+---@type vim.lsp.Config
 return {
   on_attach = on_attach,
 }
