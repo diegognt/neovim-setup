@@ -6,6 +6,7 @@ return {
   "cssls",
   "clangd",
   "denols",
+  "css_variables",
   "dockerls",
   "eslint",
   "glsl_analyzer",
@@ -19,6 +20,5 @@ return {
   "taplo",
   "tailwindcss",
   "ts_ls",
-  "stylelint_lsp",
   "yamlls",
 }

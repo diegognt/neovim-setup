@@ -27,14 +27,14 @@ return {
     function()
       Snacks.picker.keymaps()
     end,
-    desc = "Keymaps",
+    desc = "[s]earch [k]eymaps",
   },
   {
     "<leader>sC",
     function()
       Snacks.picker.commands()
     end,
-    desc = "Commands",
+    desc = "[s]earch [C]ommands",
   },
   -- Grep
   {

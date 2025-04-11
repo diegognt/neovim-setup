@@ -1,5 +1,6 @@
+---@type vim.lsp.Config
 return {
-  filetypes = { "python" },
+  single_file_support = true,
   settings = {
     pyright = {
       -- Using Ruff's import organizer
