@@ -22,23 +22,23 @@ local setup_diagnostic = function()
         [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
       },
     },
-    virtual_text = false,
+    virtual_lines = {
+      -- Only show virtual line diagnostics for the current cursor line
+      current_line = true,
+    },
     update_in_insert = false,
     underline = true,
     severity_sort = true,
     float = {
       focusable = true,
       style = "minimal",
-      border = "rounded",
-      header = "",
+      header = "Diagnostic",
       prefix = "",
     },
   })
 end
 
 local config = function()
-  require("lspconfig.ui.windows").default_options.border = "rounded"
-
   setup_diagnostic()
 end
 
