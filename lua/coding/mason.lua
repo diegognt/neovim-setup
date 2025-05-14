@@ -1,8 +1,10 @@
+local lsp_servers = require "globals.lsp"
+
 return {
-  "williamboman/mason-lspconfig.nvim",
+  "mason-org/mason-lspconfig.nvim",
   dependencies = {
     {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       opts = {
         ui = {
           border = "rounded",
@@ -10,9 +12,11 @@ return {
       },
     },
     "nvim-lua/plenary.nvim",
+    "neovim/nvim-lspconfig",
   },
   opts = {
-    ensure_installed = require "globals.lsp",
+    ensure_installed = lsp_servers,
+    automatic_enable = true,
   },
   keys = {
     { "<leader>M", "<cmd>Mason<CR>", desc = "Open [M]ason" },

@@ -69,7 +69,7 @@ cd neovim-setup
 3. Run:
 
 ```bash
-ln -s "$(pwd)" `/.config/nvim
+ln -s "$(pwd)" ~/.config/nvim
 ```
 
 ## Special thanks
