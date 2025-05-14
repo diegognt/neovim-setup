@@ -2,6 +2,7 @@ local LspConfigGroup = vim.api.nvim_create_augroup("LspConfig", { clear = true }
 
 local keymap = require("globals").keymaps.set
 local progress = vim.defaulttable()
+local lsp_servers = require "globals.lsp"
 
 vim.api.nvim_create_autocmd("LspProgress", {
   group = LspConfigGroup,
@@ -125,10 +126,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.lsp.enable(lsp_servers)
+
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
-
-local servers = require "globals.lsp"
-
-vim.lsp.enable(servers)

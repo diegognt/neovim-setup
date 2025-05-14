@@ -23,7 +23,7 @@ local Globals = {
     set = set_keymap,
   },
   paths = {
-    python_bin = "~/.pyenv/versions/pynvim/bin/python"
+    python_bin = "~/.pyenv/versions/py3nvim/bin/python",
   },
 }
 
