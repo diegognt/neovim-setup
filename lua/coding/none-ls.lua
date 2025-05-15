@@ -12,9 +12,25 @@ local config = function(_, opts)
     sources = {
       formatting.prettier.with({
         condition = function(utils)
-          return utils.root_has_file ".prettierrc"
+          return utils.root_has_file({ ".prettierrc", "angular.json" })
         end,
         extra_args = { "--config", ".prettierrc" },
+        disabled_filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "json",
+          "jsonc",
+          "yaml",
+          "markdown",
+          "markdown.mdx",
+          "graphql",
+          "handlebars",
+          "svelte",
+          "astro",
+        },
       }),
       formatting.stylua.with({
         condition = function(utils)
@@ -53,5 +69,5 @@ return {
   opts = {
     ensure_installed = require "globals.none-ls",
   },
-  config = config
+  config = config,
 }

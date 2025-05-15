@@ -20,6 +20,14 @@ local common_settings = {
 ---@type vim.lsp.Config
 return {
   root_markers = { "tsconfig.json", "jsconfig.json" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
   settings = {
     javascript = common_settings,
     typescript = common_settings,

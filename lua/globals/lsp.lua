@@ -6,7 +6,6 @@ return {
   "clangd",
   "cssls",
   "css_variables",
-  "denols",
   "dockerls",
   "eslint",
   "glsl_analyzer",
