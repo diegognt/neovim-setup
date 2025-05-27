@@ -3,5 +3,5 @@ return {
   "clang-format",
   "stylua",
   "prettier",
-  "prettier",
+  "pyink",
 }

@@ -1,10 +1,7 @@
--- NOTE: When using a node based tools used the `dynamic_command`.
-
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local config = function(_, opts)
   local none = require "null-ls"
   local formatting = none.builtins.formatting
-  local diagnostics = none.builtins.diagnostics
 
   require("mason-null-ls").setup(opts)
 
@@ -37,9 +34,8 @@ local config = function(_, opts)
           return utils.root_has_file ".stylua.toml"
         end,
       }),
-      formatting.black,
+      formatting.pyink,
       formatting.clang_format,
-      diagnostics.mypy,
     },
     on_attach = function(client, bufnr)
       if client.supports_method "textDocument/formatting" then
