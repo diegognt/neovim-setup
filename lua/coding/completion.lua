@@ -29,7 +29,6 @@ return {
     },
     signature = { enabled = true, window = { border = "rounded" } },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "emoji" },
       providers = {
         emoji = {
           module = "blink-emoji",
@@ -38,8 +37,12 @@ return {
           opts = { insert = true }, -- Insert emoji (default) or complete its name
         },
       },
+      per_filetype = {
+        codecompanion = { "codecompanion" },
+        markdown = { "emoji", "lsp" },
+        inline_markdown = { "emoji", "lsp" },
+      },
     },
-    snippets = { preset = "luasnip" },
   },
   opts_extend = { "sources.default" },
 }
