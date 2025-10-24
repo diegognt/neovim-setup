@@ -18,13 +18,14 @@ local set_keymap = function(mode, keymap, action, opts)
   vim.keymap.set(mode, keymap, action, opts)
 end
 
-local Globals = {
+local uname = vim.uv.os_uname()
+
+return {
   keymaps = {
     set = set_keymap,
   },
   paths = {
     python_bin = "~/.pyenv/versions/py3nvim/bin/python",
   },
+  os = uname.sysname,
 }
-
-return Globals
