@@ -1,6 +1,4 @@
 return {
-  "angularls",
-  "astro",
   "bashls",
   "biome",
   "clangd",
@@ -18,7 +16,6 @@ return {
   "ruff",
   "taplo",
   "svelte",
-  "tailwindcss",
   "ts_ls",
   "yamlls",
 }
