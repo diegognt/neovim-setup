@@ -18,10 +18,17 @@ vim.keymap.set("", "<Space>", "<Nop>")
 
 -- Normal Mode --
 -- Better window navigation
-keymap("n", "<M-h>", "<C-w>h")
-keymap("n", "<M-j>", "<C-w>j")
-keymap("n", "<M-k>", "<C-w>k")
-keymap("n", "<M-l>", "<C-w>l")
+if globals.os == "Linux" then
+  keymap("n", "<M-h>", "<C-w>h")
+  keymap("n", "<M-j>", "<C-w>j")
+  keymap("n", "<M-k>", "<C-w>k")
+  keymap("n", "<M-l>", "<C-w>l")
+elseif globals.os == "Darwin" then
+  keymap("n", "<C-h>", "<C-w>h")
+  keymap("n", "<C-j>", "<C-w>j")
+  keymap("n", "<C-k>", "<C-w>k")
+  keymap("n", "<C-l>", "<C-w>l")
+end
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>")

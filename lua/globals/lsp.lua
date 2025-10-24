@@ -17,6 +17,7 @@ return {
   "pyright",
   "ruff",
   "taplo",
+  "svelte",
   "tailwindcss",
   "ts_ls",
   "yamlls",
