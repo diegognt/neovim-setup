@@ -2,6 +2,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local config = function(_, opts)
   local none = require "null-ls"
   local formatting = none.builtins.formatting
+  local diagnostic = none.builtins.diagnostics
 
   require("mason-null-ls").setup(opts)
 
@@ -9,14 +10,10 @@ local config = function(_, opts)
     sources = {
       formatting.prettier.with({
         condition = function(utils)
-          return utils.root_has_file({ ".prettierrc", "angular.json" })
+          return utils.root_has_file({ ".prettierrc" })
         end,
         extra_args = { "--config", ".prettierrc" },
         disabled_filetypes = {
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
           "vue",
           "json",
           "jsonc",
@@ -25,7 +22,6 @@ local config = function(_, opts)
           "markdown.mdx",
           "graphql",
           "handlebars",
-          "svelte",
           "astro",
         },
       }),
@@ -36,6 +32,7 @@ local config = function(_, opts)
       }),
       formatting.pyink,
       formatting.clang_format,
+      diagnostic.pylint,
     },
     on_attach = function(client, bufnr)
       if client.supports_method "textDocument/formatting" then

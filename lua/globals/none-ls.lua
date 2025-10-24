@@ -4,4 +4,5 @@ return {
   "stylua",
   "prettier",
   "pyink",
+  "pylint",
 }
