@@ -43,7 +43,7 @@ keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "[w]rite current buffer" })
 keymap("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "[L]azy panel" })
 
 -- Quit vim
-keymap("n", "<Space>q", ":q!<CR>")
+keymap("n", "<leader>q", ":q!<CR>")
 
 -- Insert Mode --
 

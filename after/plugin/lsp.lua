@@ -2,7 +2,6 @@ local LspConfigGroup = vim.api.nvim_create_augroup("LspConfig", { clear = true }
 
 local keymap = require("globals").keymaps.set
 local icons = require "globals.icons"
-local lsp_servers = require "globals.lsp"
 local progress = vim.defaulttable()
 
 vim.api.nvim_create_autocmd("LspProgress", {
@@ -78,7 +77,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>xf", vim.diagnostic.open_float, { desc = "Open Diagnostics on Float" })
 
     -- LSP Info
-    -- keymap("n", "<leader>lI", "<cmd>LspInfo<CR>", "LSP Info")
+    keymap("n", "<leader>lI", "<cmd>checkhealth vim.lsp<CR>", { desc = "[l]sp [I]nfo" })
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
@@ -166,5 +165,3 @@ vim.diagnostic.config({
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
-
-vim.lsp.enable(lsp_servers)
