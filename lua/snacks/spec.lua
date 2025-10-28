@@ -11,6 +11,7 @@ return {
     notifier = { enabled = true },
     scratch = { enabled = true, ft = "markdown" },
     words = { enabled = true },
+    statuscolumn = { enabled = false },
   },
   keys = require "snacks.config.keymaps",
 }

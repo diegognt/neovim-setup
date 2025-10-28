@@ -42,7 +42,7 @@ local options = {
   cursorline = true, -- Highlights the current line
   number = true, -- Sets the numbered lines
   relativenumber = true, -- Sets the relative numbered lines
-  numberwidth = 4, -- Set the number column width to 2 {default 4}
+  numberwidth = 2, -- Set the number column width to 2 {default 4}
   laststatus = 3,
   showcmd = false,
   ruler = false,
@@ -55,7 +55,7 @@ local options = {
   title = false,
   fillchars = opt.fillchars + "eob: ,fold: ,foldopen:,foldsep: ,foldclose:",
   winbar = "%=%m %f",
-  foldcolumn = "1", -- '0' is not bad
+  foldcolumn = "0", -- '0' is not bad
   foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
   foldlevelstart = 99,
   foldenable = true,
