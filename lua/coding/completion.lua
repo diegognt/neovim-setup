@@ -1,10 +1,11 @@
 return {
   "saghen/blink.cmp",
   dependencies = {
-    { "L3MON4D3/LuaSnip", version = "v2.*" },
+    "saghen/blink.lib",
+    "rafamadriz/friendly-snippets",
     { "moyiz/blink-emoji.nvim" },
   },
-  version = "*",
+  version = false, -- Track main/v2 branch
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -12,6 +13,9 @@ return {
     appearance = {
       use_nvim_cmp_as_default = true,
       nerd_font_variant = "mono",
+    },
+    snippets = {
+      preset = "default",
     },
     completion = {
       menu = {
@@ -29,6 +33,7 @@ return {
     },
     signature = { enabled = true, window = { border = "rounded" } },
     sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
       providers = {
         emoji = {
           module = "blink-emoji",
@@ -39,8 +44,8 @@ return {
       },
       per_filetype = {
         codecompanion = { "codecompanion" },
-        markdown = { "emoji", "lsp" },
-        inline_markdown = { "emoji", "lsp" },
+        markdown = { "emoji", "lsp", "path", "snippets", "buffer" },
+        inline_markdown = { "emoji", "lsp", "path", "snippets", "buffer" },
       },
     },
   },
