@@ -2,11 +2,16 @@ local parsers = require "globals.treesitter"
 
 return {
   "nvim-treesitter/nvim-treesitter",
+  lazy = false,
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      branch = "main",
+      init = function()
+        vim.g.no_plugin_maps = true
+      end,
       event = "VeryLazy",
     },
     {
@@ -57,7 +62,4 @@ return {
       disable = { "lua" },
     },
   },
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
-  end,
 }
