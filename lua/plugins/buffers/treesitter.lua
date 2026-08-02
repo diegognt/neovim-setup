@@ -1,65 +1,81 @@
+-- globals parser for syntax highlighting
 local parsers = require "globals.treesitter"
 
 return {
-  "nvim-treesitter/nvim-treesitter",
-  lazy = false,
-  build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
-  dependencies = {
-    {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      branch = "main",
-      init = function()
-        vim.g.no_plugin_maps = true
-      end,
-      event = "VeryLazy",
-    },
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      event = "VeryLazy",
-    },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter").install(parsers)
+    end,
   },
-  opts = {
-    ensure_installed = parsers,
-    sync_install = true, -- install languages synchronously (only applied to `ensure_installed`)
-    highlight = {
-      enable = true, -- false will disable the whole extension
-      disable = { "" }, -- list of language that will be disabled
-      additional_vim_regex_highlighting = false,
-    },
-    textobject = {
-      select = {
-        enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        keymaps = {
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["at"] = "@class.outer",
-          ["it"] = "@class.inner",
-          ["ac"] = "@call.outer",
-          ["ic"] = "@call.inner",
-          ["aa"] = "@parameter.outer",
-          ["ia"] = "@parameter.inner",
-          ["al"] = "@loop.outer",
-          ["il"] = "@loop.inner",
-          ["ai"] = "@conditional.outer",
-          ["ii"] = "@conditional.inner",
-          ["a/"] = "@comment.outer",
-          ["i/"] = "@comment.inner",
-          ["ab"] = "@block.outer",
-          ["ib"] = "@block.inner",
-          ["as"] = "@statement.outer",
-          ["is"] = "@scopename.inner",
-          ["aA"] = "@attribute.outer",
-          ["iA"] = "@attribute.inner",
-          ["aF"] = "@frame.outer",
-          ["iF"] = "@frame.inner",
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-treesitter-textobjects").setup({
+        select = {
+          lookahead = true, -- Automatically jump forward to textobj
+          selection_modes = {
+            ["@parameter.outer"] = "v", -- charwise
+            ["@function.outer"] = "V", -- linewise
+            ["@class.outer"] = "V", -- linewise
+          },
         },
-      },
-    },
-    matchup = {
-      enable = { "astro" },
-      disable = { "lua" },
-    },
+      })
+
+      local ts_select = require "nvim-treesitter-textobjects.select"
+
+      -- Map your specific text objects
+      local function ts_key_map_select(mode, key, query_string, query_group)
+        vim.keymap.set(mode, key, function()
+          ts_select.select_textobject(query_string, query_group or "textobjects")
+        end)
+      end
+
+      -- Functions
+      ts_key_map_select({ "x", "o" }, "af", "@function.outer")
+      ts_key_map_select({ "x", "o" }, "if", "@function.inner")
+
+      -- Classes
+      ts_key_map_select({ "x", "o" }, "at", "@class.outer")
+      ts_key_map_select({ "x", "o" }, "it", "@class.inner")
+
+      -- Calls
+      ts_key_map_select({ "x", "o" }, "ac", "@call.outer")
+      ts_key_map_select({ "x", "o" }, "ic", "@call.inner")
+
+      -- Parameters
+      ts_key_map_select({ "x", "o" }, "aa", "@parameter.outer")
+      ts_key_map_select({ "x", "o" }, "ia", "@parameter.inner")
+
+      -- Loops
+      ts_key_map_select({ "x", "o" }, "al", "@loop.outer")
+      ts_key_map_select({ "x", "o" }, "il", "@loop.inner")
+
+      -- Conditionals
+      ts_key_map_select({ "x", "o" }, "ai", "@conditional.outer")
+      ts_key_map_select({ "x", "o" }, "ii", "@conditional.inner")
+
+      -- Comments
+      ts_key_map_select({ "x", "o" }, "a/", "@comment.outer")
+      ts_key_map_select({ "x", "o" }, "i/", "@comment.inner")
+
+      -- Blocks
+      ts_key_map_select({ "x", "o" }, "ab", "@block.outer")
+      ts_key_map_select({ "x", "o" }, "ib", "@block.inner")
+
+      -- Statements/Scopes
+      ts_key_map_select({ "x", "o" }, "as", "@statement.outer")
+      ts_key_map_select({ "x", "o" }, "is", "@scopename.inner")
+
+      -- Attributes/Frames (assuming these exist in your parsers)
+      ts_key_map_select({ "x", "o" }, "aA", "@attribute.outer")
+      ts_key_map_select({ "x", "o" }, "iA", "@attribute.inner")
+      ts_key_map_select({ "x", "o" }, "aF", "@frame.outer")
+      ts_key_map_select({ "x", "o" }, "iF", "@frame.inner")
+    end,
   },
 }

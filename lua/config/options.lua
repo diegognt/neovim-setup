@@ -60,6 +60,7 @@ local options = {
   foldlevelstart = 99,
   foldenable = true,
   winborder = "rounded",
+  -- no_plugin_maps = true, -- Disable entire built-in ftplugin mappings to avoid conflicts
 }
 
 opt.listchars:append "space:⋅"

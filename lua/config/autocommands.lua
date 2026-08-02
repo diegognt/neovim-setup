@@ -17,6 +17,43 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Enable native Neovim treesitter highlighting globally
+vim.api.nvim_create_autocmd("FileType", {
+  group = GeneralSettingsGroup,
+  pattern = "*",
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+
+    -- 1. List of ft patterns to ignore
+    local ignore_patterns = {
+      "^$", -- Empty filetype
+      "^snacks_",
+      "^Telescope",
+      "^lazy$",
+      "^mason$",
+      "^oil$",
+      "^dap%-",
+    }
+
+    -- 2. Check if the filetype matches any of the patterns
+    for _, pattern in ipairs(ignore_patterns) do
+      if ft:match(pattern) then
+        return
+      end
+    end
+
+    local success = pcall(vim.treesitter.start)
+
+    if not success then
+      vim.notify(
+        "No treesitter parser installed. Using nvim regex syntax.",
+        vim.log.levels.INFO,
+        { title = "Treesitter (" .. ft .. ")" }
+      )
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("VimResized", {
   group = ResizeGroup,
   pattern = "*",
