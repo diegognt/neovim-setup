@@ -75,7 +75,6 @@ for k, v in pairs(options) do
 end
 
 -- Global options
-g.python3_host_prog = globals.paths.python_bin
 g.netrw_banner = 0
 g.netrw_mouse = 2
 g.mapleader = " " -- Remaping leader key
