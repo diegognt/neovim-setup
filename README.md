@@ -17,19 +17,6 @@ npm install -g neovim
 ```
 
 ### Python
-For Python, makes sure to set up the provider using a virtualenv, follows the following steps,
-
-Installs `pyenv` and `pyenv-virtualenv`, run on mac `brew install pyenv pyenv-virtualenv`
-
-```sh
-pyenv install <python-version>
-pyenv virtualenv <python-version> py3nvim
-pyenv activate py3nvim
-python -m pip install pynvim neovim
-pyenv which python  # save the path
-```
-
-Go to `./lua/diegognt/options.lua` and assign the python path to the `vim.g.python3_host_prog` field.
 
 ### Rust
 - On macOS run, `brew install rust`
@@ -71,6 +58,18 @@ cd neovim-setup
 ```bash
 ln -s "$(pwd)" ~/.config/nvim
 ```
+## Code Companion Configuration
+
+The plugin `codecompanion.nvim` is configured in `lua/coding/code-companion.lua`. It sets up the Antigravity CLI (`agy`) as the default agent for Chat commands. The configuration includes:
+
+- Agent name `antigravity` with command `agy`.
+- Keybindings:
+  - `<leader>ad` to fix diagnostics via `#{diagnostics}` prompt.
+  - `<leader>ap` to open a prompt for custom queries.
+- The CLI interaction uses the `terminal` provider.
+
+Ensure that the `agy` CLI is installed and available in your PATH for the plugin to function correctly.
+
 
 ## Special thanks
 - [Neovim from scratch](https://github.com/LunarVim/Neovim-from-scratch) For all the guidance and inspiration.

@@ -24,8 +24,5 @@ return {
   keymaps = {
     set = set_keymap,
   },
-  paths = {
-    python_bin = "~/.pyenv/versions/py3nvim/bin/python",
-  },
   os = uname.sysname,
 }
