@@ -5,7 +5,9 @@ return {
     "rafamadriz/friendly-snippets",
     { "moyiz/blink-emoji.nvim" },
   },
-  version = false, -- Track main/v2 branch
+  build = function()
+    require("blink.cmp").build():pwait()
+  end,
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -44,8 +46,8 @@ return {
       },
       per_filetype = {
         codecompanion = { "codecompanion" },
-        markdown = { "emoji", "lsp", "path", "snippets", "buffer" },
-        inline_markdown = { "emoji", "lsp", "path", "snippets", "buffer" },
+        markdown = { "lsp", "path", "snippets", "buffer" },
+        inline_markdown = { "lsp", "path", "snippets", "buffer" },
       },
     },
   },
