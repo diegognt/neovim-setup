@@ -49,6 +49,8 @@ vim.api.nvim_create_autocmd("LspProgress", {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = LspConfigGroup,
   callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+
     keymap("n", "gd", Snacks.picker.lsp_definitions, { desc = "[g]o to [d]efinition" })
     keymap("n", "gD", Snacks.picker.lsp_declarations, { desc = "[g]o to [D]eclaration" })
     keymap("n", "gi", Snacks.picker.lsp_implementations, { desc = "[g]o to [I]mplementation" })
@@ -79,21 +81,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- LSP Info
     keymap("n", "<leader>lI", "<cmd>checkhealth vim.lsp<CR>", { desc = "[l]sp [I]nfo" })
 
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    keymap("n", "<leader>lc", vim.lsp.codelens.run, { desc = "Run Code Lens" })
 
-    if client and client.server_capabilities.codeLensProvider and vim.lsp.codelens then
-      keymap("n", "<leader>ll", function()
-        vim.lsp.codelens.refresh({ bufnr = event.buf })
-      end, { desc = "Disp[l]ay Code [l]ens" })
+    keymap("n", "<leader>lc", function()
+      local is_enabled = vim.lsp.codelens.is_enabled({ bufnr = 0 })
 
-      keymap("n", "<leader>lc", vim.lsp.codelens.run, { desc = "Run Code Lens" })
-    end
+      vim.lsp.codelens.enable(not is_enabled, { bufnr = 0 })
+    end, { desc = "[l]sp [c]ode lens" })
 
-    if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-      keymap("n", "<leader>lh", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end, { desc = "[l]sp Inlay [h]ints" })
-    end
+    keymap("n", "<leader>rl", vim.lsp.codelens.run, { desc = "[r]un [l]ens" })
+
+    keymap("n", "<leader>lh", function()
+      local is_enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+
+      vim.lsp.inlay_hint.enable(not is_enabled, { bufnr = 0 })
+    end, { desc = "[l]sp Inlay [h]ints" })
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
