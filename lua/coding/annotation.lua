@@ -32,8 +32,8 @@ return {
   },
   event = "VeryLazy",
   keys = {
-    {"<leader>aa", "<cmd>lua require('neogen').generate()<CR>", desc = "[a]dd [a]nnotation"},
-    {"<leader>ac", "<cmd>lua require('neogen').generate({type = 'class'})<CR>", desc = "[a]nnotate [c]lass"},
-    {"<leader>af", "<cmd>lua require('neogen').generate({type = 'func'})<CR>", desc = "[a]nnotate [f]unction"},
+    { "<leader>Aa", "<cmd>lua require('neogen').generate()<CR>", desc = "[A]dd [a]nnotation" },
+    { "<leader>Ac", "<cmd>lua require('neogen').generate({type = 'class'})<CR>", desc = "[A]nnotate [c]lass" },
+    { "<leader>Af", "<cmd>lua require('neogen').generate({type = 'func'})<CR>", desc = "[A]nnotate [f]unction" },
   },
 }
