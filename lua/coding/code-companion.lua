@@ -16,6 +16,17 @@ local M = {
       mode = "n",
     },
     {
+      "<leader>ae",
+      function()
+        require("codecompanion").cli(
+          "Explain what #{this} piece of code does",
+          { agent = agent.name, focus = false }
+        )
+      end,
+      desc = "[a]gent [e]xplain",
+      mode = { "n", "v" },
+    },
+    {
       "<leader>ad",
       function()
         require("codecompanion").cli("#{diagnostics} Can you fix these?", { agent = agent.name })
@@ -29,7 +40,7 @@ local M = {
         require("codecompanion").cli({ agent = agent.name, submit = true, prompt = true })
       end,
       desc = "[a]gent [p]rompt",
-      mode = "n",
+      mode = { "n", "v" },
     },
     {
       "<leader>ar",
