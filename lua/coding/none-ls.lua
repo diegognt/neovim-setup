@@ -32,7 +32,6 @@ local config = function(_, opts)
       }),
       formatting.pyink,
       formatting.clang_format,
-      diagnostic.pylint,
     },
     on_attach = function(client, bufnr)
       if client.supports_method "textDocument/formatting" then
